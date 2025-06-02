@@ -18,45 +18,16 @@
   <div class="particle particle10"></div>
   <div class="particle particle11"></div>
 
-
   <div class="login-container">
     <h2>Acceso Mayorista Brandon</h2>
-    <form id="login-form">
-      <input type="text" name="username" placeholder="Usuario LDAP" required />
-      <input type="password" name="password" placeholder="Contraseña" required />
+    <form action="privado/privado.php" method="post" autocomplete="off">
+      <input type="text" name="username" placeholder="Usuario LDAP" required autocomplete="username" />
+      <input type="password" name="password" placeholder="Contraseña" required autocomplete="current-password" />
       <button type="submit">Entrar</button>
-      <p id="error-msg"></p>
+      <?php if(isset($_GET['error'])): ?>
+        <p id="error-msg" style="color:red;">Credenciales incorrectas.</p>
+      <?php endif; ?>
     </form>
   </div>
-
-  <script>
-    const form = document.getElementById('login-form');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(form);
-      const data = {
-        username: formData.get('username'),
-        password: formData.get('password'),
-      };
-
-      try {
-        const response = await fetch('http://localhost:5000/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
-
-        const result = await response.json();
-        if (response.ok && result.success) {
-          window.location.href = "/privado/privado.html";
-        } else {
-          document.getElementById('error-msg').innerText = "Credenciales incorrectas.";
-        }
-      } catch (error) {
-        document.getElementById('error-msg').innerText = "Error al conectar con el servidor.";
-      }
-    });
-  </script>
 </body>
 </html>

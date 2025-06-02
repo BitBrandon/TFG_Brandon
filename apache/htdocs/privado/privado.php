@@ -36,20 +36,21 @@ $is_admin = ($entries['count'] > 0);
   <div class="panel-container">
     <h2>Panel de Gestión</h2>
     <p>Bienvenido al área privada, <b><?= htmlspecialchars($user_uid) ?></b></p>
-    <div class="botones">
-      <button onclick="location.href='/api-docs/usuarios'">Usuarios</button>
-      <button onclick="location.href='/api-docs/clientes'">Clientes</button>
-      <button onclick="location.href='/api-docs/productos'">Productos</button>
-      <button onclick="location.href='/api-docs/ventas'">Ventas</button>
-      <button onclick="location.href='/api-docs/facturas'">Facturas</button>
-      <button onclick="location.href='/api-docs/categorias'">Categorías</button>
-      <button onclick="location.href='/api-docs/proveedores'">Proveedores</button>
-      <button onclick="location.href='/api-docs/gastos'">Gastos</button>
-      <button onclick="location.href='/api-docs/logs'">Logs</button>
-      <?php if($is_admin): ?>
-        <button onclick="location.href='zona_admin.php'">Zona de Administración</button>
-      <?php endif; ?>
-    </div>
+  <div class="botones">
+    <button onclick="location.href='usuarios.php'">Usuarios</button>
+    <button onclick="location.href='clientes.php'">Clientes</button>
+    <button onclick="location.href='productos.php'">Productos</button>
+    <button onclick="location.href='ventas.php'">Ventas</button>
+    <button onclick="location.href='facturas.php'">Facturas</button>
+    <button onclick="location.href='categorias.php'">Categorías</button>
+    <button onclick="location.href='proveedores.php'">Proveedores</button>
+    <button onclick="location.href='gastos.php'">Gastos</button>
+    <button onclick="location.href='logs.php'">Logs</button>
+    <?php if($is_admin): ?>
+      <button onclick="location.href='zona_admin.php'">Zona de Administración</button>
+    <?php endif; ?>
+  </div>
+
     <?php if(!$is_admin): ?>
       <p style="color: #c00; margin-top:2em;">No tienes acceso a la zona de administración.</p>
     <?php endif; ?>

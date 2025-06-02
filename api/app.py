@@ -1,18 +1,18 @@
-from flask import Flask
+from flask import Flask, jsonify
 from dotenv import load_dotenv
 import os
 from flask_cors import CORS
 import time
 from sqlalchemy.exc import OperationalError
-from flask import jsonify
+from sqlalchemy import text  # Para probar conexión DB
 
-# Carga variables de entorno
+# Carga variables de entorno (.env)
 load_dotenv()
 
 # Importa la base de datos y los modelos
 from models import db
 
-# Importa los blueprints de las rutas
+# Importa los blueprints de las rutas CRUD
 from routes.usuarios import usuarios_bp
 from routes.clientes import clientes_bp
 from routes.productos import productos_bp
@@ -23,9 +23,8 @@ from routes.proveedores import proveedores_bp
 from routes.gastos import gastos_bp
 from routes.logs import logs_bp
 
-from sqlalchemy import text  # Añade este import
-
 def wait_for_db(app, db, retries=10, delay=3):
+    """Intenta conectar a la DB varias veces antes de rendirse (útil para Docker compose)."""
     for attempt in range(retries):
         try:
             with app.app_context():
@@ -53,14 +52,14 @@ def create_app():
     # Inicializa la base de datos
     db.init_app(app)
 
-    # Esperar que la base de datos esté disponible antes de crear las tablas
+    # Espera a que la base de datos esté disponible
     wait_for_db(app, db)
 
     # Crea las tablas si no existen
     with app.app_context():
         db.create_all()
 
-    # Registra los blueprints
+    # Registra los blueprints para las rutas CRUD
     app.register_blueprint(usuarios_bp, url_prefix='/usuarios')
     app.register_blueprint(clientes_bp, url_prefix='/clientes')
     app.register_blueprint(productos_bp, url_prefix='/productos')
@@ -77,7 +76,6 @@ def create_app():
 
     return app
 
-# Punto de entrada
 if __name__ == '__main__':
     app = create_app()
     app.run(host='0.0.0.0', port=5000)

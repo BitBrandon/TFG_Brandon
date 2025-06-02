@@ -1,5 +1,5 @@
 # AUTO-GENERATED FILE - DO NOT EDIT!! Use ldapmodify.
-# CRC32 252bf329
+# CRC32 44f4caa1
 dn: olcDatabase={1}mdb
 objectClass: olcDatabaseConfig
 objectClass: olcMdbConfig
@@ -8,13 +8,13 @@ olcDbDirectory: /var/lib/ldap
 olcSuffix: dc=mayorista,dc=local
 olcLastMod: TRUE
 olcRootDN: cn=admin,dc=mayorista,dc=local
-olcRootPW:: e1NTSEF9Y29JbVBPVmNBWkR6MlVWK2UwbUdsRzByYkJ6UmtoU1M=
+olcRootPW:: e1NTSEF9S3VXeUlRV3AxQXYzdW9YeUI3M0pqZjc4MXdncUZvMDg=
 olcDbCheckpoint: 512 30
 olcDbMaxSize: 1073741824
 structuralObjectClass: olcMdbConfig
-entryUUID: a3ae82bc-d42d-103f-99b1-adbb0a5e5776
+entryUUID: 12e4e9e6-d447-103f-9105-bb0f38a5e5a0
 creatorsName: cn=admin,cn=config
-createTimestamp: 20250602184629Z
+createTimestamp: 20250602214833Z
 olcAccess: {0}to * by dn.exact=gidNumber=0+uidNumber=0,cn=peercred,cn=extern
  al,cn=auth manage by * break
 olcAccess: {1}to attrs=userPassword,shadowLastChange by self write by dn="cn
@@ -27,6 +27,6 @@ olcDbIndex: memberOf eq
 olcDbIndex: entryCSN eq
 olcDbIndex: entryUUID eq
 olcDbIndex: objectClass eq
-entryCSN: 20250602184633.625765Z#000000#000#000000
+entryCSN: 20250602214837.971088Z#000000#000#000000
 modifiersName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
-modifyTimestamp: 20250602184633Z
+modifyTimestamp: 20250602214837Z

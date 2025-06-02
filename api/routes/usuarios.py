@@ -1,13 +1,48 @@
-from flask import Blueprint, jsonify
-from services.ldap_service import LDAPService
+from flask import Blueprint, request, jsonify
+from models.usuario import Usuario
+from models import db
 
 usuarios_bp = Blueprint('usuarios', __name__)
 
-@usuarios_bp.route('/usuarios', methods=['GET'])
+@usuarios_bp.route('/', methods=['GET'])
 def listar_usuarios():
-    try:
-        ldap_service = LDAPService()
-        users = ldap_service.get_all_users()
-        return jsonify(users), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    usuarios = Usuario.query.all()
+    return jsonify([u.to_dict() for u in usuarios]), 200
+
+@usuarios_bp.route('/', methods=['POST'])
+def crear_usuario():
+    data = request.json
+    nuevo_usuario = Usuario(
+        username=data.get('username'),
+        email=data.get('email')
+    )
+    db.session.add(nuevo_usuario)
+    db.session.commit()
+    return jsonify(nuevo_usuario.to_dict()), 201
+
+@usuarios_bp.route('/<int:id>', methods=['GET'])
+def obtener_usuario(id):
+    usuario = Usuario.query.get(id)
+    if usuario:
+        return jsonify(usuario.to_dict()), 200
+    return jsonify({"error": "No encontrado"}), 404
+
+@usuarios_bp.route('/<int:id>', methods=['PUT'])
+def actualizar_usuario(id):
+    usuario = Usuario.query.get(id)
+    if not usuario:
+        return jsonify({"error": "No encontrado"}), 404
+    data = request.json
+    usuario.username = data.get('username', usuario.username)
+    usuario.email = data.get('email', usuario.email)
+    db.session.commit()
+    return jsonify(usuario.to_dict()), 200
+
+@usuarios_bp.route('/<int:id>', methods=['DELETE'])
+def eliminar_usuario(id):
+    usuario = Usuario.query.get(id)
+    if not usuario:
+        return jsonify({"error": "No encontrado"}), 404
+    db.session.delete(usuario)
+    db.session.commit()
+    return jsonify({"message": "Eliminado"}), 200

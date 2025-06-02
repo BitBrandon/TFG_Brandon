@@ -79,3 +79,48 @@ CREATE TABLE IF NOT EXISTS logs (
     accion TEXT,
     fecha DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Datos de ejemplo para Clientes
+INSERT INTO clientes (nombre, email, telefono, direccion) VALUES
+('Juan Pérez', 'juan@example.com', '666111222', 'Calle Mayor, 1'),
+('Ana García', 'ana@gmail.com', '666333444', 'Calle Menor, 2');
+
+-- Datos de ejemplo para Categorías
+INSERT INTO categorias (nombre) VALUES
+('Bebidas'),
+('Comida');
+
+-- Datos de ejemplo para Proveedores
+INSERT INTO proveedores (nombre, telefono, email) VALUES
+('Proveedor 1', '600123456', 'prov1@correo.com'),
+('Proveedor 2', '600654321', 'prov2@correo.com');
+
+-- Datos de ejemplo para Productos
+INSERT INTO productos (nombre, precio, stock, id_categoria, id_proveedor) VALUES
+('Agua', 1.50, 100, 1, 1),
+('Pan', 0.80, 200, 2, 2);
+
+-- Datos de ejemplo para Usuarios
+INSERT INTO usuarios (nombre, email, rol, activo) VALUES
+('Brandon Admin', 'admin@mayorista.com', 'admin_informatica', TRUE),
+('Laura Jefe', 'jefe@mayorista.com', 'jefe', TRUE);
+
+-- Datos de ejemplo para Ventas
+INSERT INTO ventas (id_cliente, id_producto, cantidad, fecha) VALUES
+(1, 1, 10, '2025-06-01'),
+(2, 2, 5, '2025-06-02');
+
+-- Datos de ejemplo para Facturas
+INSERT INTO facturas (id_venta, total, fecha_factura) VALUES
+(1, 15.00, '2025-06-01'),
+(2, 4.00, '2025-06-02');
+
+-- Datos de ejemplo para Gastos
+INSERT INTO gastos (descripcion, monto, fecha) VALUES
+('Luz junio', 120.50, '2025-06-01'),
+('Internet', 50.00, '2025-06-02');
+
+-- Datos de ejemplo para Logs
+INSERT INTO logs (usuario, accion) VALUES
+('Brandon Admin', 'Inicio de sesión'),
+('Laura Jefe', 'Creación de factura');

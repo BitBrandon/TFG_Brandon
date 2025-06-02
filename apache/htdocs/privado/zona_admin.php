@@ -42,7 +42,7 @@ if (!$is_admin) {
       flex-direction: column;
       gap: 1em;
     }
-    .admin-buttons button, .admin-buttons a {
+    .admin-buttons a {
       padding: 1em;
       border: none;
       border-radius: 6px;
@@ -53,8 +53,9 @@ if (!$is_admin) {
       text-decoration: none;
       text-align: center;
       transition: background 0.2s;
+      display: block;
     }
-    .admin-buttons button:hover, .admin-buttons a:hover {
+    .admin-buttons a:hover {
       background: #c76600;
     }
   </style>
@@ -62,14 +63,16 @@ if (!$is_admin) {
 <body>
   <div class="admin-panel">
     <h2>Zona de Administración</h2>
-    <p>Bienvenido, <b><?= htmlspecialchars($user_uid) ?></b>.<br>
-    Aquí puedes acceder a las herramientas de administración:</p>
+    <p>Bienvenido, <b><?= htmlspecialchars($user_uid) ?></b>.</p>
     <div class="admin-buttons">
-      <!-- Cambia los href según tus rutas reales -->
       <a href="http://localhost:8081" target="_blank">Abrir PHPLDAPADMIN</a>
       <a href="http://localhost:8082" target="_blank">Abrir phpMyAdmin</a>
-      <a href="/admin/mysql-shell" target="_blank">Abrir shell MySQL (web)</a>
-      <!-- Añade más enlaces o botones aquí -->
+      <a href="/privado/exportar_db.php">Descargar Backup de la Base de Datos</a>
+      <a href="/privado/logs.php">Ver Logs del Sistema</a>
+      <a href="/privado/estado_sistema.php">Ver Estado del Sistema</a>
+      <a href="exportar_csv.php?entidad=clientes">Exportar Clientes (CSV)</a>
+      <a href="exportar_csv.php?entidad=productos">Exportar Productos (CSV)</a>
+      <a href="exportar_csv.php?entidad=ventas">Exportar Ventas (CSV)</a>
     </div>
     <br>
     <a href="privado.php">&larr; Volver al panel privado</a>
