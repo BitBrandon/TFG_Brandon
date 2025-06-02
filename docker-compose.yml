@@ -33,6 +33,7 @@ services:
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
+
   cliente-jefeit:
     build: ./Clientes/base
     container_name: cliente-jefeit
@@ -62,6 +63,7 @@ services:
     dns:
       - 192.168.0.10
     restart: unless-stopped
+
   # ============ DHCP SERVER ============
   dhcp:
     build: ./dhcp
@@ -77,6 +79,7 @@ services:
       - ./dhcp-data:/var/lib/dhcp
     command: ["dhcpd", "-f", "-d"]
     restart: unless-stopped
+
   # ============ DATABASE ============
   db:
     image: mariadb:11.2.2
@@ -95,6 +98,7 @@ services:
       mayorista_network:
         ipv4_address: 192.168.0.11
     restart: always
+
   # ============ API ============
   api:
     build: ./api
@@ -111,6 +115,7 @@ services:
     depends_on:
       - db
     restart: unless-stopped
+
   # ============ APACHE (con módulos externos) ============
   apache:
     build: ./apache
@@ -131,6 +136,7 @@ services:
       - ./apache/wait-for-it.sh:/wait-for-it.sh
     restart: unless-stopped
     command: ["/entrypoint.sh"]
+
   # ============ LDAP ============
   ldap:
     image: osixia/openldap:1.5.0
@@ -139,10 +145,10 @@ services:
       - "389:389"
       - "636:636"
     volumes:
-      - ldap-data:/var/lib/ldap
-      - ldap-config:/etc/ldap/slapd.d
-      - ./ldap/bootstrap:/container/service/slapd/assets/config/bootstrap/ldif/custom
-    environment:  
+      - ./ldap/data:/var/lib/ldap
+      - ./ldap/config:/etc/ldap/slapd.d
+      - ./ldap/bootstrap:/container/service/slapd/assets/config/bootstrap/ldif/
+    environment:
       LDAP_ORGANISATION: "Mayorista"
       LDAP_DOMAIN: "mayorista.local"
       LDAP_ADMIN_PASSWORD: "adminpassword"
@@ -166,12 +172,13 @@ services:
       - ./dns/dnsmasq.conf:/etc/dnsmasq.conf
       - ./dns/dnsmasq.hosts:/etc/dnsmasq.hosts
     restart: unless-stopped
+
   # ============ PHPLDAPADMIN ===========
   phpldapadmin:
     image: osixia/phpldapadmin:0.9.0
     container_name: phpldapadmin
     ports:
-      - "6443:443"
+      - "8080:80"
     environment:
       PHPLDAPADMIN_LDAP_HOSTS: ldap
       PHPLDAPADMIN_HTTPS: "false"
@@ -182,12 +189,9 @@ services:
         ipv4_address: 192.168.0.16
     restart: unless-stopped
 
-    # ========== VOLUMES ==========
-
+# ========== VOLUMES ==========
 volumes:
   db_data:
-  ldap-data:
-  ldap-config:
 
 # ========== RED ==========
 networks:

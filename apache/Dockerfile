@@ -2,16 +2,16 @@ FROM debian:bullseye
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Instalación de Apache y módulos necesarios
+# Instalación de Apache, PHP y módulos necesarios
 RUN apt-get update && \
-    apt-get install -y apache2 apache2-utils libapache2-mod-ldap-userdir ldap-utils curl && \
+    apt-get install -y apache2 apache2-utils libapache2-mod-php php php-ldap ldap-utils curl && \
     rm -rf /var/lib/apt/lists/*
 
 # Copiar configuración personalizada ANTES de activarla
 COPY conf/myhttpd.conf /etc/apache2/conf-available/myhttpd.conf
 
 # Habilitar módulos y configuración
-RUN a2enmod ldap authnz_ldap rewrite proxy proxy_http && \
+RUN a2enmod ldap authnz_ldap rewrite proxy proxy_http php7.4 && \
     a2enconf myhttpd
 
 # Copiar contenido web

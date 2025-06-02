@@ -8,58 +8,44 @@ ou: grupos
 
 dn: uid=juan,ou=usuarios,dc=mayorista,dc=local
 objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-cn: Juan Perez
 sn: Perez
+givenName: Juan
+cn: Juan Perez
 uid: juan
 userPassword: juan123
 
-dn: uid=ana,ou=usuarios,dc=mayorista,dc=local
+dn: uid=carla,ou=usuarios,dc=mayorista,dc=local
 objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-cn: Ana Ruiz
-sn: Ruiz
-uid: ana
-userPassword: ana123
+sn: Lopez
+givenName: Carla
+cn: Carla Lopez
+uid: carla
+userPassword: carla123
 
 dn: uid=luis,ou=usuarios,dc=mayorista,dc=local
 objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-cn: Luis Torres
-sn: Torres
+sn: Ruiz
+givenName: Luis
+cn: Luis Ruiz
 uid: luis
 userPassword: luis123
 
-dn: uid=carla,ou=usuarios,dc=mayorista,dc=local
+dn: uid=ana,ou=usuarios,dc=mayorista,dc=local
 objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-cn: Carla Romero
-sn: Romero
-uid: carla
-userPassword: carla123
+sn: Torres
+givenName: Ana
+cn: Ana Torres
+uid: ana
+userPassword: ana123
 
 dn: cn=trabajadores,ou=grupos,dc=mayorista,dc=local
 objectClass: groupOfNames
 cn: trabajadores
 member: uid=juan,ou=usuarios,dc=mayorista,dc=local
+member: uid=luis,ou=usuarios,dc=mayorista,dc=local
 member: uid=ana,ou=usuarios,dc=mayorista,dc=local
 
-dn: cn=jefe_sistemas,ou=grupos,dc=mayorista,dc=local
+dn: cn=administradores,ou=grupos,dc=mayorista,dc=local
 objectClass: groupOfNames
-cn: jefe_sistemas
-member: uid=luis,ou=usuarios,dc=mayorista,dc=local
-
-dn: cn=admin,ou=grupos,dc=mayorista,dc=local
-objectClass: groupOfNames
-cn: admin
+cn: administradores
 member: uid=carla,ou=usuarios,dc=mayorista,dc=local
-
-dn: cn=ldapbind,dc=mayorista,dc=local
-objectClass: simpleSecurityObject
-objectClass: organizationalRole
-cn: ldapbind
-userPassword: adminpassword

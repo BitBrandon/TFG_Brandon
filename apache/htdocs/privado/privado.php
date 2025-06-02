@@ -1,0 +1,58 @@
+<?php
+$user_uid = $_SERVER['REMOTE_USER'] ?? '';
+
+// Conecta a LDAP
+$ldap = ldap_connect('ldap://ldap');
+ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
+// Puedes usar también el bind de servicio si lo tienes
+ldap_bind($ldap, "cn=admin,dc=mayorista,dc=local", "adminpassword");
+
+// Busca si el usuario está en administradores
+$base_dn = "ou=grupos,dc=mayorista,dc=local";
+$filter = "(&(objectClass=groupOfNames)(cn=administradores)(member=uid=$user_uid,ou=usuarios,dc=mayorista,dc=local))";
+$result = ldap_search($ldap, $base_dn, $filter);
+$entries = ldap_get_entries($ldap, $result);
+$is_admin = ($entries['count'] > 0);
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panel Privado</title>
+  <link rel="stylesheet" href="../estilos.css" />
+</head>
+<body>
+<div class="particle particle1"></div>
+  <div class="particle particle2"></div>
+  <div class="particle particle3"></div>
+  <div class="particle particle4"></div>
+  <div class="particle particle5"></div>
+  <div class="particle particle6"></div>
+  <div class="particle particle7"></div>
+  <div class="particle particle8"></div>
+  <div class="particle particle9"></div>
+  <div class="particle particle10"></div>
+  <div class="particle particle11"></div>
+  <div class="panel-container">
+    <h2>Panel de Gestión</h2>
+    <p>Bienvenido al área privada, <b><?= htmlspecialchars($user_uid) ?></b></p>
+    <div class="botones">
+      <button onclick="location.href='/api-docs/usuarios'">Usuarios</button>
+      <button onclick="location.href='/api-docs/clientes'">Clientes</button>
+      <button onclick="location.href='/api-docs/productos'">Productos</button>
+      <button onclick="location.href='/api-docs/ventas'">Ventas</button>
+      <button onclick="location.href='/api-docs/facturas'">Facturas</button>
+      <button onclick="location.href='/api-docs/categorias'">Categorías</button>
+      <button onclick="location.href='/api-docs/proveedores'">Proveedores</button>
+      <button onclick="location.href='/api-docs/gastos'">Gastos</button>
+      <button onclick="location.href='/api-docs/logs'">Logs</button>
+      <?php if($is_admin): ?>
+        <button onclick="location.href='zona_admin.php'">Zona de Administración</button>
+      <?php endif; ?>
+    </div>
+    <?php if(!$is_admin): ?>
+      <p style="color: #c00; margin-top:2em;">No tienes acceso a la zona de administración.</p>
+    <?php endif; ?>
+  </div>
+</body>
+</html>
