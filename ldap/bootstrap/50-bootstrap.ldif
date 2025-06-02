@@ -1,0 +1,65 @@
+dn: ou=usuarios,dc=mayorista,dc=local
+objectClass: organizationalUnit
+ou: usuarios
+
+dn: ou=grupos,dc=mayorista,dc=local
+objectClass: organizationalUnit
+ou: grupos
+
+dn: uid=juan,ou=usuarios,dc=mayorista,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+cn: Juan Perez
+sn: Perez
+uid: juan
+userPassword: juan123
+
+dn: uid=ana,ou=usuarios,dc=mayorista,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+cn: Ana Ruiz
+sn: Ruiz
+uid: ana
+userPassword: ana123
+
+dn: uid=luis,ou=usuarios,dc=mayorista,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+cn: Luis Torres
+sn: Torres
+uid: luis
+userPassword: luis123
+
+dn: uid=carla,ou=usuarios,dc=mayorista,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+cn: Carla Romero
+sn: Romero
+uid: carla
+userPassword: carla123
+
+dn: cn=trabajadores,ou=grupos,dc=mayorista,dc=local
+objectClass: groupOfNames
+cn: trabajadores
+member: uid=juan,ou=usuarios,dc=mayorista,dc=local
+member: uid=ana,ou=usuarios,dc=mayorista,dc=local
+
+dn: cn=jefe_sistemas,ou=grupos,dc=mayorista,dc=local
+objectClass: groupOfNames
+cn: jefe_sistemas
+member: uid=luis,ou=usuarios,dc=mayorista,dc=local
+
+dn: cn=admin,ou=grupos,dc=mayorista,dc=local
+objectClass: groupOfNames
+cn: admin
+member: uid=carla,ou=usuarios,dc=mayorista,dc=local
+
+dn: cn=ldapbind,dc=mayorista,dc=local
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: ldapbind
+userPassword: adminpassword

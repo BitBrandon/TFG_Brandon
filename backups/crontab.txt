@@ -1,0 +1,2 @@
+# Este archivo configura la ejecución del backup.sh cada día a las 3:00 AM
+0 3 * * * root /backup.sh

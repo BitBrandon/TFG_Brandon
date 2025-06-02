@@ -1,0 +1,7 @@
+192.168.0.10 dns.mayorista.local
+192.168.0.11 db.mayorista.local
+192.168.0.12 api.mayorista.local
+192.168.0.13 apache.mayorista.local
+192.168.0.14 dhcp.mayorista.local
+192.168.0.15 ldap.mayorista.local
+192.168.0.16 phpldapadmin.mayorista.local

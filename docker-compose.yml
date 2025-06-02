@@ -1,0 +1,198 @@
+version: '3.8'
+
+services:
+# ============ CLIENTES (usando DHCP) ============
+  cliente-trabajador1:
+    build: ./Clientes/base
+    container_name: cliente-trabajador1
+    hostname: trabajador1.mayorista.local
+    networks:
+      mayorista_network: {}
+    ports:
+      - "2221:22"
+    tty: true
+    stdin_open: true
+    dns:
+      - 192.168.0.10
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+
+  cliente-trabajador2:
+    build: ./Clientes/base
+    container_name: cliente-trabajador2
+    hostname: trabajador2.mayorista.local
+    networks:
+      mayorista_network: {}
+    ports:
+      - "2222:22"
+    tty: true
+    stdin_open: true
+    dns:
+      - 192.168.0.10
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+  cliente-jefeit:
+    build: ./Clientes/base
+    container_name: cliente-jefeit
+    hostname: jefeit.mayorista.local
+    networks:
+      mayorista_network:
+        ipv4_address: 192.168.0.53
+    ports:
+      - "2223:22"
+    tty: true
+    stdin_open: true
+    dns:
+      - 192.168.0.10
+    restart: unless-stopped
+
+  cliente-jefe:
+    build: ./Clientes/base
+    container_name: cliente-jefe
+    hostname: jefe.mayorista.local
+    networks:
+      mayorista_network:
+        ipv4_address: 192.168.0.54
+    ports:
+      - "2224:22"
+    tty: true
+    stdin_open: true
+    dns:
+      - 192.168.0.10
+    restart: unless-stopped
+  # ============ DHCP SERVER ============
+  dhcp:
+    build: ./dhcp
+    container_name: dhcp-server
+    networks:
+      mayorista_network:
+        ipv4_address: 192.168.0.14
+    ports:
+      - "67:67/udp"
+      - "68:68/udp"
+    volumes:
+      - ./dhcp/dhcpd.conf:/etc/dhcp/dhcpd.conf
+      - ./dhcp-data:/var/lib/dhcp
+    command: ["dhcpd", "-f", "-d"]
+    restart: unless-stopped
+  # ============ DATABASE ============
+  db:
+    image: mariadb:11.2.2
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mayorista_db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: adminpassword
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      mayorista_network:
+        ipv4_address: 192.168.0.11
+    restart: always
+  # ============ API ============
+  api:
+    build: ./api
+    container_name: api_mayorista
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_APP: app.py
+      FLASK_ENV: production
+      DATABASE_URL: mysql+pymysql://admin:adminpassword@db:3306/mayorista_db
+    networks:
+      mayorista_network:
+        ipv4_address: 192.168.0.12
+    depends_on:
+      - db
+    restart: unless-stopped
+  # ============ APACHE (con módulos externos) ============
+  apache:
+    build: ./apache
+    container_name: apache_server
+    hostname: www.mayorista.local
+    ports:
+      - "80:80"
+    networks:
+      mayorista_network:
+        ipv4_address: 192.168.0.13
+    depends_on:
+      - api
+      - ldap
+    volumes:
+      - ./apache/conf/myhttpd.conf:/etc/apache2/conf-available/myhttpd.conf
+      - ./apache/htdocs:/var/www/html
+      - ./apache/entrypoint.sh:/entrypoint.sh
+      - ./apache/wait-for-it.sh:/wait-for-it.sh
+    restart: unless-stopped
+    command: ["/entrypoint.sh"]
+  # ============ LDAP ============
+  ldap:
+    image: osixia/openldap:1.5.0
+    container_name: ldap-server
+    ports:
+      - "389:389"
+      - "636:636"
+    volumes:
+      - ldap-data:/var/lib/ldap
+      - ldap-config:/etc/ldap/slapd.d
+      - ./ldap/bootstrap:/container/service/slapd/assets/config/bootstrap/ldif/custom
+    environment:  
+      LDAP_ORGANISATION: "Mayorista"
+      LDAP_DOMAIN: "mayorista.local"
+      LDAP_ADMIN_PASSWORD: "adminpassword"
+      LDAP_CONFIG_PASSWORD: "configpassword"
+      LDAP_TLS: "false"
+      LDAP_REMOVE_CONFIG_AFTER_SETUP: "false"
+    networks:
+      mayorista_network:
+        ipv4_address: 192.168.0.15
+    restart: unless-stopped
+  # ============ DNS ============
+  dns:
+    build: ./dns
+    container_name: dns-server
+    networks:
+      mayorista_network:
+        ipv4_address: 192.168.0.10
+    ports:
+      - "53:53/udp"
+    volumes:
+      - ./dns/dnsmasq.conf:/etc/dnsmasq.conf
+      - ./dns/dnsmasq.hosts:/etc/dnsmasq.hosts
+    restart: unless-stopped
+  # ============ PHPLDAPADMIN ===========
+  phpldapadmin:
+    image: osixia/phpldapadmin:0.9.0
+    container_name: phpldapadmin
+    ports:
+      - "6443:443"
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: ldap
+      PHPLDAPADMIN_HTTPS: "false"
+    depends_on:
+      - ldap
+    networks:
+      mayorista_network:
+        ipv4_address: 192.168.0.16
+    restart: unless-stopped
+
+    # ========== VOLUMES ==========
+
+volumes:
+  db_data:
+  ldap-data:
+  ldap-config:
+
+# ========== RED ==========
+networks:
+  mayorista_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
