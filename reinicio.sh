@@ -7,6 +7,10 @@ NC='\033[0m' # sin color
 
 echo -e "\n${GREEN}====== Reiniciando entorno LDAP desde cero ======${NC}\n"
 
+# 0. Limpieza automática: elimina archivos LDIF vacíos
+echo -e "${GREEN}Eliminando archivos LDIF vacíos en ldap/bootstrap...${NC}"
+find ./ldap/bootstrap -type f -empty -delete
+
 # 1. Parar y eliminar contenedores y red
 echo -e "${GREEN}Parando y eliminando todos los contenedores y la red...${NC}"
 docker-compose down -v || true
@@ -28,9 +32,9 @@ fi
 
 echo -e "${GREEN}LDIFs de bootstrap detectados.${NC}"
 
-# 4. (Opcional) Reconstruir imágenes (descomenta si quieres forzar build)
-# echo -e "${GREEN}Reconstruyendo imágenes locales...${NC}"
-# docker-compose build
+ 4. Reconstruir imágenes 
+echo -e "${GREEN}Reconstruyendo todas las imágenes locales (build forzado)...${NC}"
+docker-compose build --no-cache
 
 # 5. Levantar servicios
 echo -e "${GREEN}Levantando todos los servicios...${NC}"

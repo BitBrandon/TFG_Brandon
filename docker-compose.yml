@@ -11,7 +11,7 @@ services:
     volumes:
       - ./ldap/data:/var/lib/ldap
       - ./ldap/config:/etc/ldap/slapd.d
-      - ./ldap/bootstrap:/container/service/slapd/assets/config/bootstrap/ldif/custom
+      - ./ldap/bootstrap:/container/service/slapd/assets/config/bootstrap/ldif
       - ./ldap/overlays:/overlays
     environment:
       LDAP_ORGANISATION: "Mayorista"

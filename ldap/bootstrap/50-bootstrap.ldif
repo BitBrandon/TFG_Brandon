@@ -1,3 +1,11 @@
+dn: ou=usuarios,dc=mayorista,dc=local
+objectClass: organizationalUnit
+ou: usuarios
+
+dn: ou=grupos,dc=mayorista,dc=local
+objectClass: organizationalUnit
+ou: grupos
+
 dn: uid=juan,ou=usuarios,dc=mayorista,dc=local
 objectClass: inetOrgPerson
 objectClass: posixAccount
