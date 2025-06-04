@@ -1,5 +1,5 @@
 # AUTO-GENERATED FILE - DO NOT EDIT!! Use ldapmodify.
-# CRC32 12dec8b8
+# CRC32 d94f56fd
 dn: cn={1}cosine
 objectClass: olcSchemaConfig
 cn: {1}cosine
@@ -170,9 +170,9 @@ olcObjectClasses: {12}( 0.9.2342.19200300.100.4.22 NAME 'qualityLabelledData
  ' SUP top AUXILIARY MUST dsaQuality MAY ( subtreeMinimumQuality $ subtreeMa
  ximumQuality ) )
 structuralObjectClass: olcSchemaConfig
-entryUUID: 4be00028-d5af-103f-802e-199e6b48cae7
+entryUUID: 5907fb86-d5bc-103f-9197-8d09356496c5
 creatorsName: cn=admin,cn=config
-createTimestamp: 20250604164707Z
-entryCSN: 20250604164707.673558Z#000000#000#000000
+createTimestamp: 20250604182033Z
+entryCSN: 20250604182033.203448Z#000000#000#000000
 modifiersName: cn=admin,cn=config
-modifyTimestamp: 20250604164707Z
+modifyTimestamp: 20250604182033Z

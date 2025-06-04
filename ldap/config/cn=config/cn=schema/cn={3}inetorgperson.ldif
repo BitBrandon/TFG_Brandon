@@ -1,5 +1,5 @@
 # AUTO-GENERATED FILE - DO NOT EDIT!! Use ldapmodify.
-# CRC32 7d2f2340
+# CRC32 0799742d
 dn: cn={3}inetorgperson
 objectClass: olcSchemaConfig
 cn: {3}inetorgperson
@@ -41,9 +41,9 @@ olcObjectClasses: {0}( 2.16.840.1.113730.3.2.2 NAME 'inetOrgPerson' DESC 'RF
  r $ photo $ roomNumber $ secretary $ uid $ userCertificate $ x500uniqueIden
  tifier $ preferredLanguage $ userSMIMECertificate $ userPKCS12 ) )
 structuralObjectClass: olcSchemaConfig
-entryUUID: 4bea4010-d5af-103f-8030-199e6b48cae7
+entryUUID: 590e9f54-d5bc-103f-9199-8d09356496c5
 creatorsName: cn=admin,cn=config
-createTimestamp: 20250604164707Z
-entryCSN: 20250604164707.740730Z#000000#000#000000
+createTimestamp: 20250604182033Z
+entryCSN: 20250604182033.246967Z#000000#000#000000
 modifiersName: cn=admin,cn=config
-modifyTimestamp: 20250604164707Z
+modifyTimestamp: 20250604182033Z

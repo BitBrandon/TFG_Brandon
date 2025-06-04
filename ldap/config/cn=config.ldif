@@ -1,5 +1,5 @@
 # AUTO-GENERATED FILE - DO NOT EDIT!! Use ldapmodify.
-# CRC32 03f77017
+# CRC32 484dcdbc
 dn: cn=config
 objectClass: olcGlobal
 cn: config
@@ -8,9 +8,9 @@ olcLogLevel: none
 olcPidFile: /var/run/slapd/slapd.pid
 olcToolThreads: 1
 structuralObjectClass: olcGlobal
-entryUUID: 4bc8022a-d5af-103f-8029-199e6b48cae7
+entryUUID: 58f391c8-d5bc-103f-9192-8d09356496c5
 creatorsName: cn=config
-createTimestamp: 20250604164707Z
-entryCSN: 20250604164707.516281Z#000000#000#000000
-modifiersName: cn=config
-modifyTimestamp: 20250604164707Z
+createTimestamp: 20250604182033Z
+entryCSN: 20250604182035.052846Z#000000#000#000000
+modifiersName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+modifyTimestamp: 20250604182035Z

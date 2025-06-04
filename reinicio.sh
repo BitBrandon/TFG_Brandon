@@ -21,10 +21,6 @@ rm -rf ./ldap/data
 rm -rf ./ldap/config
 
 # 3. Verificar presencia de los LDIF críticos
-if [ ! -f ./ldap/bootstrap/00-base.ldif ]; then
-    echo -e "${RED}ERROR: Falta 00-base.ldif en ldap/bootstrap. Abortando.${NC}"
-    exit 1
-fi
 if [ ! -f ./ldap/bootstrap/50-bootstrap.ldif ]; then
     echo -e "${RED}ERROR: Falta 50-bootstrap.ldif en ldap/bootstrap. Abortando.${NC}"
     exit 1
@@ -32,7 +28,7 @@ fi
 
 echo -e "${GREEN}LDIFs de bootstrap detectados.${NC}"
 
- 4. Reconstruir imágenes 
+#4. Reconstruir imágenes 
 echo -e "${GREEN}Reconstruyendo todas las imágenes locales (build forzado)...${NC}"
 docker-compose build --no-cache
 

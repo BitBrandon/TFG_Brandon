@@ -11,7 +11,7 @@ services:
     volumes:
       - ./ldap/data:/var/lib/ldap
       - ./ldap/config:/etc/ldap/slapd.d
-      - ./ldap/bootstrap:/container/service/slapd/assets/config/bootstrap/ldif
+      - ./ldap/bootstrap:/container/service/slapd/assets/config/bootstrap/ldif/custom
       - ./ldap/overlays:/overlays
     environment:
       LDAP_ORGANISATION: "Mayorista"
@@ -178,8 +178,7 @@ services:
     container_name: cliente-jefeit
     hostname: jefeit.mayorista.local
     networks:
-      mayorista_network:
-        ipv4_address: 192.168.0.53
+      mayorista_network: {}
     ports:
       - "2223:22"
     tty: true
@@ -198,8 +197,7 @@ services:
     container_name: cliente-jefe
     hostname: jefe.mayorista.local
     networks:
-      mayorista_network:
-        ipv4_address: 192.168.0.54
+      mayorista_network: {}
     ports:
       - "2224:22"
     tty: true
