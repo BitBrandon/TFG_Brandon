@@ -4,7 +4,6 @@ changetype: modify
 add: olcModuleLoad
 olcModuleLoad: refint
 
-# Backend refint overlay
 dn: olcOverlay={1}refint,olcDatabase={1}mdb,cn=config
 changetype: add
 objectClass: olcOverlayConfig
