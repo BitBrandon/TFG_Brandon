@@ -13,9 +13,22 @@ if (!$user_uid) {
   <link rel="stylesheet" href="../estilos.css" />
 </head>
 <body>
+<!-- Partículas decorativas -->
+<div class="particle particle1"></div>
+<div class="particle particle2"></div>
+<div class="particle particle3"></div>
+<div class="particle particle4"></div>
+<div class="particle particle5"></div>
+<div class="particle particle6"></div>
+<div class="particle particle7"></div>
+<div class="particle particle8"></div>
+<div class="particle particle9"></div>
+<div class="particle particle10"></div>
+<div class="particle particle11"></div>
+
 <div class="panel-container">
   <h2>Proveedores</h2>
-  <table id="proveedores-table" border="1">
+  <table id="proveedores-table">
     <thead>
       <tr>
         <th>ID</th>
@@ -29,36 +42,40 @@ if (!$user_uid) {
     <tbody></tbody>
   </table>
   <h3>Crear nuevo proveedor</h3>
-  <form id="nuevo-proveedor-form">
+  <form id="nuevo-proveedor-form" autocomplete="off">
     <input type="text" name="nombre" placeholder="Nombre" required />
     <input type="email" name="email" placeholder="Email" required />
     <input type="text" name="telefono" placeholder="Teléfono" required />
     <input type="text" name="direccion" placeholder="Dirección" required />
-    <button type="submit">Crear</button>
+    <button type="submit" class="boton-accion">Crear</button>
   </form>
 </div>
 <script>
 const API_URL = "http://localhost:5000/proveedores/";
 
 async function cargarProveedores() {
-  const res = await fetch(API_URL);
-  const proveedores = await res.json();
-  const tbody = document.querySelector("#proveedores-table tbody");
-  tbody.innerHTML = "";
-  proveedores.forEach(proveedor => {
-    tbody.innerHTML += `
-      <tr>
-        <td>${proveedor.id}</td>
-        <td>${proveedor.nombre}</td>
-        <td>${proveedor.email}</td>
-        <td>${proveedor.telefono}</td>
-        <td>${proveedor.direccion}</td>
-        <td>
-          <button onclick="eliminarProveedor(${proveedor.id})">Eliminar</button>
-          <button onclick="editarProveedor(${proveedor.id}, '${proveedor.nombre}', '${proveedor.email}', '${proveedor.telefono}', '${proveedor.direccion}')">Editar</button>
-        </td>
-      </tr>`;
-  });
+  try {
+    const res = await fetch(API_URL);
+    const proveedores = await res.json();
+    const tbody = document.querySelector("#proveedores-table tbody");
+    tbody.innerHTML = "";
+    proveedores.forEach(proveedor => {
+      tbody.innerHTML += `
+        <tr>
+          <td>${proveedor.id ?? ''}</td>
+          <td>${proveedor.nombre ?? ''}</td>
+          <td>${proveedor.email ?? ''}</td>
+          <td>${proveedor.telefono ?? ''}</td>
+          <td>${proveedor.direccion ?? ''}</td>
+          <td>
+            <button class="boton-accion" onclick="eliminarProveedor(${proveedor.id})">Eliminar</button>
+            <button class="boton-accion" onclick="editarProveedor(${proveedor.id}, '${proveedor.nombre}', '${proveedor.email}', '${proveedor.telefono}', '${proveedor.direccion}')">Editar</button>
+          </td>
+        </tr>`;
+    });
+  } catch (err) {
+    alert("No se pudo cargar la lista de proveedores.");
+  }
 }
 cargarProveedores();
 

@@ -13,9 +13,22 @@ if (!$user_uid) {
   <link rel="stylesheet" href="../estilos.css" />
 </head>
 <body>
+<!-- Partículas decorativas -->
+<div class="particle particle1"></div>
+<div class="particle particle2"></div>
+<div class="particle particle3"></div>
+<div class="particle particle4"></div>
+<div class="particle particle5"></div>
+<div class="particle particle6"></div>
+<div class="particle particle7"></div>
+<div class="particle particle8"></div>
+<div class="particle particle9"></div>
+<div class="particle particle10"></div>
+<div class="particle particle11"></div>
+
 <div class="panel-container">
   <h2>Ventas</h2>
-  <table id="ventas-table" border="1">
+  <table id="ventas-table">
     <thead>
       <tr>
         <th>ID</th>
@@ -28,34 +41,38 @@ if (!$user_uid) {
     <tbody></tbody>
   </table>
   <h3>Crear nueva venta</h3>
-  <form id="nueva-venta-form">
+  <form id="nueva-venta-form" autocomplete="off">
     <input type="date" name="fecha" required />
     <input type="number" name="id_cliente" placeholder="ID Cliente" required />
-    <input type="number" name="total" placeholder="Total" required />
-    <button type="submit">Crear</button>
+    <input type="number" step="0.01" name="total" placeholder="Total" required />
+    <button type="submit" class="boton-accion">Crear</button>
   </form>
 </div>
 <script>
 const API_URL = "http://localhost:5000/ventas/";
 
 async function cargarVentas() {
-  const res = await fetch(API_URL);
-  const ventas = await res.json();
-  const tbody = document.querySelector("#ventas-table tbody");
-  tbody.innerHTML = "";
-  ventas.forEach(venta => {
-    tbody.innerHTML += `
-      <tr>
-        <td>${venta.id}</td>
-        <td>${venta.fecha}</td>
-        <td>${venta.id_cliente}</td>
-        <td>${venta.total}</td>
-        <td>
-          <button onclick="eliminarVenta(${venta.id})">Eliminar</button>
-          <button onclick="editarVenta(${venta.id}, '${venta.fecha}', ${venta.id_cliente}, ${venta.total})">Editar</button>
-        </td>
-      </tr>`;
-  });
+  try {
+    const res = await fetch(API_URL);
+    const ventas = await res.json();
+    const tbody = document.querySelector("#ventas-table tbody");
+    tbody.innerHTML = "";
+    ventas.forEach(venta => {
+      tbody.innerHTML += `
+        <tr>
+          <td>${venta.id ?? ''}</td>
+          <td>${venta.fecha ?? ''}</td>
+          <td>${venta.id_cliente ?? ''}</td>
+          <td>${venta.total ?? ''}</td>
+          <td>
+            <button class="boton-accion" onclick="eliminarVenta(${venta.id})">Eliminar</button>
+            <button class="boton-accion" onclick="editarVenta(${venta.id}, '${venta.fecha}', ${venta.id_cliente}, ${venta.total})">Editar</button>
+          </td>
+        </tr>`;
+    });
+  } catch (err) {
+    alert("No se pudo cargar la lista de ventas.");
+  }
 }
 cargarVentas();
 

@@ -1,67 +1,59 @@
 version: '3.8'
 
 services:
-# ============ CLIENTES (usando DHCP) ============
-  cliente-trabajador1:
-    build: ./Clientes/base
-    container_name: cliente-trabajador1
-    hostname: trabajador1.mayorista.local
-    networks:
-      mayorista_network: {}
+  # ============ LDAP ============
+  ldap:
+    image: osixia/openldap:1.5.0
+    container_name: ldap-server
     ports:
-      - "2221:22"
-    tty: true
-    stdin_open: true
-    dns:
-      - 192.168.0.10
-    restart: unless-stopped
-    cap_add:
-      - NET_ADMIN
-
-  cliente-trabajador2:
-    build: ./Clientes/base
-    container_name: cliente-trabajador2
-    hostname: trabajador2.mayorista.local
-    networks:
-      mayorista_network: {}
-    ports:
-      - "2222:22"
-    tty: true
-    stdin_open: true
-    dns:
-      - 192.168.0.10
-    restart: unless-stopped
-    cap_add:
-      - NET_ADMIN
-
-  cliente-jefeit:
-    build: ./Clientes/base
-    container_name: cliente-jefeit
-    hostname: jefeit.mayorista.local
+      - "389:389"
+      - "636:636"
+    volumes:
+      - ./ldap/data:/var/lib/ldap
+      - ./ldap/config:/etc/ldap/slapd.d
+      - ./ldap/bootstrap:/container/service/slapd/assets/config/bootstrap/ldif/custom
+      - ./ldap/overlays:/overlays
+    environment:
+      LDAP_ORGANISATION: "Mayorista"
+      LDAP_DOMAIN: "mayorista.local"
+      LDAP_ADMIN_PASSWORD: "adminpassword"
+      LDAP_CONFIG_PASSWORD: "configpassword"
+      LDAP_BASE_DN: dc=mayorista,dc=local   # Opcional pero recomendable
+      LDAP_TLS: "false"
+      LDAP_REMOVE_CONFIG_AFTER_SETUP: "false"
     networks:
       mayorista_network:
-        ipv4_address: 192.168.0.53
-    ports:
-      - "2223:22"
-    tty: true
-    stdin_open: true
-    dns:
-      - 192.168.0.10
+        ipv4_address: 192.168.0.15
     restart: unless-stopped
 
-  cliente-jefe:
-    build: ./Clientes/base
-    container_name: cliente-jefe
-    hostname: jefe.mayorista.local
+  # ============ PHPLDAPADMIN ===========
+  phpldapadmin:
+    image: osixia/phpldapadmin:0.9.0
+    container_name: phpldapadmin
+    ports:
+      - "8080:80"
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: ldap
+      PHPLDAPADMIN_HTTPS: "false"
+    depends_on:
+      - ldap
     networks:
       mayorista_network:
-        ipv4_address: 192.168.0.54
+        ipv4_address: 192.168.0.16
+    restart: unless-stopped
+
+  # ============ DNS ============
+  dns:
+    build: ./dns
+    container_name: dns-server
+    networks:
+      mayorista_network:
+        ipv4_address: 192.168.0.10
     ports:
-      - "2224:22"
-    tty: true
-    stdin_open: true
-    dns:
-      - 192.168.0.10
+      - "53:53/udp"
+    volumes:
+      - ./dns/dnsmasq.conf:/etc/dnsmasq.conf
+      - ./dns/dnsmasq.hosts:/etc/dnsmasq.hosts
     restart: unless-stopped
 
   # ============ DHCP SERVER ============
@@ -137,57 +129,89 @@ services:
     restart: unless-stopped
     command: ["/entrypoint.sh"]
 
-  # ============ LDAP ============
-  ldap:
-    image: osixia/openldap:1.5.0
-    container_name: ldap-server
-    ports:
-      - "389:389"
-      - "636:636"
-    volumes:
-      - ./ldap/data:/var/lib/ldap
-      - ./ldap/config:/etc/ldap/slapd.d
-      - ./ldap/bootstrap:/container/service/slapd/assets/config/bootstrap/ldif/
-    environment:
-      LDAP_ORGANISATION: "Mayorista"
-      LDAP_DOMAIN: "mayorista.local"
-      LDAP_ADMIN_PASSWORD: "adminpassword"
-      LDAP_CONFIG_PASSWORD: "configpassword"
-      LDAP_TLS: "false"
-      LDAP_REMOVE_CONFIG_AFTER_SETUP: "false"
-    networks:
-      mayorista_network:
-        ipv4_address: 192.168.0.15
-    restart: unless-stopped
-  # ============ DNS ============
-  dns:
-    build: ./dns
-    container_name: dns-server
-    networks:
-      mayorista_network:
-        ipv4_address: 192.168.0.10
-    ports:
-      - "53:53/udp"
-    volumes:
-      - ./dns/dnsmasq.conf:/etc/dnsmasq.conf
-      - ./dns/dnsmasq.hosts:/etc/dnsmasq.hosts
-    restart: unless-stopped
+  # ============ CLIENTES (usando DHCP) ============
 
-  # ============ PHPLDAPADMIN ===========
-  phpldapadmin:
-    image: osixia/phpldapadmin:0.9.0
-    container_name: phpldapadmin
+  cliente-trabajador1:
+    build: ./Clientes/base
+    container_name: cliente-trabajador1
+    hostname: trabajador1.mayorista.local
+    networks:
+      mayorista_network: {}
     ports:
-      - "8080:80"
-    environment:
-      PHPLDAPADMIN_LDAP_HOSTS: ldap
-      PHPLDAPADMIN_HTTPS: "false"
+      - "2221:22"
+    tty: true
+    stdin_open: true
+    dns:
+      - 192.168.0.10
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
     depends_on:
       - ldap
+      - dns
+      - dhcp
+    entrypoint: ["/wait-for-ldap.sh"]
+
+  cliente-trabajador2:
+    build: ./Clientes/base
+    container_name: cliente-trabajador2
+    hostname: trabajador2.mayorista.local
+    networks:
+      mayorista_network: {}
+    ports:
+      - "2222:22"
+    tty: true
+    stdin_open: true
+    dns:
+      - 192.168.0.10
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    depends_on:
+      - ldap
+      - dns
+      - dhcp
+    entrypoint: ["/wait-for-ldap.sh"]
+
+  cliente-jefeit:
+    build: ./Clientes/base
+    container_name: cliente-jefeit
+    hostname: jefeit.mayorista.local
     networks:
       mayorista_network:
-        ipv4_address: 192.168.0.16
+        ipv4_address: 192.168.0.53
+    ports:
+      - "2223:22"
+    tty: true
+    stdin_open: true
+    dns:
+      - 192.168.0.10
     restart: unless-stopped
+    depends_on:
+      - ldap
+      - dns
+      - dhcp
+    entrypoint: ["/wait-for-ldap.sh"]
+
+  cliente-jefe:
+    build: ./Clientes/base
+    container_name: cliente-jefe
+    hostname: jefe.mayorista.local
+    networks:
+      mayorista_network:
+        ipv4_address: 192.168.0.54
+    ports:
+      - "2224:22"
+    tty: true
+    stdin_open: true
+    dns:
+      - 192.168.0.10
+    restart: unless-stopped
+    depends_on:
+      - ldap
+      - dns
+      - dhcp
+    entrypoint: ["/wait-for-ldap.sh"]
 
 # ========== VOLUMES ==========
 volumes:

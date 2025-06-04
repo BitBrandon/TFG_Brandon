@@ -19,6 +19,7 @@ body {
   100% { background-position: 0% 0%; }
 }
 
+/* Partículas animadas */
 .particle {
   position: absolute;
   background-color: rgba(0, 128, 128, 0.6);
@@ -26,163 +27,32 @@ body {
   opacity: 0.8;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  animation-direction: alternate; /* aquí el rebote */
+  animation-direction: alternate;
   pointer-events: none;
   filter: drop-shadow(0 0 5px rgba(0, 128, 128, 0.9));
   will-change: transform, opacity;
 }
 
 @keyframes moveParticle {
-  0% {
-    transform: translate(0, 0);
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(var(--dx), var(--dy));
-    opacity: 0.8;
-  }
+  0% { transform: translate(0, 0); opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)); opacity: 0.8; }
 }
 
-/* Partículas con recorridos más largos */
-.particle1 {
-  width: 20px;
-  height: 20px;
-  top: 15%;
-  left: 20%;
-  --dx: 120px;   /* Más recorrido */
-  --dy: -80px;
-  animation-duration: 15s;
-  animation-delay: 0s;
-  animation-name: moveParticle;
-}
+.particle1 { width: 20px; height: 20px; top: 15%; left: 20%; --dx: 120px; --dy: -80px; animation-duration: 15s; animation-delay: 0s; animation-name: moveParticle; }
+.particle2 { width: 18px; height: 18px; top: 40%; left: 40%; --dx: -110px; --dy: 100px; animation-duration: 18s; animation-delay: 5s; animation-name: moveParticle; }
+.particle3 { width: 22px; height: 22px; top: 65%; left: 65%; --dx: 90px; --dy: 70px; animation-duration: 16s; animation-delay: 3s; animation-name: moveParticle; }
+.particle4 { width: 20px; height: 20px; top: 30%; left: 80%; --dx: -120px; --dy: -90px; animation-duration: 20s; animation-delay: 6s; animation-name: moveParticle; }
+.particle5 { width: 24px; height: 24px; top: 10%; left: 55%; --dx: 100px; --dy: 120px; animation-duration: 17s; animation-delay: 2s; animation-name: moveParticle; }
+.particle6 { width: 30px; height: 30px; top: 20%; left: 30%; --dx: 80px; --dy: 100px; animation-duration: 15s; animation-delay: 7s; animation-name: moveParticle; }
+.particle7 { width: 35px; height: 35px; top: 50%; left: 75%; --dx: -100px; --dy: 80px; animation-duration: 14s; animation-delay: 4s; animation-name: moveParticle; }
+.particle8 { width: 18px; height: 18px; top: 70%; left: 25%; --dx: 90px; --dy: -60px; animation-duration: 13s; animation-delay: 1s; animation-name: moveParticle; }
+.particle9 { width: 22px; height: 22px; top: 80%; left: 60%; --dx: -80px; --dy: 100px; animation-duration: 16s; animation-delay: 5s; animation-name: moveParticle; }
+.particle10 { width: 20px; height: 20px; top: 25%; left: 60%; --dx: 100px; --dy: 90px; animation-duration: 18s; animation-delay: 3s; animation-name: moveParticle; }
+.particle11 { width: 25px; height: 25px; top: 45%; left: 5%; --dx: 110px; --dy: -70px; animation-duration: 16s; animation-delay: 2s; animation-name: moveParticle; animation-direction: alternate; }
 
-.particle2 {
-  width: 18px;
-  height: 18px;
-  top: 40%;
-  left: 40%;
-  --dx: -110px;
-  --dy: 100px;
-  animation-duration: 18s;
-  animation-delay: 5s;
-  animation-name: moveParticle;
-}
-
-.particle3 {
-  width: 22px;
-  height: 22px;
-  top: 65%;
-  left: 65%;
-  --dx: 90px;
-  --dy: 70px;
-  animation-duration: 16s;
-  animation-delay: 3s;
-  animation-name: moveParticle;
-}
-
-.particle4 {
-  width: 20px;
-  height: 20px;
-  top: 30%;
-  left: 80%;
-  --dx: -120px;
-  --dy: -90px;
-  animation-duration: 20s;
-  animation-delay: 6s;
-  animation-name: moveParticle;
-}
-
-.particle5 {
-  width: 24px;
-  height: 24px;
-  top: 10%;
-  left: 55%;
-  --dx: 100px;
-  --dy: 120px;
-  animation-duration: 17s;
-  animation-delay: 2s;
-  animation-name: moveParticle;
-}
-
-.particle6 {
-  width: 30px;
-  height: 30px;
-  top: 20%;
-  left: 30%;
-  --dx: 80px;
-  --dy: 100px;
-  animation-duration: 15s;
-  animation-delay: 7s;
-  animation-name: moveParticle;
-}
-
-.particle7 {
-  width: 35px;
-  height: 35px;
-  top: 50%;
-  left: 75%;
-  --dx: -100px;
-  --dy: 80px;
-  animation-duration: 14s;
-  animation-delay: 4s;
-  animation-name: moveParticle;
-}
-
-.particle8 {
-  width: 18px;
-  height: 18px;
-  top: 70%;
-  left: 25%;
-  --dx: 90px;
-  --dy: -60px;
-  animation-duration: 13s;
-  animation-delay: 1s;
-  animation-name: moveParticle;
-}
-
-.particle9 {
-  width: 22px;
-  height: 22px;
-  top: 80%;
-  left: 60%;
-  --dx: -80px;
-  --dy: 100px;
-  animation-duration: 16s;
-  animation-delay: 5s;
-  animation-name: moveParticle;
-}
-
-.particle10 {
-  width: 20px;
-  height: 20px;
-  top: 25%;
-  left: 60%;
-  --dx: 100px;
-  --dy: 90px;
-  animation-duration: 18s;
-  animation-delay: 3s;
-  animation-name: moveParticle;
-}
-
-.particle11 {
-  width: 25px;
-  height: 25px;
-  top: 45%;
-  left: 5%;
-  --dx: 110px;    
-  --dy: -70px;     
-  animation-duration: 16s;
-  animation-delay: 2s;
-  animation-name: moveParticle;
-  animation-direction: alternate;
-}
-
-
-/* Contenedor principal */
-.login-container, .panel-container {
+/* ----------- LOGIN SOLO ------------- */
+.login-container {
   position: relative;
   background-color: rgba(255, 255, 255, 0.95);
   padding: 2.5em;
@@ -209,6 +79,72 @@ form input {
   font-size: 1em;
 }
 
+/* ----------- PANEL GENERAL (tablas, zona privada, etc) ----------- */
+.panel-container {
+  position: relative;
+  background: rgba(255,255,255,0.98);
+  border-radius: 18px;
+  margin: 40px auto;
+  padding: 50px 38px 38px 38px;
+  box-shadow: 0 12px 38px 0 rgba(0, 32, 64, 0.23), 0 1.5px 8px 0 rgba(0,128,128,0.08);
+  max-width: 1250px;
+  width: 70%;
+  min-height: 78vh;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid #04576b14;
+}
+
+/* Para que la tabla nunca se salga */
+.panel-container table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px 0 rgba(0,64,128,0.09);
+  margin-bottom: 1.5em;
+}
+
+.panel-container th, .panel-container td {
+  padding: 14px 10px;
+  border: 1px solid #b8bfc4;
+  text-align: left;
+  font-size: 1.06em;
+}
+
+.panel-container th {
+  background-color: #0e4a5c;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.panel-container tr:nth-child(even) {
+  background: #f0fbff;
+}
+
+/* Botones de acción en tablas */
+.boton-accion {
+  background: #238cf0;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 8px 18px;
+  margin: 6px 0;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(35,140,240,0.12);
+}
+.boton-accion:hover {
+  background: #125e9b;
+}
+
+/* Otros estilos generales */
 button {
   padding: 0.7em 1.5em;
   margin-top: 1em;
@@ -219,7 +155,6 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 button:hover {
   background-color: #0056b3;
 }
@@ -228,8 +163,8 @@ button:hover {
   color: #e74c3c;
   margin-top: 1em;
 }
-
 .botones button {
   margin: 0.5em;
   display: inline-block;
 }
+

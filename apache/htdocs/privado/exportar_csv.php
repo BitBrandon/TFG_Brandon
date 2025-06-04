@@ -1,9 +1,14 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $user_uid = $_SERVER['REMOTE_USER'] ?? '';
 if (!$user_uid) {
     header('Location: /index.html');
     exit();
 }
+
 if (!isset($_GET['entidad'])) {
     die("Falta especificar la entidad a exportar.");
 }

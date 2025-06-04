@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Login Mayorista</title>
+  <title>Acceso Mayorista</title>
   <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
@@ -20,14 +20,10 @@
 
   <div class="login-container">
     <h2>Acceso Mayorista Brandon</h2>
-    <form action="privado/privado.php" method="post" autocomplete="off">
-      <input type="text" name="username" placeholder="Usuario LDAP" required autocomplete="username" />
-      <input type="password" name="password" placeholder="Contraseña" required autocomplete="current-password" />
-      <button type="submit">Entrar</button>
-      <?php if(isset($_GET['error'])): ?>
-        <p id="error-msg" style="color:red;">Credenciales incorrectas.</p>
-      <?php endif; ?>
-    </form>
+    <a href="privado/privado.php">
+      <button type="button">Acceder</button>
+    </a>
+    <p style="margin-top:20px;color:#888;font-size:14px;">Serás redirigido a la zona privada donde Apache pedirá tus credenciales LDAP.</p>
   </div>
 </body>
 </html>

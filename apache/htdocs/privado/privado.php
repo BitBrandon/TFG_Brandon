@@ -33,7 +33,7 @@ $is_admin = ($entries['count'] > 0);
   <div class="particle particle9"></div>
   <div class="particle particle10"></div>
   <div class="particle particle11"></div>
-  <div class="panel-container">
+  <div class="login-container">
     <h2>Panel de Gestión</h2>
     <p>Bienvenido al área privada, <b><?= htmlspecialchars($user_uid) ?></b></p>
   <div class="botones">

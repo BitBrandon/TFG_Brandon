@@ -1,4 +1,5 @@
 <?php
+
 $user_uid = $_SERVER['REMOTE_USER'] ?? '';
 
 // Conecta a LDAP
@@ -65,8 +66,7 @@ if (!$is_admin) {
     <h2>Zona de Administración</h2>
     <p>Bienvenido, <b><?= htmlspecialchars($user_uid) ?></b>.</p>
     <div class="admin-buttons">
-      <a href="http://localhost:8081" target="_blank">Abrir PHPLDAPADMIN</a>
-      <a href="http://localhost:8082" target="_blank">Abrir phpMyAdmin</a>
+      <a href="http://localhost:8080" target="_blank">Abrir PHPLDAPADMIN</a>
       <a href="/privado/exportar_db.php">Descargar Backup de la Base de Datos</a>
       <a href="/privado/logs.php">Ver Logs del Sistema</a>
       <a href="/privado/estado_sistema.php">Ver Estado del Sistema</a>

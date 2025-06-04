@@ -13,9 +13,22 @@ if (!$user_uid) {
   <link rel="stylesheet" href="../estilos.css" />
 </head>
 <body>
+<!-- Partículas decorativas -->
+<div class="particle particle1"></div>
+<div class="particle particle2"></div>
+<div class="particle particle3"></div>
+<div class="particle particle4"></div>
+<div class="particle particle5"></div>
+<div class="particle particle6"></div>
+<div class="particle particle7"></div>
+<div class="particle particle8"></div>
+<div class="particle particle9"></div>
+<div class="particle particle10"></div>
+<div class="particle particle11"></div>
+
 <div class="panel-container">
   <h2>Gastos</h2>
-  <table id="gastos-table" border="1">
+  <table id="gastos-table">
     <thead>
       <tr>
         <th>ID</th>
@@ -28,34 +41,38 @@ if (!$user_uid) {
     <tbody></tbody>
   </table>
   <h3>Crear nuevo gasto</h3>
-  <form id="nuevo-gasto-form">
+  <form id="nuevo-gasto-form" autocomplete="off">
     <input type="text" name="descripcion" placeholder="Descripción" required />
     <input type="number" name="monto" placeholder="Monto" required />
     <input type="date" name="fecha" required />
-    <button type="submit">Crear</button>
+    <button type="submit" class="boton-accion">Crear</button>
   </form>
 </div>
 <script>
 const API_URL = "http://localhost:5000/gastos/";
 
 async function cargarGastos() {
-  const res = await fetch(API_URL);
-  const gastos = await res.json();
-  const tbody = document.querySelector("#gastos-table tbody");
-  tbody.innerHTML = "";
-  gastos.forEach(gasto => {
-    tbody.innerHTML += `
-      <tr>
-        <td>${gasto.id}</td>
-        <td>${gasto.descripcion}</td>
-        <td>${gasto.monto}</td>
-        <td>${gasto.fecha}</td>
-        <td>
-          <button onclick="eliminarGasto(${gasto.id})">Eliminar</button>
-          <button onclick="editarGasto(${gasto.id}, '${gasto.descripcion}', ${gasto.monto}, '${gasto.fecha}')">Editar</button>
-        </td>
-      </tr>`;
-  });
+  try {
+    const res = await fetch(API_URL);
+    const gastos = await res.json();
+    const tbody = document.querySelector("#gastos-table tbody");
+    tbody.innerHTML = "";
+    gastos.forEach(gasto => {
+      tbody.innerHTML += `
+        <tr>
+          <td>${gasto.id ?? ''}</td>
+          <td>${gasto.descripcion ?? ''}</td>
+          <td>${gasto.monto ?? ''}</td>
+          <td>${gasto.fecha ?? ''}</td>
+          <td>
+            <button class="boton-accion" onclick="eliminarGasto(${gasto.id})">Eliminar</button>
+            <button class="boton-accion" onclick="editarGasto(${gasto.id}, '${gasto.descripcion}', ${gasto.monto}, '${gasto.fecha}')">Editar</button>
+          </td>
+        </tr>`;
+    });
+  } catch (err) {
+    alert("No se pudo cargar la lista de gastos.");
+  }
 }
 cargarGastos();
 
