@@ -1,30 +1,20 @@
 #!/bin/bash
 set -e
-# Ruta donde tienes los LDIF de overlays/config
-LDIF_DIR="/container/service/slapd/assets/config/bootstrap/ldif/custom"
 
-# Aplica ACL (seguridad)
-if [ -f "$LDIF_DIR/02-security.ldif" ]; then
-  echo "Aplicando 02-security.ldif (ACL)..."
-  ldapmodify -Y EXTERNAL -H ldapi:/// -f "$LDIF_DIR/02-security.ldif"
-fi
+# Configura estos valores según tu entorno
+LDAP_ADMIN_DN="cn=admin,dc=mayorista,dc=local"
+LDAP_ADMIN_PASS="adminpassword"  # Debe coincidir con LDAP_ADMIN_PASSWORD en docker-compose.yml
 
-# Aplica overlay memberOf
-if [ -f "$LDIF_DIR/03-memberOf.ldif" ]; then
-  echo "Aplicando 03-memberOf.ldif (memberOf overlay)..."
-  ldapadd -Y EXTERNAL -H ldapi:/// -f "$LDIF_DIR/03-memberOf.ldif"
-fi
+# Aplica los overlays básicos (deben ser idempotentes)
+for ldif in /overlays/02-security.ldif /overlays/03-memberOf.ldif /overlays/04-refint.ldif /overlays/05-index.ldif; do
+  echo "Aplicando $ldif ..."
+  # Intenta primero con EXTERNAL (para overlays/config), si falla prueba con simple bind
+  ldapmodify -Y EXTERNAL -H ldapi:/// -f "$ldif" 2>/dev/null || \
+    ldapmodify -x -D "$LDAP_ADMIN_DN" -w "$LDAP_ADMIN_PASS" -f "$ldif"
+done
 
-# Aplica overlay refint
-if [ -f "$LDIF_DIR/04-refint.ldif" ]; then
-  echo "Aplicando 04-refint.ldif (refint overlay)..."
-  ldapadd -Y EXTERNAL -H ldapi:/// -f "$LDIF_DIR/04-refint.ldif"
-fi
+# Aplica las ACLs avanzadas, SOLO cuando ya existan los DNs requeridos
+echo "Aplicando ACLs avanzadas (99-secure-acls.ldif) ..."
+ldapmodify -x -D "$LDAP_ADMIN_DN" -w "$LDAP_ADMIN_PASS" -f /overlays/99-secure-acls.ldif
 
-# Aplica índices
-if [ -f "$LDIF_DIR/05-index.ldif" ]; then
-  echo "Aplicando 05-index.ldif (índices)..."
-  ldapmodify -Y EXTERNAL -H ldapi:/// -f "$LDIF_DIR/05-index.ldif"
-fi
-
-echo "¡Aplicación de overlays/configuración finalizada!"
+echo "¡Todos los overlays aplicados!"

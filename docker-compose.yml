@@ -1,31 +1,31 @@
-version: '3.8'
+version : '3.8'
 
 services:
-  # ============ LDAP ============
+  # ============ LDAP ============:
   ldap:
-    image: osixia/openldap:1.5.0
+    build:
+      context: ./ldap
+      dockerfile: Dockerfile
     container_name: ldap-server
     ports:
       - "389:389"
       - "636:636"
-    volumes:
-      - ./ldap/data:/var/lib/ldap
-      - ./ldap/config:/etc/ldap/slapd.d
-      - ./ldap/bootstrap:/container/service/slapd/assets/config/bootstrap/ldif/custom
-      - ./ldap/overlays:/overlays
+    #volumes:
+      #- ./ldap/data:/var/lib/ldap
+      #- ./ldap/config:/etc/ldap/slapd.d
     environment:
       LDAP_ORGANISATION: "Mayorista"
       LDAP_DOMAIN: "mayorista.local"
       LDAP_ADMIN_PASSWORD: "adminpassword"
       LDAP_CONFIG_PASSWORD: "configpassword"
-      LDAP_BASE_DN: dc=mayorista,dc=local   # Opcional pero recomendable
+      LDAP_BASE_DN: dc=mayorista,dc=local
       LDAP_TLS: "false"
-      LDAP_REMOVE_CONFIG_AFTER_SETUP: "false"
+      LDAP_REMOVE_CONFIG_AFTER_SETUP: "true"
+      LDAP_SKIP_DEFAULT_TREE: "false"
     networks:
       mayorista_network:
         ipv4_address: 192.168.0.15
     restart: unless-stopped
-
   # ============ PHPLDAPADMIN ===========
   phpldapadmin:
     image: osixia/phpldapadmin:0.9.0
