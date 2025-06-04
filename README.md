@@ -2,14 +2,14 @@
 
 ## Paso 1: Abre una terminal en la carpeta del proyecto
 
-Asegúrate de estar en la raíz donde está el archivo `docker-compose.yml` y tu script (por ejemplo, `reinicia_ldap.sh`).
+Asegúrate de estar en la raíz donde está el archivo `docker-compose.yml` y tu script (por ejemplo, `reinicio.sh`).
 
 ---
 
 ## Paso 2: Ejecuta el script de reinicio **(SIEMPRE desde la raíz del proyecto)**
 
 ```bash
-./reinicia_ldap.sh
+./reinicio.sh
 ```
 
 - El script hará todo automáticamente:  
