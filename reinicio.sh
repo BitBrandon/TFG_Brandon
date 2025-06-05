@@ -1,22 +1,20 @@
 #!/bin/bash
 set -e
 
-# --- Colores ---
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-echo -e "${GREEN}\n====== Reiniciando entorno LDAP desde cero ======${NC}\n"
+echo -e "${GREEN}\n====== Reiniciando entorno LDAP desde cero (EFÍMERO) ======${NC}\n"
 
 # --- Parar y eliminar contenedores y volúmenes ---
 echo -e "${GREEN}Apagando y limpiando contenedores...${NC}"
 docker-compose down --volumes
 
-# --- Limpiar directorios persistentes ---
-echo -e "${GREEN}Eliminando volúmenes locales (data/config)...${NC}"
+# --- Limpiar directorios persistentes LDAP ---
+echo -e "${GREEN}Eliminando directorios locales (data/config) de LDAP...${NC}"
 rm -rf ./ldap/data ./ldap/config
-mkdir -p ./ldap/data ./ldap/config
 
 # --- Validar archivos ldif ---
 echo -e "${GREEN}Verificando archivos en ./ldap/ldif...${NC}"
@@ -37,17 +35,13 @@ if [ ${#LDIF_FILES[@]} -eq 0 ]; then
 fi
 
 for ldif in "${LDIF_FILES[@]}"; do
+    # Asegura salto de línea al final
+    tail -c1 "$ldif" | read -r _ || echo >> "$ldif"
+
     if [ ! -s "$ldif" ]; then
-        echo -e "${YELLOW}ADVERTENCIA: El archivo $ldif está vacío.${NC}"
+        echo -e "${YELLOW}ADVERTENCIA: El archivo $ldif está vacío. (Esto puede romper el bootstrap)${NC}"
     fi
 done
-
-# --- Permisos ---
-echo -e "${GREEN}Ajustando permisos...${NC}"
-if command -v chown &>/dev/null; then
-    chown -R 911:911 ./ldap/data ./ldap/config || true
-fi
-chmod -R 700 ./ldap/data ./ldap/config || true
 
 # --- Reconstruir imágenes ---
 echo -e "${GREEN}Reconstruyendo imágenes Docker...${NC}"
@@ -107,5 +101,5 @@ check_and_log "OU grupos" "dc=mayorista,dc=local" "ou=grupos"
 check_and_log "Usuario juan" "ou=usuarios,dc=mayorista,dc=local" "uid=juan"
 
 # --- Fin ---
-echo -e "${GREEN}\nEl entorno LDAP está listo para usar.${NC}"
+echo -e "${GREEN}\nEl entorno LDAP está listo para usar (efímero, sin persistencia data/config).${NC}"
 read -p "Presiona ENTER para salir..." dummy

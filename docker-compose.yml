@@ -9,8 +9,6 @@ services:
       - "389:389"
       - "636:636"
     volumes:
-      - ./ldap/data:/var/lib/ldap
-      - ./ldap/config:/etc/ldap/slapd.d
       - ./ldap/ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom
     environment:
       LDAP_ORGANISATION: "Mayorista"

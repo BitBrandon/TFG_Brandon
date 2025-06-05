@@ -1,3 +1,10 @@
+dn: dc=mayorista,dc=local
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: Mayorista
+dc: mayorista
+
 dn: ou=usuarios,dc=mayorista,dc=local
 objectClass: organizationalUnit
 ou: usuarios
@@ -5,3 +12,4 @@ ou: usuarios
 dn: ou=grupos,dc=mayorista,dc=local
 objectClass: organizationalUnit
 ou: grupos
+

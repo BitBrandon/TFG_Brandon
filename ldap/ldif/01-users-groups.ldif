@@ -69,3 +69,4 @@ cn: administradores
 gidNumber: 20002
 member: uid=carla,ou=usuarios,dc=mayorista,dc=local
 memberUid: carla
+
