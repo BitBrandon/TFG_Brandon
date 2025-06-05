@@ -4,366 +4,6 @@
 # authoring-byte-order entry is generated, DO NOT DELETE
 authoring-byte-order little-endian;
 
-lease 192.168.0.121 {
-  starts 4 2025/06/05 06:10:35;
-  ends 4 2025/06/05 06:20:35;
-  tstp 4 2025/06/05 06:20:35;
-  cltt 4 2025/06/05 06:10:35;
-  binding state free;
-  hardware ethernet 1a:68:5a:da:ab:40;
-}
-lease 192.168.0.122 {
-  starts 4 2025/06/05 06:10:35;
-  ends 4 2025/06/05 06:20:35;
-  tstp 4 2025/06/05 06:20:35;
-  cltt 4 2025/06/05 06:10:35;
-  binding state free;
-  hardware ethernet e6:23:07:ef:dc:a7;
-}
-lease 192.168.0.126 {
-  starts 4 2025/06/05 06:10:41;
-  ends 4 2025/06/05 06:20:41;
-  tstp 4 2025/06/05 06:20:41;
-  cltt 4 2025/06/05 06:10:41;
-  binding state free;
-  hardware ethernet 56:0e:0b:f0:ec:bc;
-}
-lease 192.168.0.124 {
-  starts 4 2025/06/05 06:10:41;
-  ends 4 2025/06/05 06:20:41;
-  tstp 4 2025/06/05 06:20:41;
-  cltt 4 2025/06/05 06:10:41;
-  binding state free;
-  hardware ethernet 8e:a0:05:d7:f7:8a;
-}
-lease 192.168.0.129 {
-  starts 4 2025/06/05 06:10:47;
-  ends 4 2025/06/05 06:20:47;
-  tstp 4 2025/06/05 06:20:47;
-  cltt 4 2025/06/05 06:10:47;
-  binding state free;
-  hardware ethernet ee:fb:43:13:44:bf;
-}
-lease 192.168.0.123 {
-  starts 4 2025/06/05 06:10:47;
-  ends 4 2025/06/05 06:20:47;
-  tstp 4 2025/06/05 06:20:47;
-  cltt 4 2025/06/05 06:10:47;
-  binding state free;
-  hardware ethernet c2:d8:d2:48:3f:27;
-}
-lease 192.168.0.128 {
-  starts 4 2025/06/05 06:12:39;
-  ends 4 2025/06/05 06:22:39;
-  tstp 4 2025/06/05 06:22:39;
-  cltt 4 2025/06/05 06:12:39;
-  binding state free;
-  hardware ethernet 82:d2:e8:71:a3:de;
-}
-lease 192.168.0.127 {
-  starts 4 2025/06/05 06:12:40;
-  ends 4 2025/06/05 06:22:40;
-  tstp 4 2025/06/05 06:22:40;
-  cltt 4 2025/06/05 06:12:40;
-  binding state free;
-  hardware ethernet a2:d7:c5:05:6d:e7;
-}
-lease 192.168.0.136 {
-  starts 4 2025/06/05 06:12:45;
-  ends 4 2025/06/05 06:22:45;
-  tstp 4 2025/06/05 06:22:45;
-  cltt 4 2025/06/05 06:12:45;
-  binding state free;
-  hardware ethernet 7e:0b:ba:58:54:da;
-}
-lease 192.168.0.130 {
-  starts 4 2025/06/05 06:12:46;
-  ends 4 2025/06/05 06:22:46;
-  tstp 4 2025/06/05 06:22:46;
-  cltt 4 2025/06/05 06:12:46;
-  binding state free;
-  hardware ethernet 72:9c:c2:d2:19:42;
-}
-lease 192.168.0.135 {
-  starts 4 2025/06/05 06:12:49;
-  ends 4 2025/06/05 06:22:49;
-  tstp 4 2025/06/05 06:22:49;
-  cltt 4 2025/06/05 06:12:49;
-  binding state free;
-  hardware ethernet 92:8b:ab:16:32:b5;
-}
-lease 192.168.0.132 {
-  starts 4 2025/06/05 06:12:50;
-  ends 4 2025/06/05 06:22:50;
-  tstp 4 2025/06/05 06:22:50;
-  cltt 4 2025/06/05 06:12:50;
-  binding state free;
-  hardware ethernet 06:11:bf:cb:78:18;
-}
-lease 192.168.0.133 {
-  starts 4 2025/06/05 06:12:55;
-  ends 4 2025/06/05 06:22:55;
-  tstp 4 2025/06/05 06:22:55;
-  cltt 4 2025/06/05 06:12:55;
-  binding state free;
-  hardware ethernet e2:38:a9:46:57:4c;
-}
-lease 192.168.0.134 {
-  starts 4 2025/06/05 06:12:56;
-  ends 4 2025/06/05 06:22:56;
-  tstp 4 2025/06/05 06:22:56;
-  cltt 4 2025/06/05 06:12:56;
-  binding state free;
-  hardware ethernet 82:c3:16:18:67:d1;
-}
-lease 192.168.0.139 {
-  starts 4 2025/06/05 06:13:01;
-  ends 4 2025/06/05 06:23:01;
-  tstp 4 2025/06/05 06:23:01;
-  cltt 4 2025/06/05 06:13:01;
-  binding state free;
-  hardware ethernet f6:09:60:0b:2e:4f;
-}
-lease 192.168.0.131 {
-  starts 4 2025/06/05 06:13:01;
-  ends 4 2025/06/05 06:23:01;
-  tstp 4 2025/06/05 06:23:01;
-  cltt 4 2025/06/05 06:13:01;
-  binding state free;
-  hardware ethernet 42:bf:1c:84:bc:ab;
-}
-lease 192.168.0.140 {
-  starts 4 2025/06/05 06:13:07;
-  ends 4 2025/06/05 06:23:07;
-  tstp 4 2025/06/05 06:23:07;
-  cltt 4 2025/06/05 06:13:07;
-  binding state free;
-  hardware ethernet 5e:4e:69:a7:2f:04;
-}
-lease 192.168.0.137 {
-  starts 4 2025/06/05 06:13:08;
-  ends 4 2025/06/05 06:23:08;
-  tstp 4 2025/06/05 06:23:08;
-  cltt 4 2025/06/05 06:13:08;
-  binding state free;
-  hardware ethernet c6:a8:e0:18:cd:51;
-}
-lease 192.168.0.145 {
-  starts 4 2025/06/05 06:13:14;
-  ends 4 2025/06/05 06:23:14;
-  tstp 4 2025/06/05 06:23:14;
-  cltt 4 2025/06/05 06:13:14;
-  binding state free;
-  hardware ethernet ea:aa:15:ef:cd:d0;
-}
-lease 192.168.0.138 {
-  starts 4 2025/06/05 06:13:15;
-  ends 4 2025/06/05 06:23:15;
-  tstp 4 2025/06/05 06:23:15;
-  cltt 4 2025/06/05 06:13:15;
-  binding state free;
-  hardware ethernet 9a:12:1a:a5:f0:fa;
-}
-lease 192.168.0.144 {
-  starts 4 2025/06/05 06:13:24;
-  ends 4 2025/06/05 06:23:24;
-  tstp 4 2025/06/05 06:23:24;
-  cltt 4 2025/06/05 06:13:24;
-  binding state free;
-  hardware ethernet 9a:7a:38:26:c9:2b;
-}
-lease 192.168.0.141 {
-  starts 4 2025/06/05 06:13:26;
-  ends 4 2025/06/05 06:23:26;
-  tstp 4 2025/06/05 06:23:26;
-  cltt 4 2025/06/05 06:13:26;
-  binding state free;
-  hardware ethernet 52:09:e2:22:14:b3;
-}
-lease 192.168.0.142 {
-  starts 4 2025/06/05 06:13:40;
-  ends 4 2025/06/05 06:23:40;
-  tstp 4 2025/06/05 06:23:40;
-  cltt 4 2025/06/05 06:13:40;
-  binding state free;
-  hardware ethernet da:06:97:2f:7f:a3;
-}
-lease 192.168.0.147 {
-  starts 4 2025/06/05 06:13:42;
-  ends 4 2025/06/05 06:23:42;
-  tstp 4 2025/06/05 06:23:42;
-  cltt 4 2025/06/05 06:13:42;
-  binding state free;
-  hardware ethernet 56:3b:8c:bb:9b:bf;
-}
-lease 192.168.0.143 {
-  starts 4 2025/06/05 06:14:10;
-  ends 4 2025/06/05 06:24:10;
-  tstp 4 2025/06/05 06:24:10;
-  cltt 4 2025/06/05 06:14:10;
-  binding state free;
-  hardware ethernet ba:ba:9e:90:a7:b9;
-}
-lease 192.168.0.148 {
-  starts 4 2025/06/05 06:14:12;
-  ends 4 2025/06/05 06:24:12;
-  tstp 4 2025/06/05 06:24:12;
-  cltt 4 2025/06/05 06:14:12;
-  binding state free;
-  hardware ethernet 96:3c:99:b2:e1:5b;
-}
-lease 192.168.0.50 {
-  starts 4 2025/06/05 06:15:05;
-  ends 4 2025/06/05 06:25:05;
-  tstp 4 2025/06/05 06:25:05;
-  cltt 4 2025/06/05 06:15:05;
-  binding state free;
-  hardware ethernet 12:ec:b0:33:46:4b;
-}
-lease 192.168.0.146 {
-  starts 4 2025/06/05 06:15:07;
-  ends 4 2025/06/05 06:25:07;
-  tstp 4 2025/06/05 06:25:07;
-  cltt 4 2025/06/05 06:15:07;
-  binding state free;
-  hardware ethernet 22:7b:3c:5a:84:3f;
-}
-lease 192.168.0.150 {
-  starts 4 2025/06/05 06:16:09;
-  ends 4 2025/06/05 06:26:09;
-  tstp 4 2025/06/05 06:26:09;
-  cltt 4 2025/06/05 06:16:09;
-  binding state free;
-  hardware ethernet 46:06:d7:41:f9:0c;
-}
-lease 192.168.0.149 {
-  starts 4 2025/06/05 06:16:10;
-  ends 4 2025/06/05 06:26:10;
-  tstp 4 2025/06/05 06:26:10;
-  cltt 4 2025/06/05 06:16:10;
-  binding state free;
-  hardware ethernet 82:7e:84:8f:b3:15;
-}
-lease 192.168.0.61 {
-  starts 4 2025/06/05 06:18:30;
-  ends 4 2025/06/05 06:28:30;
-  tstp 4 2025/06/05 06:28:30;
-  cltt 4 2025/06/05 06:18:30;
-  binding state free;
-  hardware ethernet 2e:41:f8:51:2f:71;
-}
-lease 192.168.0.51 {
-  starts 4 2025/06/05 06:18:32;
-  ends 4 2025/06/05 06:28:32;
-  tstp 4 2025/06/05 06:28:32;
-  cltt 4 2025/06/05 06:18:32;
-  binding state free;
-  hardware ethernet a2:4e:41:14:b8:85;
-}
-lease 192.168.0.56 {
-  starts 4 2025/06/05 06:18:39;
-  ends 4 2025/06/05 06:28:39;
-  tstp 4 2025/06/05 06:28:39;
-  cltt 4 2025/06/05 06:18:39;
-  binding state free;
-  hardware ethernet 56:7e:2e:13:84:eb;
-}
-lease 192.168.0.52 {
-  starts 4 2025/06/05 06:18:39;
-  ends 4 2025/06/05 06:28:39;
-  tstp 4 2025/06/05 06:28:39;
-  cltt 4 2025/06/05 06:18:39;
-  binding state free;
-  hardware ethernet 36:13:85:1f:81:a9;
-}
-lease 192.168.0.57 {
-  starts 4 2025/06/05 06:18:44;
-  ends 4 2025/06/05 06:28:44;
-  tstp 4 2025/06/05 06:28:44;
-  cltt 4 2025/06/05 06:18:44;
-  binding state free;
-  hardware ethernet c2:7d:58:ad:fc:9f;
-}
-lease 192.168.0.58 {
-  starts 4 2025/06/05 06:18:44;
-  ends 4 2025/06/05 06:28:44;
-  tstp 4 2025/06/05 06:28:44;
-  cltt 4 2025/06/05 06:18:44;
-  binding state free;
-  hardware ethernet a6:98:a8:c1:4e:1f;
-}
-lease 192.168.0.63 {
-  starts 4 2025/06/05 06:18:49;
-  ends 4 2025/06/05 06:28:49;
-  tstp 4 2025/06/05 06:28:49;
-  cltt 4 2025/06/05 06:18:49;
-  binding state free;
-  hardware ethernet 12:ba:12:ee:56:ca;
-}
-lease 192.168.0.55 {
-  starts 4 2025/06/05 06:18:49;
-  ends 4 2025/06/05 06:28:49;
-  tstp 4 2025/06/05 06:28:49;
-  cltt 4 2025/06/05 06:18:49;
-  binding state free;
-  hardware ethernet 72:d1:df:51:a8:b2;
-}
-lease 192.168.0.62 {
-  starts 4 2025/06/05 06:18:54;
-  ends 4 2025/06/05 06:28:54;
-  tstp 4 2025/06/05 06:28:54;
-  cltt 4 2025/06/05 06:18:54;
-  binding state free;
-  hardware ethernet e2:79:ee:f7:10:98;
-}
-lease 192.168.0.59 {
-  starts 4 2025/06/05 06:18:54;
-  ends 4 2025/06/05 06:28:54;
-  tstp 4 2025/06/05 06:28:54;
-  cltt 4 2025/06/05 06:18:54;
-  binding state free;
-  hardware ethernet ca:6e:23:48:c5:35;
-}
-lease 192.168.0.69 {
-  starts 4 2025/06/05 06:18:59;
-  ends 4 2025/06/05 06:28:59;
-  tstp 4 2025/06/05 06:28:59;
-  cltt 4 2025/06/05 06:18:59;
-  binding state free;
-  hardware ethernet 5a:ef:cb:5a:a5:0a;
-}
-lease 192.168.0.60 {
-  starts 4 2025/06/05 06:18:59;
-  ends 4 2025/06/05 06:28:59;
-  tstp 4 2025/06/05 06:28:59;
-  cltt 4 2025/06/05 06:18:59;
-  binding state free;
-  hardware ethernet ae:c6:ba:f4:94:b6;
-}
-lease 192.168.0.66 {
-  starts 4 2025/06/05 06:19:06;
-  ends 4 2025/06/05 06:29:06;
-  tstp 4 2025/06/05 06:29:06;
-  cltt 4 2025/06/05 06:19:06;
-  binding state free;
-  hardware ethernet aa:15:7f:08:ce:e9;
-}
-lease 192.168.0.67 {
-  starts 4 2025/06/05 06:19:06;
-  ends 4 2025/06/05 06:29:06;
-  tstp 4 2025/06/05 06:29:06;
-  cltt 4 2025/06/05 06:19:06;
-  binding state free;
-  hardware ethernet 4e:b8:aa:42:5c:8a;
-}
-lease 192.168.0.65 {
-  starts 4 2025/06/05 06:19:16;
-  ends 4 2025/06/05 06:29:16;
-  tstp 4 2025/06/05 06:29:16;
-  cltt 4 2025/06/05 06:19:16;
-  binding state free;
-  hardware ethernet 56:bb:73:ad:fb:94;
-}
 lease 192.168.0.73 {
   starts 4 2025/06/05 06:19:17;
   ends 4 2025/06/05 06:29:17;
@@ -804,6 +444,414 @@ lease 192.168.0.119 {
   binding state free;
   hardware ethernet 72:8f:1d:df:12:a8;
 }
+lease 192.168.0.121 {
+  starts 4 2025/06/05 13:45:04;
+  ends 4 2025/06/05 13:55:04;
+  tstp 4 2025/06/05 13:55:04;
+  cltt 4 2025/06/05 13:45:04;
+  binding state free;
+  hardware ethernet a6:d1:85:c8:15:3d;
+}
+lease 192.168.0.122 {
+  starts 4 2025/06/05 13:45:04;
+  ends 4 2025/06/05 13:55:04;
+  tstp 4 2025/06/05 13:55:04;
+  cltt 4 2025/06/05 13:45:04;
+  binding state free;
+  hardware ethernet 1e:f3:b9:cc:23:d1;
+}
+lease 192.168.0.126 {
+  starts 4 2025/06/05 15:16:02;
+  ends 4 2025/06/05 15:26:02;
+  tstp 4 2025/06/05 15:26:02;
+  cltt 4 2025/06/05 15:16:02;
+  binding state free;
+  hardware ethernet c6:79:69:bf:e7:32;
+}
+lease 192.168.0.124 {
+  starts 4 2025/06/05 15:16:03;
+  ends 4 2025/06/05 15:26:03;
+  tstp 4 2025/06/05 15:26:03;
+  cltt 4 2025/06/05 15:16:03;
+  binding state free;
+  hardware ethernet 02:1c:60:b1:28:08;
+}
+lease 192.168.0.129 {
+  starts 4 2025/06/05 15:16:06;
+  ends 4 2025/06/05 15:26:06;
+  tstp 4 2025/06/05 15:26:06;
+  cltt 4 2025/06/05 15:16:06;
+  binding state free;
+  hardware ethernet a2:f4:ce:fb:05:fc;
+}
+lease 192.168.0.123 {
+  starts 4 2025/06/05 15:16:06;
+  ends 4 2025/06/05 15:26:06;
+  tstp 4 2025/06/05 15:26:06;
+  cltt 4 2025/06/05 15:16:06;
+  binding state free;
+  hardware ethernet de:59:f7:a8:e6:e4;
+}
+lease 192.168.0.128 {
+  starts 4 2025/06/05 15:16:09;
+  ends 4 2025/06/05 15:26:09;
+  tstp 4 2025/06/05 15:26:09;
+  cltt 4 2025/06/05 15:16:09;
+  binding state free;
+  hardware ethernet d6:16:20:ba:ec:3b;
+}
+lease 192.168.0.127 {
+  starts 4 2025/06/05 15:16:10;
+  ends 4 2025/06/05 15:26:10;
+  tstp 4 2025/06/05 15:26:10;
+  cltt 4 2025/06/05 15:16:10;
+  binding state free;
+  hardware ethernet b2:91:04:cb:c2:da;
+}
+lease 192.168.0.136 {
+  starts 4 2025/06/05 15:16:12;
+  ends 4 2025/06/05 15:26:12;
+  tstp 4 2025/06/05 15:26:12;
+  cltt 4 2025/06/05 15:16:12;
+  binding state free;
+  hardware ethernet 8a:0d:4e:1e:36:e7;
+}
+lease 192.168.0.130 {
+  starts 4 2025/06/05 15:16:13;
+  ends 4 2025/06/05 15:26:13;
+  tstp 4 2025/06/05 15:26:13;
+  cltt 4 2025/06/05 15:16:13;
+  binding state free;
+  hardware ethernet 7a:ad:6b:71:d4:71;
+}
+lease 192.168.0.135 {
+  starts 4 2025/06/05 15:16:16;
+  ends 4 2025/06/05 15:26:16;
+  tstp 4 2025/06/05 15:26:16;
+  cltt 4 2025/06/05 15:16:16;
+  binding state free;
+  hardware ethernet d6:a5:38:7a:34:7a;
+}
+lease 192.168.0.132 {
+  starts 4 2025/06/05 15:16:17;
+  ends 4 2025/06/05 15:26:17;
+  tstp 4 2025/06/05 15:26:17;
+  cltt 4 2025/06/05 15:16:17;
+  binding state free;
+  hardware ethernet 52:c3:01:76:b4:dd;
+}
+lease 192.168.0.133 {
+  starts 4 2025/06/05 15:16:20;
+  ends 4 2025/06/05 15:26:20;
+  tstp 4 2025/06/05 15:26:20;
+  cltt 4 2025/06/05 15:16:20;
+  binding state free;
+  hardware ethernet 82:0a:f9:ed:cb:7f;
+}
+lease 192.168.0.134 {
+  starts 4 2025/06/05 15:16:21;
+  ends 4 2025/06/05 15:26:21;
+  tstp 4 2025/06/05 15:26:21;
+  cltt 4 2025/06/05 15:16:21;
+  binding state free;
+  hardware ethernet 6e:02:29:73:db:2d;
+}
+lease 192.168.0.139 {
+  starts 4 2025/06/05 15:16:25;
+  ends 4 2025/06/05 15:26:25;
+  tstp 4 2025/06/05 15:26:25;
+  cltt 4 2025/06/05 15:16:25;
+  binding state free;
+  hardware ethernet e2:5a:45:d0:4d:7f;
+}
+lease 192.168.0.131 {
+  starts 4 2025/06/05 15:16:26;
+  ends 4 2025/06/05 15:26:26;
+  tstp 4 2025/06/05 15:26:26;
+  cltt 4 2025/06/05 15:16:26;
+  binding state free;
+  hardware ethernet da:f7:fe:77:b4:8c;
+}
+lease 192.168.0.140 {
+  starts 4 2025/06/05 15:16:34;
+  ends 4 2025/06/05 15:26:34;
+  tstp 4 2025/06/05 15:26:34;
+  cltt 4 2025/06/05 15:16:34;
+  binding state free;
+  hardware ethernet 52:a4:3a:0c:a1:e4;
+}
+lease 192.168.0.137 {
+  starts 4 2025/06/05 15:16:35;
+  ends 4 2025/06/05 15:26:35;
+  tstp 4 2025/06/05 15:26:35;
+  cltt 4 2025/06/05 15:16:35;
+  binding state free;
+  hardware ethernet 0e:f7:ef:75:50:18;
+}
+lease 192.168.0.145 {
+  starts 4 2025/06/05 15:16:49;
+  ends 4 2025/06/05 15:26:49;
+  tstp 4 2025/06/05 15:26:49;
+  cltt 4 2025/06/05 15:16:49;
+  binding state free;
+  hardware ethernet 22:4f:4e:98:66:19;
+}
+lease 192.168.0.138 {
+  starts 4 2025/06/05 15:16:50;
+  ends 4 2025/06/05 15:26:50;
+  tstp 4 2025/06/05 15:26:50;
+  cltt 4 2025/06/05 15:16:50;
+  binding state free;
+  hardware ethernet fa:c0:c3:16:21:55;
+}
+lease 192.168.0.144 {
+  starts 4 2025/06/05 15:17:17;
+  ends 4 2025/06/05 15:27:17;
+  tstp 4 2025/06/05 15:27:17;
+  cltt 4 2025/06/05 15:17:17;
+  binding state free;
+  hardware ethernet 9a:f1:37:9d:ea:40;
+}
+lease 192.168.0.141 {
+  starts 4 2025/06/05 15:17:18;
+  ends 4 2025/06/05 15:27:18;
+  tstp 4 2025/06/05 15:27:18;
+  cltt 4 2025/06/05 15:17:18;
+  binding state free;
+  hardware ethernet 6a:41:5a:32:44:11;
+}
+lease 192.168.0.142 {
+  starts 4 2025/06/05 15:18:10;
+  ends 4 2025/06/05 15:28:10;
+  tstp 4 2025/06/05 15:28:10;
+  cltt 4 2025/06/05 15:18:10;
+  binding state free;
+  hardware ethernet 46:2f:0c:28:e1:49;
+}
+lease 192.168.0.147 {
+  starts 4 2025/06/05 15:18:12;
+  ends 4 2025/06/05 15:28:12;
+  tstp 4 2025/06/05 15:28:12;
+  cltt 4 2025/06/05 15:18:12;
+  binding state free;
+  hardware ethernet de:e3:b3:64:37:23;
+}
+lease 192.168.0.143 {
+  starts 4 2025/06/05 15:19:13;
+  ends 4 2025/06/05 15:29:13;
+  tstp 4 2025/06/05 15:29:13;
+  cltt 4 2025/06/05 15:19:13;
+  binding state free;
+  hardware ethernet 92:2d:8f:17:48:87;
+}
+lease 192.168.0.148 {
+  starts 4 2025/06/05 15:19:14;
+  ends 4 2025/06/05 15:29:14;
+  tstp 4 2025/06/05 15:29:14;
+  cltt 4 2025/06/05 15:19:14;
+  binding state free;
+  hardware ethernet 06:8d:54:b6:dd:ba;
+}
+lease 192.168.0.50 {
+  starts 4 2025/06/05 15:20:15;
+  ends 4 2025/06/05 15:30:15;
+  tstp 4 2025/06/05 15:30:15;
+  cltt 4 2025/06/05 15:20:15;
+  binding state free;
+  hardware ethernet d6:05:2e:c1:b4:4a;
+}
+lease 192.168.0.146 {
+  starts 4 2025/06/05 15:20:17;
+  ends 4 2025/06/05 15:30:17;
+  tstp 4 2025/06/05 15:30:17;
+  cltt 4 2025/06/05 15:20:17;
+  binding state free;
+  hardware ethernet 4a:14:ad:b0:c0:a0;
+}
+lease 192.168.0.150 {
+  starts 4 2025/06/05 15:45:33;
+  ends 4 2025/06/05 15:55:33;
+  tstp 4 2025/06/05 15:55:33;
+  cltt 4 2025/06/05 15:45:33;
+  binding state free;
+  hardware ethernet fa:d3:63:bf:86:3d;
+}
+lease 192.168.0.149 {
+  starts 4 2025/06/05 16:07:31;
+  ends 4 2025/06/05 16:17:31;
+  tstp 4 2025/06/05 16:17:31;
+  cltt 4 2025/06/05 16:07:31;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 4a:07:73:ce:d1:99;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.61 {
+  starts 4 2025/06/05 16:07:31;
+  ends 4 2025/06/05 16:17:31;
+  tstp 4 2025/06/05 16:17:31;
+  cltt 4 2025/06/05 16:07:31;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet b2:1d:9c:00:b5:d1;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.56 {
+  starts 4 2025/06/05 16:07:35;
+  ends 4 2025/06/05 16:17:35;
+  tstp 4 2025/06/05 16:17:35;
+  cltt 4 2025/06/05 16:07:35;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet ee:7d:67:e6:c7:0a;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.51 {
+  starts 4 2025/06/05 16:07:35;
+  ends 4 2025/06/05 16:17:35;
+  tstp 4 2025/06/05 16:17:35;
+  cltt 4 2025/06/05 16:07:35;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet fe:26:d9:9b:ab:51;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.57 {
+  starts 4 2025/06/05 16:07:38;
+  ends 4 2025/06/05 16:17:38;
+  tstp 4 2025/06/05 16:17:38;
+  cltt 4 2025/06/05 16:07:38;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 42:41:89:7b:d7:a3;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.52 {
+  starts 4 2025/06/05 16:07:38;
+  ends 4 2025/06/05 16:17:38;
+  tstp 4 2025/06/05 16:17:38;
+  cltt 4 2025/06/05 16:07:38;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet f2:0e:6b:31:b0:1b;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.63 {
+  starts 4 2025/06/05 16:07:42;
+  ends 4 2025/06/05 16:17:42;
+  tstp 4 2025/06/05 16:17:42;
+  cltt 4 2025/06/05 16:07:42;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 8e:18:66:dc:0d:d2;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.58 {
+  starts 4 2025/06/05 16:07:42;
+  ends 4 2025/06/05 16:17:42;
+  tstp 4 2025/06/05 16:17:42;
+  cltt 4 2025/06/05 16:07:42;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 1e:fa:7d:67:68:31;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.62 {
+  starts 4 2025/06/05 16:07:45;
+  ends 4 2025/06/05 16:17:45;
+  tstp 4 2025/06/05 16:17:45;
+  cltt 4 2025/06/05 16:07:45;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 3e:9d:01:33:94:f4;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.55 {
+  starts 4 2025/06/05 16:07:45;
+  ends 4 2025/06/05 16:17:45;
+  tstp 4 2025/06/05 16:17:45;
+  cltt 4 2025/06/05 16:07:45;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet da:0b:cd:4e:95:a3;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.69 {
+  starts 4 2025/06/05 16:07:49;
+  ends 4 2025/06/05 16:17:49;
+  tstp 4 2025/06/05 16:17:49;
+  cltt 4 2025/06/05 16:07:49;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 3e:9c:ae:ac:c0:93;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.59 {
+  starts 4 2025/06/05 16:07:49;
+  ends 4 2025/06/05 16:17:49;
+  tstp 4 2025/06/05 16:17:49;
+  cltt 4 2025/06/05 16:07:49;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 86:bd:04:28:58:94;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.66 {
+  starts 4 2025/06/05 16:07:55;
+  ends 4 2025/06/05 16:17:55;
+  tstp 4 2025/06/05 16:17:55;
+  cltt 4 2025/06/05 16:07:55;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 62:50:55:de:b8:18;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.60 {
+  starts 4 2025/06/05 16:07:55;
+  ends 4 2025/06/05 16:17:55;
+  tstp 4 2025/06/05 16:17:55;
+  cltt 4 2025/06/05 16:07:55;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet f2:35:40:52:fb:b9;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.67 {
+  starts 4 2025/06/05 16:08:03;
+  ends 4 2025/06/05 16:18:03;
+  tstp 4 2025/06/05 16:18:03;
+  cltt 4 2025/06/05 16:08:03;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet f6:58:21:55:e6:8c;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.65 {
+  starts 4 2025/06/05 16:08:03;
+  ends 4 2025/06/05 16:18:03;
+  tstp 4 2025/06/05 16:18:03;
+  cltt 4 2025/06/05 16:08:03;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 12:94:95:b4:eb:ee;
+  client-hostname "trabajador1.mayorista.local";
+}
 lease 192.168.0.53 {
   starts 3 2025/06/04 17:26:45;
   ends 4 2025/06/05 17:26:45;
@@ -816,39 +864,743 @@ lease 192.168.0.53 {
 }
 server-duid "\000\001\000\001/\321u\301>\255\354\314\262#";
 
-lease 192.168.0.121 {
-  starts 4 2025/06/05 13:45:04;
-  ends 4 2025/06/05 13:55:04;
-  cltt 4 2025/06/05 13:45:04;
+lease 192.168.0.73 {
+  starts 4 2025/06/05 16:16:50;
+  ends 4 2025/06/05 16:26:50;
+  cltt 4 2025/06/05 16:16:50;
   binding state active;
   next binding state free;
   rewind binding state free;
-  hardware ethernet a6:d1:85:c8:15:3d;
-  client-hostname "trabajador2.mayorista.local";
-}
-lease 192.168.0.122 {
-  starts 4 2025/06/05 13:45:04;
-  ends 4 2025/06/05 13:55:04;
-  cltt 4 2025/06/05 13:45:04;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet 1e:f3:b9:cc:23:d1;
+  hardware ethernet 06:df:fd:10:9d:a4;
   client-hostname "trabajador1.mayorista.local";
 }
-lease 192.168.0.122 {
-  starts 4 2025/06/05 13:45:04;
-  ends 4 2025/06/05 13:55:04;
-  tstp 4 2025/06/05 13:55:04;
-  cltt 4 2025/06/05 13:45:04;
-  binding state free;
-  hardware ethernet 1e:f3:b9:cc:23:d1;
+lease 192.168.0.71 {
+  starts 4 2025/06/05 16:16:52;
+  ends 4 2025/06/05 16:26:52;
+  cltt 4 2025/06/05 16:16:52;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 9e:67:c0:75:19:2d;
+  client-hostname "trabajador2.mayorista.local";
 }
-lease 192.168.0.121 {
-  starts 4 2025/06/05 13:45:04;
-  ends 4 2025/06/05 13:55:04;
-  tstp 4 2025/06/05 13:55:04;
-  cltt 4 2025/06/05 13:45:04;
+lease 192.168.0.68 {
+  starts 4 2025/06/05 16:16:54;
+  ends 4 2025/06/05 16:26:54;
+  cltt 4 2025/06/05 16:16:54;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet d6:1f:d5:97:1c:68;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.77 {
+  starts 4 2025/06/05 16:16:57;
+  ends 4 2025/06/05 16:26:57;
+  cltt 4 2025/06/05 16:16:57;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 62:09:82:89:35:6d;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.64 {
+  starts 4 2025/06/05 16:17:00;
+  ends 4 2025/06/05 16:27:00;
+  cltt 4 2025/06/05 16:17:00;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet d6:2c:c9:d4:f1:e2;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.74 {
+  starts 4 2025/06/05 16:17:03;
+  ends 4 2025/06/05 16:27:03;
+  cltt 4 2025/06/05 16:17:03;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet ea:b0:05:88:6f:14;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.72 {
+  starts 4 2025/06/05 16:17:05;
+  ends 4 2025/06/05 16:27:05;
+  cltt 4 2025/06/05 16:17:05;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 76:b1:73:3b:b2:47;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.75 {
+  starts 4 2025/06/05 16:17:08;
+  ends 4 2025/06/05 16:27:08;
+  cltt 4 2025/06/05 16:17:08;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 02:44:63:63:e5:ab;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.70 {
+  starts 4 2025/06/05 16:17:10;
+  ends 4 2025/06/05 16:27:10;
+  cltt 4 2025/06/05 16:17:10;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 72:00:e7:53:1c:91;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.78 {
+  starts 4 2025/06/05 16:17:13;
+  ends 4 2025/06/05 16:27:13;
+  cltt 4 2025/06/05 16:17:13;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet fe:1b:13:e9:e9:f9;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.76 {
+  starts 4 2025/06/05 16:17:16;
+  ends 4 2025/06/05 16:27:16;
+  cltt 4 2025/06/05 16:17:16;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 7a:af:d1:e4:5c:0c;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.81 {
+  starts 4 2025/06/05 16:17:18;
+  ends 4 2025/06/05 16:27:18;
+  cltt 4 2025/06/05 16:17:18;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 86:4c:b2:6f:0d:58;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.83 {
+  starts 4 2025/06/05 16:17:23;
+  ends 4 2025/06/05 16:27:23;
+  cltt 4 2025/06/05 16:17:23;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 6e:e1:9f:30:1f:2f;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.80 {
+  starts 4 2025/06/05 16:17:25;
+  ends 4 2025/06/05 16:27:25;
+  cltt 4 2025/06/05 16:17:25;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet de:60:f9:c1:79:31;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.149 {
+  starts 4 2025/06/05 16:07:31;
+  ends 4 2025/06/05 16:17:31;
+  tstp 4 2025/06/05 16:17:31;
+  cltt 4 2025/06/05 16:07:31;
   binding state free;
-  hardware ethernet a6:d1:85:c8:15:3d;
+  hardware ethernet 4a:07:73:ce:d1:99;
+}
+lease 192.168.0.61 {
+  starts 4 2025/06/05 16:07:31;
+  ends 4 2025/06/05 16:17:31;
+  tstp 4 2025/06/05 16:17:31;
+  cltt 4 2025/06/05 16:07:31;
+  binding state free;
+  hardware ethernet b2:1d:9c:00:b5:d1;
+}
+lease 192.168.0.82 {
+  starts 4 2025/06/05 16:17:33;
+  ends 4 2025/06/05 16:27:33;
+  cltt 4 2025/06/05 16:17:33;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 0a:82:bb:73:fa:23;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.56 {
+  starts 4 2025/06/05 16:07:35;
+  ends 4 2025/06/05 16:17:35;
+  tstp 4 2025/06/05 16:17:35;
+  cltt 4 2025/06/05 16:07:35;
+  binding state free;
+  hardware ethernet ee:7d:67:e6:c7:0a;
+}
+lease 192.168.0.51 {
+  starts 4 2025/06/05 16:07:35;
+  ends 4 2025/06/05 16:17:35;
+  tstp 4 2025/06/05 16:17:35;
+  cltt 4 2025/06/05 16:07:35;
+  binding state free;
+  hardware ethernet fe:26:d9:9b:ab:51;
+}
+lease 192.168.0.85 {
+  starts 4 2025/06/05 16:17:36;
+  ends 4 2025/06/05 16:27:36;
+  cltt 4 2025/06/05 16:17:36;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 4e:e6:98:ed:84:f6;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.57 {
+  starts 4 2025/06/05 16:07:38;
+  ends 4 2025/06/05 16:17:38;
+  tstp 4 2025/06/05 16:17:38;
+  cltt 4 2025/06/05 16:07:38;
+  binding state free;
+  hardware ethernet 42:41:89:7b:d7:a3;
+}
+lease 192.168.0.52 {
+  starts 4 2025/06/05 16:07:38;
+  ends 4 2025/06/05 16:17:38;
+  tstp 4 2025/06/05 16:17:38;
+  cltt 4 2025/06/05 16:07:38;
+  binding state free;
+  hardware ethernet f2:0e:6b:31:b0:1b;
+}
+lease 192.168.0.63 {
+  starts 4 2025/06/05 16:07:42;
+  ends 4 2025/06/05 16:17:42;
+  tstp 4 2025/06/05 16:17:42;
+  cltt 4 2025/06/05 16:07:42;
+  binding state free;
+  hardware ethernet 8e:18:66:dc:0d:d2;
+}
+lease 192.168.0.58 {
+  starts 4 2025/06/05 16:07:42;
+  ends 4 2025/06/05 16:17:42;
+  tstp 4 2025/06/05 16:17:42;
+  cltt 4 2025/06/05 16:07:42;
+  binding state free;
+  hardware ethernet 1e:fa:7d:67:68:31;
+}
+lease 192.168.0.62 {
+  starts 4 2025/06/05 16:07:45;
+  ends 4 2025/06/05 16:17:45;
+  tstp 4 2025/06/05 16:17:45;
+  cltt 4 2025/06/05 16:07:45;
+  binding state free;
+  hardware ethernet 3e:9d:01:33:94:f4;
+}
+lease 192.168.0.55 {
+  starts 4 2025/06/05 16:07:45;
+  ends 4 2025/06/05 16:17:45;
+  tstp 4 2025/06/05 16:17:45;
+  cltt 4 2025/06/05 16:07:45;
+  binding state free;
+  hardware ethernet da:0b:cd:4e:95:a3;
+}
+lease 192.168.0.69 {
+  starts 4 2025/06/05 16:07:49;
+  ends 4 2025/06/05 16:17:49;
+  tstp 4 2025/06/05 16:17:49;
+  cltt 4 2025/06/05 16:07:49;
+  binding state free;
+  hardware ethernet 3e:9c:ae:ac:c0:93;
+}
+lease 192.168.0.59 {
+  starts 4 2025/06/05 16:07:49;
+  ends 4 2025/06/05 16:17:49;
+  tstp 4 2025/06/05 16:17:49;
+  cltt 4 2025/06/05 16:07:49;
+  binding state free;
+  hardware ethernet 86:bd:04:28:58:94;
+}
+lease 192.168.0.88 {
+  starts 4 2025/06/05 16:17:51;
+  ends 4 2025/06/05 16:27:51;
+  cltt 4 2025/06/05 16:17:51;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 82:85:83:f6:9d:2b;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.79 {
+  starts 4 2025/06/05 16:17:53;
+  ends 4 2025/06/05 16:27:53;
+  cltt 4 2025/06/05 16:17:53;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 7e:cd:71:25:3b:b3;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.66 {
+  starts 4 2025/06/05 16:07:55;
+  ends 4 2025/06/05 16:17:55;
+  tstp 4 2025/06/05 16:17:55;
+  cltt 4 2025/06/05 16:07:55;
+  binding state free;
+  hardware ethernet 62:50:55:de:b8:18;
+}
+lease 192.168.0.60 {
+  starts 4 2025/06/05 16:07:55;
+  ends 4 2025/06/05 16:17:55;
+  tstp 4 2025/06/05 16:17:55;
+  cltt 4 2025/06/05 16:07:55;
+  binding state free;
+  hardware ethernet f2:35:40:52:fb:b9;
+}
+lease 192.168.0.67 {
+  starts 4 2025/06/05 16:08:03;
+  ends 4 2025/06/05 16:18:03;
+  tstp 4 2025/06/05 16:18:03;
+  cltt 4 2025/06/05 16:08:03;
+  binding state free;
+  hardware ethernet f6:58:21:55:e6:8c;
+}
+lease 192.168.0.65 {
+  starts 4 2025/06/05 16:08:03;
+  ends 4 2025/06/05 16:18:03;
+  tstp 4 2025/06/05 16:18:03;
+  cltt 4 2025/06/05 16:08:03;
+  binding state free;
+  hardware ethernet 12:94:95:b4:eb:ee;
+}
+lease 192.168.0.84 {
+  starts 4 2025/06/05 16:18:20;
+  ends 4 2025/06/05 16:28:20;
+  cltt 4 2025/06/05 16:18:20;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet f6:07:25:97:e8:a0;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.90 {
+  starts 4 2025/06/05 16:18:22;
+  ends 4 2025/06/05 16:28:22;
+  cltt 4 2025/06/05 16:18:22;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 82:f8:a4:8f:c7:ef;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.54 {
+  starts 4 2025/06/05 16:19:15;
+  ends 4 2025/06/05 16:29:15;
+  cltt 4 2025/06/05 16:19:15;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 1e:b0:06:7e:7c:1f;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.86 {
+  starts 4 2025/06/05 16:19:16;
+  ends 4 2025/06/05 16:29:16;
+  cltt 4 2025/06/05 16:19:16;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet fa:e5:c5:4e:e1:2e;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.87 {
+  starts 4 2025/06/05 16:20:18;
+  ends 4 2025/06/05 16:30:18;
+  cltt 4 2025/06/05 16:20:18;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 72:69:59:f0:96:6e;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.91 {
+  starts 4 2025/06/05 16:20:20;
+  ends 4 2025/06/05 16:30:20;
+  cltt 4 2025/06/05 16:20:20;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet a2:16:3f:ac:34:2e;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.92 {
+  starts 4 2025/06/05 16:21:22;
+  ends 4 2025/06/05 16:31:22;
+  cltt 4 2025/06/05 16:21:22;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet e6:b1:8f:7a:81:4f;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.94 {
+  starts 4 2025/06/05 16:21:25;
+  ends 4 2025/06/05 16:31:25;
+  cltt 4 2025/06/05 16:21:25;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 6a:2b:1d:66:59:eb;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.89 {
+  starts 4 2025/06/05 16:22:26;
+  ends 4 2025/06/05 16:32:26;
+  cltt 4 2025/06/05 16:22:26;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet c6:07:fd:a0:a4:c5;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.93 {
+  starts 4 2025/06/05 16:22:28;
+  ends 4 2025/06/05 16:32:28;
+  cltt 4 2025/06/05 16:22:28;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet f2:54:41:bd:ba:ce;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.95 {
+  starts 4 2025/06/05 16:23:29;
+  ends 4 2025/06/05 16:33:29;
+  cltt 4 2025/06/05 16:23:29;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet ba:e8:8f:b7:36:3d;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.100 {
+  starts 4 2025/06/05 16:23:32;
+  ends 4 2025/06/05 16:33:32;
+  cltt 4 2025/06/05 16:23:32;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 7e:dd:aa:0b:39:b5;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.97 {
+  starts 4 2025/06/05 16:24:33;
+  ends 4 2025/06/05 16:34:33;
+  cltt 4 2025/06/05 16:24:33;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 2e:fd:3c:1a:f5:e1;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.101 {
+  starts 4 2025/06/05 16:24:36;
+  ends 4 2025/06/05 16:34:36;
+  cltt 4 2025/06/05 16:24:36;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet fe:1b:11:a7:cf:bd;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.98 {
+  starts 4 2025/06/05 16:25:37;
+  ends 4 2025/06/05 16:35:37;
+  cltt 4 2025/06/05 16:25:37;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 2e:e5:5a:d1:69:22;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.105 {
+  starts 4 2025/06/05 16:25:40;
+  ends 4 2025/06/05 16:35:40;
+  cltt 4 2025/06/05 16:25:40;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 0e:ac:a4:fa:1c:01;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.96 {
+  starts 4 2025/06/05 16:26:41;
+  ends 4 2025/06/05 16:36:41;
+  cltt 4 2025/06/05 16:26:41;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet ee:55:e2:11:10:e4;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.103 {
+  starts 4 2025/06/05 16:26:44;
+  ends 4 2025/06/05 16:36:44;
+  cltt 4 2025/06/05 16:26:44;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 76:69:ab:83:ad:12;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.73 {
+  starts 4 2025/06/05 16:16:50;
+  ends 4 2025/06/05 16:26:50;
+  tstp 4 2025/06/05 16:26:50;
+  cltt 4 2025/06/05 16:16:50;
+  binding state free;
+  hardware ethernet 06:df:fd:10:9d:a4;
+}
+lease 192.168.0.71 {
+  starts 4 2025/06/05 16:16:52;
+  ends 4 2025/06/05 16:26:52;
+  tstp 4 2025/06/05 16:26:52;
+  cltt 4 2025/06/05 16:16:52;
+  binding state free;
+  hardware ethernet 9e:67:c0:75:19:2d;
+}
+lease 192.168.0.68 {
+  starts 4 2025/06/05 16:16:54;
+  ends 4 2025/06/05 16:26:54;
+  tstp 4 2025/06/05 16:26:54;
+  cltt 4 2025/06/05 16:16:54;
+  binding state free;
+  hardware ethernet d6:1f:d5:97:1c:68;
+}
+lease 192.168.0.77 {
+  starts 4 2025/06/05 16:16:57;
+  ends 4 2025/06/05 16:26:57;
+  tstp 4 2025/06/05 16:26:57;
+  cltt 4 2025/06/05 16:16:57;
+  binding state free;
+  hardware ethernet 62:09:82:89:35:6d;
+}
+lease 192.168.0.64 {
+  starts 4 2025/06/05 16:17:00;
+  ends 4 2025/06/05 16:27:00;
+  tstp 4 2025/06/05 16:27:00;
+  cltt 4 2025/06/05 16:17:00;
+  binding state free;
+  hardware ethernet d6:2c:c9:d4:f1:e2;
+}
+lease 192.168.0.74 {
+  starts 4 2025/06/05 16:17:03;
+  ends 4 2025/06/05 16:27:03;
+  tstp 4 2025/06/05 16:27:03;
+  cltt 4 2025/06/05 16:17:03;
+  binding state free;
+  hardware ethernet ea:b0:05:88:6f:14;
+}
+lease 192.168.0.72 {
+  starts 4 2025/06/05 16:17:05;
+  ends 4 2025/06/05 16:27:05;
+  tstp 4 2025/06/05 16:27:05;
+  cltt 4 2025/06/05 16:17:05;
+  binding state free;
+  hardware ethernet 76:b1:73:3b:b2:47;
+}
+lease 192.168.0.75 {
+  starts 4 2025/06/05 16:17:08;
+  ends 4 2025/06/05 16:27:08;
+  tstp 4 2025/06/05 16:27:08;
+  cltt 4 2025/06/05 16:17:08;
+  binding state free;
+  hardware ethernet 02:44:63:63:e5:ab;
+}
+lease 192.168.0.70 {
+  starts 4 2025/06/05 16:17:10;
+  ends 4 2025/06/05 16:27:10;
+  tstp 4 2025/06/05 16:27:10;
+  cltt 4 2025/06/05 16:17:10;
+  binding state free;
+  hardware ethernet 72:00:e7:53:1c:91;
+}
+lease 192.168.0.78 {
+  starts 4 2025/06/05 16:17:13;
+  ends 4 2025/06/05 16:27:13;
+  tstp 4 2025/06/05 16:27:13;
+  cltt 4 2025/06/05 16:17:13;
+  binding state free;
+  hardware ethernet fe:1b:13:e9:e9:f9;
+}
+lease 192.168.0.76 {
+  starts 4 2025/06/05 16:17:16;
+  ends 4 2025/06/05 16:27:16;
+  tstp 4 2025/06/05 16:27:16;
+  cltt 4 2025/06/05 16:17:16;
+  binding state free;
+  hardware ethernet 7a:af:d1:e4:5c:0c;
+}
+lease 192.168.0.81 {
+  starts 4 2025/06/05 16:17:18;
+  ends 4 2025/06/05 16:27:18;
+  tstp 4 2025/06/05 16:27:18;
+  cltt 4 2025/06/05 16:17:18;
+  binding state free;
+  hardware ethernet 86:4c:b2:6f:0d:58;
+}
+lease 192.168.0.83 {
+  starts 4 2025/06/05 16:17:23;
+  ends 4 2025/06/05 16:27:23;
+  tstp 4 2025/06/05 16:27:23;
+  cltt 4 2025/06/05 16:17:23;
+  binding state free;
+  hardware ethernet 6e:e1:9f:30:1f:2f;
+}
+lease 192.168.0.80 {
+  starts 4 2025/06/05 16:17:25;
+  ends 4 2025/06/05 16:27:25;
+  tstp 4 2025/06/05 16:27:25;
+  cltt 4 2025/06/05 16:17:25;
+  binding state free;
+  hardware ethernet de:60:f9:c1:79:31;
+}
+lease 192.168.0.82 {
+  starts 4 2025/06/05 16:17:33;
+  ends 4 2025/06/05 16:27:33;
+  tstp 4 2025/06/05 16:27:33;
+  cltt 4 2025/06/05 16:17:33;
+  binding state free;
+  hardware ethernet 0a:82:bb:73:fa:23;
+}
+lease 192.168.0.85 {
+  starts 4 2025/06/05 16:17:36;
+  ends 4 2025/06/05 16:27:36;
+  tstp 4 2025/06/05 16:27:36;
+  cltt 4 2025/06/05 16:17:36;
+  binding state free;
+  hardware ethernet 4e:e6:98:ed:84:f6;
+}
+lease 192.168.0.107 {
+  starts 4 2025/06/05 16:27:45;
+  ends 4 2025/06/05 16:37:45;
+  cltt 4 2025/06/05 16:27:45;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 3e:16:fe:0b:30:bf;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.108 {
+  starts 4 2025/06/05 16:27:48;
+  ends 4 2025/06/05 16:37:48;
+  cltt 4 2025/06/05 16:27:48;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 6a:0c:e8:13:cf:7f;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.88 {
+  starts 4 2025/06/05 16:17:51;
+  ends 4 2025/06/05 16:27:51;
+  tstp 4 2025/06/05 16:27:51;
+  cltt 4 2025/06/05 16:17:51;
+  binding state free;
+  hardware ethernet 82:85:83:f6:9d:2b;
+}
+lease 192.168.0.79 {
+  starts 4 2025/06/05 16:17:53;
+  ends 4 2025/06/05 16:27:53;
+  tstp 4 2025/06/05 16:27:53;
+  cltt 4 2025/06/05 16:17:53;
+  binding state free;
+  hardware ethernet 7e:cd:71:25:3b:b3;
+}
+lease 192.168.0.84 {
+  starts 4 2025/06/05 16:18:20;
+  ends 4 2025/06/05 16:28:20;
+  tstp 4 2025/06/05 16:28:20;
+  cltt 4 2025/06/05 16:18:20;
+  binding state free;
+  hardware ethernet f6:07:25:97:e8:a0;
+}
+lease 192.168.0.90 {
+  starts 4 2025/06/05 16:18:22;
+  ends 4 2025/06/05 16:28:22;
+  tstp 4 2025/06/05 16:28:22;
+  cltt 4 2025/06/05 16:18:22;
+  binding state free;
+  hardware ethernet 82:f8:a4:8f:c7:ef;
+}
+lease 192.168.0.99 {
+  starts 4 2025/06/05 16:28:49;
+  ends 4 2025/06/05 16:38:49;
+  cltt 4 2025/06/05 16:28:49;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 0e:f2:9b:1d:9b:bb;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.109 {
+  starts 4 2025/06/05 16:28:52;
+  ends 4 2025/06/05 16:38:52;
+  cltt 4 2025/06/05 16:28:52;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 96:fe:5c:1c:b6:ef;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.54 {
+  starts 4 2025/06/05 16:19:15;
+  ends 4 2025/06/05 16:29:15;
+  tstp 4 2025/06/05 16:29:15;
+  cltt 4 2025/06/05 16:19:15;
+  binding state free;
+  hardware ethernet 1e:b0:06:7e:7c:1f;
+}
+lease 192.168.0.86 {
+  starts 4 2025/06/05 16:19:16;
+  ends 4 2025/06/05 16:29:16;
+  tstp 4 2025/06/05 16:29:16;
+  cltt 4 2025/06/05 16:19:16;
+  binding state free;
+  hardware ethernet fa:e5:c5:4e:e1:2e;
+}
+lease 192.168.0.104 {
+  starts 4 2025/06/05 16:29:53;
+  ends 4 2025/06/05 16:39:53;
+  cltt 4 2025/06/05 16:29:53;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 52:5a:99:ee:89:b5;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.110 {
+  starts 4 2025/06/05 16:29:55;
+  ends 4 2025/06/05 16:39:55;
+  cltt 4 2025/06/05 16:29:55;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet ba:cd:f5:e4:5e:6e;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.87 {
+  starts 4 2025/06/05 16:20:18;
+  ends 4 2025/06/05 16:30:18;
+  tstp 4 2025/06/05 16:30:18;
+  cltt 4 2025/06/05 16:20:18;
+  binding state free;
+  hardware ethernet 72:69:59:f0:96:6e;
+}
+lease 192.168.0.91 {
+  starts 4 2025/06/05 16:20:20;
+  ends 4 2025/06/05 16:30:20;
+  tstp 4 2025/06/05 16:30:20;
+  cltt 4 2025/06/05 16:20:20;
+  binding state free;
+  hardware ethernet a2:16:3f:ac:34:2e;
 }

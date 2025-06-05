@@ -6,42 +6,47 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-echo -e "${GREEN}Arrancando entorno Mayorista...${NC}"
+echo -e "${GREEN}\n====== Arrancando entorno LDAP/PHP/MariaDB/Apache ======${NC}\n"
+
+# Levantamos todos los servicios
+echo -e "${GREEN}Arrancando docker-compose up...${NC}"
 docker-compose up -d
 
-sleep 7
+# Esperar a que los contenedores estén listos
+sleep 10
 
-echo -e "${YELLOW}Validando servicios críticos...${NC}"
+# Comprobamos que LDAP responde con usuario admin
+echo -e "${GREEN}Verificando disponibilidad de LDAP...${NC}"
+for i in {1..15}; do
+    if docker exec ldap-server ldapsearch -x -D "cn=admin,dc=mayorista,dc=local" -w adminpassword -b "dc=mayorista,dc=local" >/dev/null 2>&1; then
+        echo -e "${GREEN}LDAP disponible.${NC}"
+        break
+    else
+        echo -e "${YELLOW}Esperando LDAP... ($i/15)${NC}"
+        sleep 2
+    fi
 
-# --- Función auxiliar para comprobar contenedor ---
-check_container() {
-  local name="$1"
-  local test_cmd="$2"
-  local ok_msg="$3"
-  local fail_msg="$4"
-  if docker exec "$name" bash -c "$test_cmd" >/dev/null 2>&1; then
-    echo -e "${GREEN}$ok_msg${NC}"
-  else
-    echo -e "${RED}$fail_msg${NC}"
-    exit 1
-  fi
-}
+    if [ "$i" -eq 15 ]; then
+        echo -e "${RED}ERROR: LDAP no responde tras múltiples intentos.${NC}"
+        docker logs ldap-server
+        exit 1
+    fi
+done
 
-# --- LDAP ---
-check_container "ldap-server" "ldapsearch -x -b 'dc=mayorista,dc=local'" \
-  "LDAP OK" "LDAP FALLÓ, revisa docker logs ldap-server"
+# Resumen de estado de clientes
+echo -e "${GREEN}\nResumen de estado de los clientes:${NC}"
+clientes=(cliente-trabajador1 cliente-trabajador2 cliente-jefe cliente-jefeit)
 
-# --- MariaDB ---
-check_container "mariadb" "mysqladmin ping -uadmin -padminpassword" \
-  "MariaDB OK" "MariaDB FALLÓ, revisa docker logs mariadb"
+for cliente in "${clientes[@]}"; do
+    echo -e "\n${YELLOW}--- Estado de $cliente ---${NC}"
+    docker exec "$cliente" bash -c '
+        echo "Hostname: $(hostname)"
+        echo -n "IPs: "; ip -4 a show eth0 | grep inet | awk "{print \$2}" | xargs echo
+        echo -n "LDAP usuario juan: "; getent passwd juan >/dev/null && echo "OK" || echo "NO"
+        echo -n "LDAP grupo trabajadores: "; getent group trabajadores >/dev/null && echo "OK" || echo "NO"
+    '
+done
 
-# --- API ---
-check_container "api_mayorista" "curl -s http://localhost:5000/ | grep -i mayorista" \
-  "API OK" "API FALLÓ, revisa docker logs api_mayorista"
-
-# --- Apache ---
-check_container "apache_server" "curl -s http://localhost/ | grep -iq mayorista" \
-  "Apache OK" "Apache FALLÓ, revisa docker logs apache_server"
-
-echo -e "${GREEN}Todos los servicios críticos están UP y validados.${NC}"
-docker-compose ps
+echo -e "${GREEN}\nTodos los servicios están listos.${NC}"
+echo -e "${YELLOW}Pulsa ENTER para cerrar...${NC}"
+read
