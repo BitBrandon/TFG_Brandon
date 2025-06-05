@@ -1,0 +1,7 @@
+dn: ou=usuarios,dc=mayorista,dc=local
+objectClass: organizationalUnit
+ou: usuarios
+
+dn: ou=grupos,dc=mayorista,dc=local
+objectClass: organizationalUnit
+ou: grupos

@@ -3,24 +3,22 @@ version : '3.8'
 services:
   # ============ LDAP ============:
   ldap:
-    build:
-      context: ./ldap
-      dockerfile: Dockerfile
+    image: osixia/openldap:1.5.0
     container_name: ldap-server
     ports:
       - "389:389"
       - "636:636"
-    #volumes:
-      #- ./ldap/data:/var/lib/ldap
-      #- ./ldap/config:/etc/ldap/slapd.d
+    volumes:
+      - ./ldap/data:/var/lib/ldap
+      - ./ldap/config:/etc/ldap/slapd.d
+      - ./ldap/ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom
     environment:
       LDAP_ORGANISATION: "Mayorista"
       LDAP_DOMAIN: "mayorista.local"
       LDAP_ADMIN_PASSWORD: "adminpassword"
       LDAP_CONFIG_PASSWORD: "configpassword"
-      LDAP_BASE_DN: dc=mayorista,dc=local
       LDAP_TLS: "false"
-      LDAP_REMOVE_CONFIG_AFTER_SETUP: "true"
+      LDAP_REMOVE_CONFIG_AFTER_SETUP: "false"
       LDAP_SKIP_DEFAULT_TREE: "false"
     networks:
       mayorista_network:

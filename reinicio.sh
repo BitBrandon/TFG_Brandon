@@ -1,118 +1,111 @@
 #!/bin/bash
 set -e
 
-# --- Colores para mensajes ---
-RED='\033[0;31m'
+# --- Colores ---
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-NC='\033[0m' # Sin color
+RED='\033[0;31m'
+NC='\033[0m'
 
-echo -e "\n${GREEN}====== Reiniciando entorno LDAP Docker desde cero ======${NC}\n"
+echo -e "${GREEN}\n====== Reiniciando entorno LDAP desde cero ======${NC}\n"
 
-# --- Parar y borrar contenedores y volúmenes ---
-echo -e "${GREEN}Parando y eliminando todos los contenedores y volúmenes...${NC}"
-docker-compose down -v || true
+# --- Parar y eliminar contenedores y volúmenes ---
+echo -e "${GREEN}Apagando y limpiando contenedores...${NC}"
+docker-compose down --volumes
 
-# --- Borrar directorios de datos y configuración ---
-echo -e "${GREEN}Borrando volúmenes de datos y configuración LDAP...${NC}"
+# --- Limpiar directorios persistentes ---
+echo -e "${GREEN}Eliminando volúmenes locales (data/config)...${NC}"
 rm -rf ./ldap/data ./ldap/config
-
-# --- Crear directorios requeridos (si no existen) ---
 mkdir -p ./ldap/data ./ldap/config
 
-# --- Verificar archivos requeridos para el Dockerfile ---
-echo -e "${GREEN}Verificando archivos requeridos...${NC}"
+# --- Validar archivos ldif ---
+echo -e "${GREEN}Verificando archivos en ./ldap/ldif...${NC}"
 
-if [ ! -f ./ldap/bootstrap/01-bootstrap.ldif ]; then
-    echo -e "${RED}ERROR: Falta 01-bootstrap.ldif en ldap/bootstrap/. Abortando.${NC}"
+LDIF_DIR=./ldap/ldif
+
+if [ ! -d "$LDIF_DIR" ]; then
+    echo -e "${RED}ERROR: No existe el directorio $LDIF_DIR.${NC}"
     exit 1
 fi
 
-if [ ! -d ./ldap/overlays ]; then
-    echo -e "${RED}ERROR: Falta el directorio ldap/overlays. Abortando.${NC}"
+shopt -s nullglob
+LDIF_FILES=($LDIF_DIR/*.ldif)
+
+if [ ${#LDIF_FILES[@]} -eq 0 ]; then
+    echo -e "${RED}ERROR: No hay archivos .ldif en $LDIF_DIR.${NC}"
     exit 1
 fi
 
-if [ ! -f ./ldap/overlays/bootstrap-overlays.sh ]; then
-    echo -e "${YELLOW}ADVERTENCIA: No se encontró el script de overlays avanzados (./ldap/overlays/bootstrap-overlays.sh).${NC}"
-else
-    echo -e "${GREEN}Script de overlays detectado.${NC}"
-fi
-
-for ldif in ./ldap/overlays/*.ldif; do
+for ldif in "${LDIF_FILES[@]}"; do
     if [ ! -s "$ldif" ]; then
         echo -e "${YELLOW}ADVERTENCIA: El archivo $ldif está vacío.${NC}"
     fi
 done
 
-echo -e "${GREEN}Archivos de bootstrap y overlays detectados.${NC}"
-
-# --- Permisos (opcional en Windows, comentar si da error) ---
-echo -e "${GREEN}Asignando permisos correctos a los volúmenes...${NC}"
+# --- Permisos ---
+echo -e "${GREEN}Ajustando permisos...${NC}"
 if command -v chown &>/dev/null; then
-     chown -R 911:911 ./ldap/data ./ldap/config
-else
     chown -R 911:911 ./ldap/data ./ldap/config || true
 fi
 chmod -R 700 ./ldap/data ./ldap/config || true
 
-# --- Reconstruir imágenes locales si es necesario ---
-echo -e "${GREEN}Reconstruyendo todas las imágenes locales (build forzado)...${NC}"
+# --- Reconstruir imágenes ---
+echo -e "${GREEN}Reconstruyendo imágenes Docker...${NC}"
 docker-compose build --no-cache
 
 # --- Levantar servicios ---
-echo -e "${GREEN}Levantando todos los servicios...${NC}"
+echo -e "${GREEN}Iniciando servicios...${NC}"
 docker-compose up -d
 
-# --- Esperar a que el servidor LDAP esté disponible ---
-echo -e "${GREEN}Esperando a que el servidor LDAP esté disponible...${NC}"
+# --- Esperar a que los contenedores estén listos ---
+sleep 10
+
+# --- Verificar estado de los contenedores ---
+if ! docker-compose ps | grep -q "Up"; then
+    echo -e "${RED}ERROR: Algunos contenedores no se levantaron correctamente.${NC}"
+    docker-compose ps
+    exit 1
+fi
+
+# --- Esperar disponibilidad de LDAP ---
+echo -e "${GREEN}Esperando disponibilidad del servidor LDAP...${NC}"
 for i in {1..15}; do
     if docker exec ldap-server ldapsearch -x -b "dc=mayorista,dc=local" >/dev/null 2>&1; then
-        echo -e "${GREEN}LDAP accesible.${NC}"
+        echo -e "${GREEN}LDAP disponible.${NC}"
         break
     else
         echo -e "${YELLOW}Esperando LDAP... ($i/15)${NC}"
         sleep 2
     fi
-    if [ $i -eq 15 ]; then
-        echo -e "${RED}LDAP NO está accesible tras esperar. Revisa los logs.${NC}"
+
+    if [ "$i" -eq 15 ]; then
+        echo -e "${RED}ERROR: LDAP no responde tras múltiples intentos.${NC}"
         docker logs ldap-server
         exit 1
     fi
 done
 
-# --- Comprobaciones automáticas de estructura LDAP ---
-echo -e "${GREEN}\n=== Comprobaciones automáticas de estructura LDAP ===${NC}"
-
+# --- Validaciones básicas de estructura LDAP ---
+echo -e "${GREEN}\n=== Comprobaciones básicas ===${NC}"
 check_and_log() {
     DESC="$1"
     SEARCH_DN="$2"
-    GREP_DN="$3"
-    echo -en "$DESC... "
-    if docker exec ldap-server ldapsearch -x -b "$SEARCH_DN" | grep -q "$GREP_DN"; then
+    EXPECTED="$3"
+
+    echo -en "${DESC}... "
+    if docker exec ldap-server ldapsearch -x -b "$SEARCH_DN" | grep -q "$EXPECTED"; then
         echo -e "${GREEN}OK${NC}"
     else
         echo -e "${RED}ERROR${NC}"
-        echo -e "${RED}Mostrando logs recientes de ldap-server:${NC}"
-        docker logs ldap-server | tail -n 40
+        docker exec ldap-server ldapsearch -x -b "$SEARCH_DN"
     fi
 }
 
 check_and_log "Dominio mayorista.local" "dc=mayorista,dc=local" "dn: dc=mayorista,dc=local"
-check_and_log "OU usuarios" "dc=mayorista,dc=local" "dn: ou=usuarios,dc=mayorista,dc=local"
-check_and_log "OU grupos" "dc=mayorista,dc=local" "dn: ou=grupos,dc=mayorista,dc=local"
-check_and_log "Usuario juan" "dc=mayorista,dc=local" "dn: uid=juan,ou=usuarios,dc=mayorista,dc=local"
+check_and_log "OU usuarios" "dc=mayorista,dc=local" "ou=usuarios"
+check_and_log "OU grupos" "dc=mayorista,dc=local" "ou=grupos"
+check_and_log "Usuario juan" "ou=usuarios,dc=mayorista,dc=local" "uid=juan"
 
-echo -e "${GREEN}\n=== Fin de comprobaciones automáticas ===${NC}"
-
-# --- Aplicar overlays avanzados (ACLs) si existe el script ---
-if docker exec ldap-server test -f /overlays/bootstrap-overlays.sh; then
-    echo -e "${GREEN}Aplicando overlays avanzados (incluyendo ACLs)...${NC}"
-    docker exec ldap-server chmod +x /overlays/bootstrap-overlays.sh
-    docker exec -i ldap-server bash /overlays/bootstrap-overlays.sh
-else
-    echo -e "${YELLOW}No se encontró el script de overlays avanzados dentro del contenedor.${NC}"
-fi
-
+# --- Fin ---
 echo -e "${GREEN}\nEl entorno LDAP está listo para usar.${NC}"
-read -p "Presiona ENTER para terminar."
+read -p "Presiona ENTER para salir..." dummy
