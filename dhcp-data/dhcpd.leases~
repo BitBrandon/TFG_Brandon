@@ -4,38 +4,6 @@
 # authoring-byte-order entry is generated, DO NOT DELETE
 authoring-byte-order little-endian;
 
-lease 192.168.0.120 {
-  starts 4 2025/06/05 06:07:37;
-  ends 4 2025/06/05 06:17:37;
-  tstp 4 2025/06/05 06:17:37;
-  cltt 4 2025/06/05 06:07:37;
-  binding state free;
-  hardware ethernet 3e:72:07:eb:7c:7b;
-}
-lease 192.168.0.112 {
-  starts 4 2025/06/05 06:07:40;
-  ends 4 2025/06/05 06:17:40;
-  tstp 4 2025/06/05 06:17:40;
-  cltt 4 2025/06/05 06:07:40;
-  binding state free;
-  hardware ethernet 8a:bd:62:85:06:47;
-}
-lease 192.168.0.114 {
-  starts 4 2025/06/05 06:07:48;
-  ends 4 2025/06/05 06:17:48;
-  tstp 4 2025/06/05 06:17:48;
-  cltt 4 2025/06/05 06:07:48;
-  binding state free;
-  hardware ethernet 5a:90:1e:75:9f:0b;
-}
-lease 192.168.0.118 {
-  starts 4 2025/06/05 06:07:49;
-  ends 4 2025/06/05 06:17:49;
-  tstp 4 2025/06/05 06:17:49;
-  cltt 4 2025/06/05 06:07:49;
-  binding state free;
-  hardware ethernet da:43:8b:0c:12:fa;
-}
 lease 192.168.0.119 {
   starts 4 2025/06/05 06:08:05;
   ends 4 2025/06/05 06:18:05;
@@ -804,38 +772,6 @@ lease 192.168.0.117 {
   binding state free;
   hardware ethernet e6:7a:7e:39:73:b8;
 }
-lease 192.168.0.53 {
-  starts 3 2025/06/04 17:26:45;
-  ends 4 2025/06/05 17:26:45;
-  tstp 4 2025/06/05 17:26:45;
-  cltt 3 2025/06/04 17:26:45;
-  binding state abandoned;
-  next binding state free;
-  rewind binding state free;
-  client-hostname "trabajador2.mayorista.local";
-}
-server-duid "\000\001\000\001/\321u\301>\255\354\314\262#";
-
-lease 192.168.0.120 {
-  starts 4 2025/06/05 11:52:21;
-  ends 4 2025/06/05 12:02:21;
-  cltt 4 2025/06/05 11:52:21;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet 66:d3:a1:0f:5f:27;
-  client-hostname "trabajador2.mayorista.local";
-}
-lease 192.168.0.112 {
-  starts 4 2025/06/05 11:52:22;
-  ends 4 2025/06/05 12:02:22;
-  cltt 4 2025/06/05 11:52:22;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet c6:5f:b3:18:e2:53;
-  client-hostname "trabajador1.mayorista.local";
-}
 lease 192.168.0.120 {
   starts 4 2025/06/05 11:52:21;
   ends 4 2025/06/05 12:02:21;
@@ -851,4 +787,68 @@ lease 192.168.0.112 {
   cltt 4 2025/06/05 11:52:22;
   binding state free;
   hardware ethernet c6:5f:b3:18:e2:53;
+}
+lease 192.168.0.118 {
+  starts 4 2025/06/05 12:20:25;
+  ends 4 2025/06/05 12:30:25;
+  tstp 4 2025/06/05 12:30:25;
+  cltt 4 2025/06/05 12:20:25;
+  binding state free;
+  hardware ethernet e6:d3:2c:65:e6:8d;
+}
+lease 192.168.0.114 {
+  starts 4 2025/06/05 12:20:25;
+  ends 4 2025/06/05 12:30:25;
+  tstp 4 2025/06/05 12:30:25;
+  cltt 4 2025/06/05 12:20:25;
+  binding state free;
+  hardware ethernet 6a:a6:ff:cb:d8:83;
+}
+lease 192.168.0.53 {
+  starts 3 2025/06/04 17:26:45;
+  ends 4 2025/06/05 17:26:45;
+  tstp 4 2025/06/05 17:26:45;
+  cltt 3 2025/06/04 17:26:45;
+  binding state abandoned;
+  next binding state free;
+  rewind binding state free;
+  client-hostname "trabajador2.mayorista.local";
+}
+server-duid "\000\001\000\001/\321u\301>\255\354\314\262#";
+
+lease 192.168.0.119 {
+  starts 4 2025/06/05 13:06:28;
+  ends 4 2025/06/05 13:16:28;
+  cltt 4 2025/06/05 13:06:28;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 72:8f:1d:df:12:a8;
+  client-hostname "trabajador1.mayorista.local";
+}
+lease 192.168.0.125 {
+  starts 4 2025/06/05 13:06:28;
+  ends 4 2025/06/05 13:16:28;
+  cltt 4 2025/06/05 13:06:28;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 2a:99:05:cc:f0:d3;
+  client-hostname "trabajador2.mayorista.local";
+}
+lease 192.168.0.125 {
+  starts 4 2025/06/05 13:06:28;
+  ends 4 2025/06/05 13:16:28;
+  tstp 4 2025/06/05 13:16:28;
+  cltt 4 2025/06/05 13:06:28;
+  binding state free;
+  hardware ethernet 2a:99:05:cc:f0:d3;
+}
+lease 192.168.0.119 {
+  starts 4 2025/06/05 13:06:28;
+  ends 4 2025/06/05 13:16:28;
+  tstp 4 2025/06/05 13:16:28;
+  cltt 4 2025/06/05 13:06:28;
+  binding state free;
+  hardware ethernet 72:8f:1d:df:12:a8;
 }

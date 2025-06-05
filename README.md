@@ -1,78 +1,104 @@
-# Instrucciones para iniciar el entorno LDAP desde cero en la presentación
+# Entorno Mayorista - Gestión Persistente con PHPLDAPAdmin
 
-## Paso 1: Abre una terminal en la carpeta del proyecto
+## Introducción
 
-Asegúrate de estar en la raíz donde está el archivo `docker-compose.yml` y tu script (por ejemplo, `reinicio.sh`).
+Este entorno está diseñado para que LDAP, usuarios, grupos y toda la gestión de seguridad se hagan manualmente a través de PHPLDAPAdmin. NO se usan LDIFs de arranque ni borrado automático: ¡los datos y la configuración persisten siempre salvo que tú los borres!
+
+Todos los scripts (`arrancar.sh`, `apagar.sh`) están preparados para trabajar de forma segura, con backups automáticos y validaciones en el arranque.
 
 ---
 
-## Paso 2: Ejecuta el script de reinicio **(SIEMPRE desde la raíz del proyecto)**
+## 📦 Estructura y scripts principales
+
+- **`arrancar.sh`**  
+  Arranca todos los servicios Docker y valida que LDAP, MariaDB, Apache y la API están funcionando. Si algún servicio falla, lo muestra en rojo y PARA el proceso.
+- **`apagar.sh`**  
+  Realiza backups de los servicios críticos (LDAP, MariaDB, Apache, API), elimina los backups más antiguos (manteniendo solo los 5 últimos por servicio) y apaga los servicios.
+- **`backups/`**  
+  Aquí se almacenan los backups automáticos. Cada servicio tiene sus propios archivos independientes.
+
+---
+
+## 🚀 Arrancar el entorno
 
 ```bash
-./reinicio.sh
+./arrancar.sh
 ```
 
-- El script hará todo automáticamente:  
-  - Parará y eliminará todos los contenedores y volúmenes.
-  - Borrará completamente los directorios `./ldap/data` y `./ldap/config`.
-  - Comprobará los LDIFs críticos.
-  - Reconstruirá las imágenes si es necesario.
-  - Levantará todos los contenedores desde cero.
-  - Esperará a que el servidor LDAP esté disponible.
-  - Aplicará overlays y configuraciones extra.
-  - Hará comprobaciones automáticas y te mostrará el estado de todo.
+- Se levantan todos los contenedores.
+- Se valida que los servicios críticos estén **UP** (LDAP, MariaDB, Apache, API).
+- Si alguno falla, se muestra en rojo y se detiene el script.
+- Si todo está OK, puedes entrar a PHPLDAPAdmin para crear usuarios, grupos y estructura LDAP como quieras.
 
 ---
 
-## Paso 3: Espera a que termine el script
+## 🛑 Apagar el entorno y hacer backup
 
-- Cuando veas el mensaje:
-  ```
-  === Fin de comprobaciones automáticas ===
-  Puedes revisar los resultados arriba.
-  Presiona ENTER para terminar.
-  ```
-- Revisa que todas las comprobaciones son "OK".  
-  Si ves algún "ERROR", lee el mensaje para saber qué ha fallado (normalmente será algún LDIF faltante, problema de overlays, etc.).
+```bash
+./apagar.sh
+```
 
----
-
-## Paso 4: Presiona ENTER para finalizar
-
-- El entorno ya está listo para hacer pruebas, acceder a PHPLDAPAdmin, conectarte por SSH a los clientes, demostrar autenticación, etc.
+- Realiza backups comprimidos de:
+  - **LDAP** (`ldap/data` y `ldap/config`)
+  - **MariaDB** (dump SQL)
+  - **Apache** (`apache/htdocs` y `apache/conf`)
+  - **API** (`api/`)
+- Se almacenan en `./backups/` y solo se conservan los 5 más recientes por servicio.
+- Cuando termina, apaga todos los contenedores de forma segura.
 
 ---
 
-## ¿Qué hago si quiero reiniciar TODO ?
+## 🛠️ Gestión del LDAP (manual)
 
-- **Solo tienes que ejecutar otra vez:**
+- Accede a PHPLDAPAdmin: [http://localhost:8080](http://localhost:8080)
+- Login:  
+  - Usuario: `cn=admin,dc=mayorista,dc=local`
+  - Contraseña: `adminpassword` (o la que definas en tu `docker-compose.yml`)
+- Crea la estructura LDAP a mano: dominios, OUs, usuarios, grupos, etc.
+- Todo lo que hagas se guarda en los volúmenes persistentes (`ldap/data` y `ldap/config`).  
+  **Nunca se borra salvo que tú lo borres a mano.**
+
+---
+
+## 🔁 Restaurar backups (manual)
+
+Para restaurar un backup de cualquier servicio:
+1. Detén el entorno si está en marcha (`./apagar.sh`).
+2. Descomprime el backup deseado sobre la carpeta correspondiente (`ldap/data`, `apache/htdocs`, etc).
+3. Arranca el entorno (`./arrancar.sh`).
+
+---
+
+## 📑 Logs y utilidades
+
+- Consulta logs de cualquier servicio:
   ```bash
-  ./reinicia_ldap.sh
+  docker logs <nombre-del-contenedor>
   ```
-- ¡Y tendrás de nuevo todo desde cero, igual que la primera vez!
-
----
-
-- Ten abierta una segunda terminal por si necesitas consultar los logs:
+- Ejemplo:
   ```bash
   docker logs ldap-server
+  docker logs mariadb
+  docker logs api_mayorista
+  docker logs apache_server
   ```
-- Si necesitas comprobar usuarios/grupos desde los clientes:
-  ```bash
-  docker exec cliente-trabajador1 getent passwd | grep mayorista
-  docker exec cliente-trabajador1 getent group | grep mayorista
-  ```
-- Si quieres entrar a PHPLDAPAdmin, accede a [http://localhost:8080](http://localhost:8080) (o el puerto que uses).
 
 ---
 
-## Resumen
+## Resumen: Ciclo seguro
 
-1. **Ejecuta**: `./reinicio.sh`
-2. **Espera los OK** y pulsa ENTER.
-3. ¡Demuestra lo que necesites!
-4. ¿Quieres repetir? Ejecuta de nuevo el script.
+1. **Arranca:** `./arrancar.sh`
+2. **Gestiona LDAP y servicios vía PHPLDAPAdmin y las webs**
+3. **Apaga y haz backup:** `./apagar.sh`
+4. **Restaura backups si lo necesitas, siempre manualmente**
 
 ---
 
-¡Así tendrás la máxima garantía de que tu demo LDAP empieza siempre desde cero y sin sorpresas!
+## NOTA
+
+- Este flujo es persistente y seguro: **no hay reinicio destructivo ni borrado automático**.
+- Si necesitas un "reseteo total", borra los volúmenes/carpeta manualmente o restaura un backup anterior.
+
+---
+
+¡Disfruta de tu entorno Mayorista con máxima seguridad y control manual vía PHPLDAPAdmin!

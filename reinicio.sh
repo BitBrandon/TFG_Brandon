@@ -16,30 +16,29 @@ docker-compose down --volumes
 echo -e "${GREEN}Eliminando directorios locales (data/config) de LDAP...${NC}"
 rm -rf ./ldap/data ./ldap/config
 
-# --- Validar archivos ldif ---
+# --- INFO archivos ldif ---
 echo -e "${GREEN}Verificando archivos en ./ldap/ldif...${NC}"
 
 LDIF_DIR=./ldap/ldif
 
 if [ ! -d "$LDIF_DIR" ]; then
-    echo -e "${RED}ERROR: No existe el directorio $LDIF_DIR.${NC}"
-    exit 1
+    echo -e "${YELLOW}ADVERTENCIA: No existe el directorio $LDIF_DIR. Si quieres cargar datos, crea la carpeta y añade LDIFs.${NC}"
+    # No aborta, solo avisa
 fi
 
 shopt -s nullglob
 LDIF_FILES=($LDIF_DIR/*.ldif)
 
 if [ ${#LDIF_FILES[@]} -eq 0 ]; then
-    echo -e "${RED}ERROR: No hay archivos .ldif en $LDIF_DIR.${NC}"
-    exit 1
+    echo -e "${YELLOW}AVISO: No hay archivos .ldif en $LDIF_DIR. El LDAP arrancará vacío, perfecto para crear todo desde PHPLDAPAdmin.${NC}"
+    # No aborta, solo avisa
 fi
 
 for ldif in "${LDIF_FILES[@]}"; do
     # Asegura salto de línea al final
     tail -c1 "$ldif" | read -r _ || echo >> "$ldif"
-
     if [ ! -s "$ldif" ]; then
-        echo -e "${YELLOW}ADVERTENCIA: El archivo $ldif está vacío. (Esto puede romper el bootstrap)${NC}"
+        echo -e "${YELLOW}ADVERTENCIA: El archivo $ldif está vacío.${NC}"
     fi
 done
 
@@ -79,27 +78,7 @@ for i in {1..15}; do
     fi
 done
 
-# --- Validaciones básicas de estructura LDAP ---
-echo -e "${GREEN}\n=== Comprobaciones básicas ===${NC}"
-check_and_log() {
-    DESC="$1"
-    SEARCH_DN="$2"
-    EXPECTED="$3"
-
-    echo -en "${DESC}... "
-    if docker exec ldap-server ldapsearch -x -b "$SEARCH_DN" | grep -q "$EXPECTED"; then
-        echo -e "${GREEN}OK${NC}"
-    else
-        echo -e "${RED}ERROR${NC}"
-        docker exec ldap-server ldapsearch -x -b "$SEARCH_DN"
-    fi
-}
-
-check_and_log "Dominio mayorista.local" "dc=mayorista,dc=local" "dn: dc=mayorista,dc=local"
-check_and_log "OU usuarios" "dc=mayorista,dc=local" "ou=usuarios"
-check_and_log "OU grupos" "dc=mayorista,dc=local" "ou=grupos"
-check_and_log "Usuario juan" "ou=usuarios,dc=mayorista,dc=local" "uid=juan"
-
 # --- Fin ---
-echo -e "${GREEN}\nEl entorno LDAP está listo para usar (efímero, sin persistencia data/config).${NC}"
+echo -e "${GREEN}\nEl entorno LDAP está listo para usar (vacío, sin datos ni overlays cargados).${NC}"
+echo -e "${YELLOW}Puedes crear la base y todo lo necesario desde PHPLDAPAdmin.${NC}"
 read -p "Presiona ENTER para salir..." dummy

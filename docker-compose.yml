@@ -1,4 +1,4 @@
-version : '3.8'
+version: '3.8'
 
 services:
   # ============ LDAP ============:
@@ -9,7 +9,8 @@ services:
       - "389:389"
       - "636:636"
     volumes:
-      - ./ldap/ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom
+      - ./ldap/data:/var/lib/ldap
+      - ./ldap/config:/etc/ldap/slapd.d
     environment:
       LDAP_ORGANISATION: "Mayorista"
       LDAP_DOMAIN: "mayorista.local"
@@ -22,6 +23,7 @@ services:
       mayorista_network:
         ipv4_address: 192.168.0.15
     restart: unless-stopped
+
   # ============ PHPLDAPADMIN ===========
   phpldapadmin:
     image: osixia/phpldapadmin:0.9.0
