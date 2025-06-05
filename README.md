@@ -43,7 +43,7 @@ Asegúrate de estar en la raíz donde está el archivo `docker-compose.yml` y tu
 
 ---
 
-## ¿Qué hago si quiero reiniciar TODO de nuevo durante la presentación?
+## ¿Qué hago si quiero reiniciar TODO ?
 
 - **Solo tienes que ejecutar otra vez:**
   ```bash
@@ -52,8 +52,6 @@ Asegúrate de estar en la raíz donde está el archivo `docker-compose.yml` y tu
 - ¡Y tendrás de nuevo todo desde cero, igual que la primera vez!
 
 ---
-
-## Consejos para la presentación
 
 - Ten abierta una segunda terminal por si necesitas consultar los logs:
   ```bash
@@ -70,7 +68,7 @@ Asegúrate de estar en la raíz donde está el archivo `docker-compose.yml` y tu
 
 ## Resumen
 
-1. **Ejecuta**: `./reinicia_ldap.sh`
+1. **Ejecuta**: `./reinicio.sh`
 2. **Espera los OK** y pulsa ENTER.
 3. ¡Demuestra lo que necesites!
 4. ¿Quieres repetir? Ejecuta de nuevo el script.
