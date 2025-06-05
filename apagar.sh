@@ -24,9 +24,14 @@ fi
 
 # ---- MariaDB ----
 echo -e "${YELLOW}Backup de MariaDB...${NC}"
-docker exec mariadb mysqldump -uadmin -padminpassword mayorista_db > "$BACKUPDIR/mariadb-backup-$DATE.sql" && \
-echo -e "${GREEN}Backup MariaDB OK${NC}" || \
-echo -e "${RED}Backup MariaDB FALLÓ${NC}"
+BACKUPFILE="$BACKUPDIR/mariadb-backup-$DATE.sql"
+
+# Usar mysqldump del HOST (funciona siempre si tienes el cliente)
+if mysqldump -h 127.0.0.1 -P 3307 -uadmin -padminpassword mayorista_db > "$BACKUPFILE" 2> "$BACKUPDIR/mariadb-backup-error-$DATE.log"; then
+  echo -e "${GREEN}Backup MariaDB OK${NC}"
+else
+  echo -e "${RED}Backup MariaDB FALLÓ. Consulta $BACKUPDIR/mariadb-backup-error-$DATE.log${NC}"
+fi
 
 # ---- Apache ----
 if [ -d apache/htdocs ] && [ -d apache/conf ]; then

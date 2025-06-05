@@ -8,6 +8,21 @@ NC='\033[0m'
 
 echo -e "${GREEN}\n====== Arrancando entorno LDAP/PHP/MariaDB/Apache ======${NC}\n"
 
+# Limpiar leases antiguos de DHCP antes de levantar servicios
+if [ -d ./dhcp-data ]; then
+    echo -e "${YELLOW}Limpiando leases antiguos de DHCP...${NC}"
+    rm -f ./dhcp-data/dhcpd.leases* ./dhcp-data/*.bak ./dhcp-data/*.old 2>/dev/null || true
+    # Asegurar que existe el archivo de leases vacío
+    if [ ! -f ./dhcp-data/dhcpd.leases ]; then
+        echo -e "${YELLOW}Creando archivo vacío dhcpd.leases...${NC}"
+        touch ./dhcp-data/dhcpd.leases
+    fi
+fi
+
+# Reconstruir imágenes sin caché antes de levantar servicios
+echo -e "${GREEN}Reconstruyendo imágenes docker-compose build --no-cache...${NC}"
+docker-compose build --no-cache
+
 # Levantamos todos los servicios
 echo -e "${GREEN}Arrancando docker-compose up...${NC}"
 docker-compose up -d
