@@ -11,6 +11,7 @@ class Gasto(db.Model):
     def to_dict(self):
         return {
             'id_gasto': self.id_gasto,
+            'id': self.id_gasto,
             'descripcion': self.descripcion,
             'monto': float(self.monto),
             'fecha': self.fecha.isoformat()

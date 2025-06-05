@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from models.gasto import Gasto
 from models import db
+from datetime import datetime
 
 gastos_bp = Blueprint('gastos', __name__)
 
@@ -12,10 +13,12 @@ def listar_gastos():
 @gastos_bp.route('/', methods=['POST'])
 def crear_gasto():
     data = request.json
+    fecha = data.get('fecha')
+    fecha_obj = datetime.strptime(fecha, '%Y-%m-%d').date() if fecha else None
     nuevo_gasto = Gasto(
         descripcion=data.get('descripcion'),
         monto=data.get('monto'),
-        fecha=data.get('fecha')
+        fecha=fecha_obj
     )
     db.session.add(nuevo_gasto)
     db.session.commit()
@@ -36,7 +39,9 @@ def actualizar_gasto(id):
     data = request.json
     gasto.descripcion = data.get('descripcion', gasto.descripcion)
     gasto.monto = data.get('monto', gasto.monto)
-    gasto.fecha = data.get('fecha', gasto.fecha)
+    fecha = data.get('fecha')
+    if fecha:
+        gasto.fecha = datetime.strptime(fecha, '%Y-%m-%d').date()
     db.session.commit()
     return jsonify(gasto.to_dict()), 200
 

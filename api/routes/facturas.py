@@ -20,10 +20,13 @@ def get_factura(id):
 @facturas_bp.route('/', methods=['POST'])
 def crear_factura():
     data = request.get_json()
+    # Permitir tanto 'fecha' como 'fecha_factura' desde el frontend
+    fecha_str = data.get('fecha_factura') or data.get('fecha')
+    fecha_obj = datetime.strptime(fecha_str, '%Y-%m-%d').date() if fecha_str else None
     f = Factura(
         id_venta=data['id_venta'],
         total=data['total'],
-        fecha_factura=datetime.strptime(data['fecha_factura'], '%Y-%m-%d').date()
+        fecha_factura=fecha_obj
     )
     db.session.add(f)
     db.session.commit()
@@ -37,8 +40,9 @@ def actualizar_factura(id):
     data = request.get_json()
     f.id_venta = data.get('id_venta', f.id_venta)
     f.total = data.get('total', f.total)
-    if 'fecha_factura' in data:
-        f.fecha_factura = datetime.strptime(data['fecha_factura'], '%Y-%m-%d').date()
+    fecha_str = data.get('fecha_factura') or data.get('fecha')
+    if fecha_str:
+        f.fecha_factura = datetime.strptime(fecha_str, '%Y-%m-%d').date()
     db.session.commit()
     return jsonify(f.to_dict()), 200
 

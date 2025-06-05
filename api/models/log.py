@@ -12,6 +12,7 @@ class Log(db.Model):
     def to_dict(self):
         return {
             'id_log': self.id_log,
+            'id': self.id_log,
             'usuario': self.usuario,
             'accion': self.accion,
             'fecha': self.fecha.isoformat()

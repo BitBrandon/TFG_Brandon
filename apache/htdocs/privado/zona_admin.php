@@ -9,7 +9,8 @@ ldap_bind($ldap, "cn=admin,dc=mayorista,dc=local", "adminpassword");
 
 // Comprueba si el usuario es admin
 $base_dn = "ou=grupos,dc=mayorista,dc=local";
-$filter = "(&(objectClass=posixGroup)(cn=administradores)(memberUid=$user_uid))";$result = ldap_search($ldap, $base_dn, $filter);
+$filter = "(&(objectClass=posixGroup)(cn=administradores)(memberUid=$user_uid))";
+$result = ldap_search($ldap, $base_dn, $filter); // CORRECTO: ejecuta la búsqueda
 $entries = ldap_get_entries($ldap, $result);
 $is_admin = ($entries['count'] > 0);
 

@@ -13,6 +13,7 @@ class Producto(db.Model):
     def to_dict(self):
         return {
             'id_producto': self.id_producto,
+            'id': self.id_producto,
             'nombre': self.nombre,
             'precio': float(self.precio),
             'stock': self.stock,

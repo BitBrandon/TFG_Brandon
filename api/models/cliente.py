@@ -12,6 +12,7 @@ class Cliente(db.Model):
     def to_dict(self):
         return {
             'id_cliente': self.id_cliente,
+            'id': self.id_cliente,
             'nombre': self.nombre,
             'email': self.email,
             'telefono': self.telefono,

@@ -14,12 +14,14 @@ def listar_ventas():
 @ventas_bp.route('/', methods=['POST'])
 def crear_venta():
     data = request.json
+    fecha_str = data.get('fecha')
+    fecha_obj = datetime.strptime(fecha_str, '%Y-%m-%d').date() if fecha_str else None
     try:
         nueva_venta = Venta(
             id_cliente=data.get('id_cliente'),
             id_producto=data.get('id_producto'),
             cantidad=data.get('cantidad'),
-            fecha=datetime.strptime(data.get('fecha'), '%Y-%m-%d').date()
+            fecha=fecha_obj
         )
         db.session.add(nueva_venta)
         db.session.commit()

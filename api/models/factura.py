@@ -11,6 +11,7 @@ class Factura(db.Model):
     def to_dict(self):
         return {
             'id_factura': self.id_factura,
+            'id': self.id_factura,
             'id_venta': self.id_venta,
             'total': float(self.total),
             'fecha_factura': self.fecha_factura.isoformat()

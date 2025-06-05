@@ -9,5 +9,6 @@ class Categoria(db.Model):
     def to_dict(self):
         return {
             'id_categoria': self.id_categoria,
+            'id': self.id_categoria,
             'nombre': self.nombre
         }

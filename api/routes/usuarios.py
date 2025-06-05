@@ -13,8 +13,10 @@ def listar_usuarios():
 def crear_usuario():
     data = request.json
     nuevo_usuario = Usuario(
-        username=data.get('username'),
-        email=data.get('email')
+        nombre=data.get('nombre'),
+        email=data.get('email'),
+        rol=data.get('rol', 'trabajador'),
+        activo=data.get('activo', True)
     )
     db.session.add(nuevo_usuario)
     db.session.commit()
@@ -33,8 +35,10 @@ def actualizar_usuario(id):
     if not usuario:
         return jsonify({"error": "No encontrado"}), 404
     data = request.json
-    usuario.username = data.get('username', usuario.username)
+    usuario.nombre = data.get('nombre', usuario.nombre)
     usuario.email = data.get('email', usuario.email)
+    usuario.rol = data.get('rol', usuario.rol)
+    usuario.activo = data.get('activo', usuario.activo)
     db.session.commit()
     return jsonify(usuario.to_dict()), 200
 

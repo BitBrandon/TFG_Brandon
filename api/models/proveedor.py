@@ -11,6 +11,7 @@ class Proveedor(db.Model):
     def to_dict(self):
         return {
             'id_proveedor': self.id_proveedor,
+            'id': self.id_proveedor,
             'nombre': self.nombre,
             'telefono': self.telefono,
             'email': self.email

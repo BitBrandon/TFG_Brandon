@@ -12,6 +12,7 @@ class Venta(db.Model):
     def to_dict(self):
         return {
             'id_venta': self.id_venta,
+            'id': self.id_venta,
             'id_cliente': self.id_cliente,
             'id_producto': self.id_producto,
             'cantidad': self.cantidad,

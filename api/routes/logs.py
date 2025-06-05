@@ -20,10 +20,19 @@ def obtener_log(id):
 @logs_bp.route('/', methods=['POST'])
 def crear_log():
     data = request.get_json()
+    fecha_str = data.get('fecha')
+    if fecha_str:
+        fecha_str = fecha_str.replace('T', ' ')  # por si viene de un input datetime-local
+        # Si falta la parte de segundos, añade ":00"
+        if len(fecha_str) == 16:
+            fecha_str += ":00"
+        fecha = datetime.strptime(fecha_str, '%Y-%m-%d %H:%M:%S')
+    else:
+        fecha = datetime.utcnow()
     nuevo_log = Log(
         usuario=data['usuario'],
         accion=data['accion'],
-        fecha=datetime.strptime(data['fecha'], '%Y-%m-%d %H:%M:%S') if 'fecha' in data else datetime.utcnow()
+        fecha=fecha
     )
     db.session.add(nuevo_log)
     db.session.commit()
@@ -38,7 +47,10 @@ def actualizar_log(id):
     log.usuario = data.get('usuario', log.usuario)
     log.accion = data.get('accion', log.accion)
     if 'fecha' in data:
-        log.fecha = datetime.strptime(data['fecha'], '%Y-%m-%d %H:%M:%S')
+        fecha_str = data['fecha'].replace('T', ' ')
+        if len(fecha_str) == 16:
+            fecha_str += ":00"
+        log.fecha = datetime.strptime(fecha_str, '%Y-%m-%d %H:%M:%S')
     db.session.commit()
     return jsonify(log.to_dict()), 200
 
