@@ -23,7 +23,6 @@ LDIF_DIR=./ldap/ldif
 
 if [ ! -d "$LDIF_DIR" ]; then
     echo -e "${YELLOW}ADVERTENCIA: No existe el directorio $LDIF_DIR. Si quieres cargar datos, crea la carpeta y añade LDIFs.${NC}"
-    # No aborta, solo avisa
 fi
 
 shopt -s nullglob
@@ -31,7 +30,6 @@ LDIF_FILES=($LDIF_DIR/*.ldif)
 
 if [ ${#LDIF_FILES[@]} -eq 0 ]; then
     echo -e "${YELLOW}AVISO: No hay archivos .ldif en $LDIF_DIR. El LDAP arrancará vacío, perfecto para crear todo desde PHPLDAPAdmin.${NC}"
-    # No aborta, solo avisa
 fi
 
 for ldif in "${LDIF_FILES[@]}"; do

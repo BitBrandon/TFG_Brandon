@@ -26,7 +26,7 @@ fi
 echo -e "${YELLOW}Backup de MariaDB...${NC}"
 BACKUPFILE="$BACKUPDIR/mariadb-backup-$DATE.sql"
 
-# Usar mysqldump del HOST (funciona siempre si tienes el cliente)
+# Usar mysqldump del HOST 
 if mysqldump -h 127.0.0.1 -P 3307 -uadmin -padminpassword mayorista_db > "$BACKUPFILE" 2> "$BACKUPDIR/mariadb-backup-error-$DATE.log"; then
   echo -e "${GREEN}Backup MariaDB OK${NC}"
 else

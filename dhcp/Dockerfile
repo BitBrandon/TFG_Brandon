@@ -6,7 +6,6 @@ RUN apt-get update && \
 
 COPY dhcpd.conf /etc/dhcp/dhcpd.conf
 
-# Esto especifica la interfaz, puedes cambiarlo si es necesario
 ENV INTERFACES="eth0"
 
 CMD ["dhcpd", "-f", "-d", "-cf", "/etc/dhcp/dhcpd.conf"]

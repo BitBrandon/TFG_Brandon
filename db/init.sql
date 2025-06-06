@@ -102,8 +102,8 @@ INSERT INTO productos (nombre, precio, stock, id_categoria, id_proveedor) VALUES
 
 -- Datos de ejemplo para Usuarios
 INSERT INTO usuarios (nombre, email, rol, activo) VALUES
-('Brandon Admin', 'admin@mayorista.com', 'admin_informatica', TRUE),
-('Laura Jefe', 'jefe@mayorista.com', 'jefe', TRUE);
+('Carla Admin', 'admin@mayorista.com', 'admin_informatica', TRUE),
+('Juan Jefe', 'jefe@mayorista.com', 'jefe', TRUE);
 
 -- Datos de ejemplo para Ventas
 INSERT INTO ventas (id_cliente, id_producto, cantidad, fecha) VALUES
@@ -122,5 +122,5 @@ INSERT INTO gastos (descripcion, monto, fecha) VALUES
 
 -- Datos de ejemplo para Logs
 INSERT INTO logs (usuario, accion) VALUES
-('Brandon Admin', 'Inicio de sesión'),
-('Laura Jefe', 'Creación de factura');
+('Carla Admin', 'Inicio de sesión'),
+('Juan Jefe', 'Creación de factura');

@@ -26,7 +26,6 @@ RUN apt-get update && apt-get install -y \
     wget \
     && rm -rf /var/lib/apt/lists/*
 
-# Instalar libnss-ldapd manualmente porque no está en los repos principales de Bullseye
 RUN wget http://ftp.de.debian.org/debian/pool/main/n/nss-pam-ldapd/libnss-ldapd_0.9.11-1_amd64.deb && \
     dpkg -i libnss-ldapd_0.9.11-1_amd64.deb && \
     rm libnss-ldapd_0.9.11-1_amd64.deb

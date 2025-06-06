@@ -4,7 +4,7 @@ import os
 from flask_cors import CORS
 import time
 from sqlalchemy.exc import OperationalError
-from sqlalchemy import text  # Para probar conexión DB
+from sqlalchemy import text
 
 # Carga variables de entorno (.env)
 load_dotenv()
@@ -24,7 +24,6 @@ from routes.gastos import gastos_bp
 from routes.logs import logs_bp
 
 def wait_for_db(app, db, retries=10, delay=3):
-    """Intenta conectar a la DB varias veces antes de rendirse (útil para Docker compose)."""
     for attempt in range(retries):
         try:
             with app.app_context():
