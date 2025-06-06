@@ -14,12 +14,13 @@
 3. [Tecnologías Utilizadas](#tecnologías-utilizadas)
 4. [Estructura del Proyecto](#estructura-del-proyecto)
 5. [Instalación y Despliegue](#instalación-y-despliegue)
-6. [Scripts de Gestión y Automatización](#scripts-de-gestión-y-automatización)
-7. [Uso y Ejemplos Prácticos](#uso-y-ejemplos-prácticos)
-8. [Pruebas y Validación](#pruebas-y-validación)
-9. [Resolución de Problemas](#resolución-de-problemas)
-10. [Agradecimientos](#agradecimientos)
-11. [Roadmap y Futuras Mejoras](#roadmap-y-futuras-mejoras)
+6. [Acceso a Clientes y Pruebas LDAP](#acceso-a-clientes-y-pruebas-ldap)
+7. [Scripts de Gestión y Automatización](#scripts-de-gestión-y-automatización)
+8. [Uso y Ejemplos Prácticos](#uso-y-ejemplos-prácticos)
+9. [Pruebas y Validación](#pruebas-y-validación)
+10. [Resolución de Problemas](#resolución-de-problemas)
+11. [Agradecimientos](#agradecimientos)
+12. [Roadmap y Futuras Mejoras](#roadmap-y-futuras-mejoras)
 
 ---
 
@@ -72,7 +73,7 @@ Aquí tienes cómo se relacionan los componentes principales del proyecto.
 
 - **Lenguajes:** PHP, Python (Flask), Shell Script, HTML, CSS
 - **Contenedores:** Docker, Docker Compose
-- **Base de Datos:** MySQL 8.0
+- **Base de datos:** MySQL 8.0
 - **Imágenes base recomendadas:**  
   - `php:8.x-apache`  
   - `python:3.10-slim`  
@@ -93,7 +94,7 @@ TFG_Brandon/
 ├── backend/              # Backend Python/Flask
 │   ├── app.py
 │   └── requirements.txt
-├── frontend/             # Front PHP/HTML/CSS
+├── frontend/             # Frontend PHP/HTML/CSS
 │   ├── index.html
 │   ├── styles.css
 │   └── main.js
@@ -147,9 +148,106 @@ TFG_Brandon/
 
 ---
 
+## 📡 Acceso a Clientes y Pruebas de Usuarios LDAP
+
+### 🖥️ Acceso rápido a clientes desde MobaXterm o SSH
+
+Cada cliente está accesible vía SSH en el puerto correspondiente del host. Puedes usar MobaXterm (Windows) o cualquier terminal SSH (Linux/Mac).
+
+| Contenedor           | Puerto SSH | Hostname interno               |
+|----------------------|------------|-------------------------------|
+| cliente-trabajador1  | 2221       | trabajador1.mayorista.local   |
+| cliente-trabajador2  | 2222       | trabajador2.mayorista.local   |
+| cliente-jefeit       | 2223       | jefeit.mayorista.local        |
+| cliente-jefe         | 2224       | jefe.mayorista.local          |
+
+**Ejemplo de conexión SSH desde terminal:**
+```bash
+ssh juan@localhost -p 2221
+# O para otro usuario:
+ssh ana@localhost -p 2222
+```
+*(Sustituye juan/ana por cualquier otro usuario LDAP válido)*
+
+**En MobaXterm:**
+1. Crea una nueva sesión SSH:
+   - **Remote host:** `localhost`
+   - **Port:** `2221` (o `2222`, `2223`, `2224`)
+   - **Username:** `juan`, `ana`, etc.
+2. Guarda la sesión con el nombre del cliente para acceso rápido.
+3. Puedes dejar varias sesiones abiertas a distintos clientes a la vez.
+
+---
+
+### 🔍 Pruebas de usuarios LDAP en los clientes
+
+A continuación se muestran comandos y ejemplos para probar la autenticación y el correcto funcionamiento del LDAP en los clientes.
+
+#### 1. Comprobación de usuario en el sistema (desde cliente)
+
+```bash
+getent passwd juan
+getent passwd ana
+```
+**Esperado:**  
+Se muestra la línea de datos del usuario, lo que indica que el sistema reconoce a ese usuario a través de LDAP.
+
+#### 2. Acceso SSH como usuario LDAP
+
+```bash
+ssh juan@localhost -p 2221
+# Introducir la contraseña LDAP de juan
+# Esperado: acceso correcto y creación de /home/juan si es la primera vez
+```
+Lo mismo para otros usuarios (`ana`, etc.), cambiando el puerto según el cliente.
+
+#### 3. Comprobación de grupos y pertenencia
+
+```bash
+id juan
+id ana
+```
+**Esperado:**  
+Se muestran los grupos a los que pertenece el usuario, incluyendo los definidos en LDAP (por ejemplo, “trabajadores”).
+
+#### 4. Consultar usuarios y grupos desde el cliente
+
+```bash
+getent group trabajadores
+```
+**Esperado:**  
+Verás una línea con el grupo y los miembros según LDAP, por ejemplo:  
+`trabajadores:x:10001:juan,ana,...`
+
+#### 5. Prueba de autenticación interactiva
+
+1. **Accede al cliente mediante SSH o terminal:**
+   ```bash
+   ssh juan@localhost -p 2221
+   ```
+2. **Introduce la contraseña de juan (LDAP).**
+3. **Verifica que accedes y tienes un entorno de usuario funcional.**
+
+#### 6. Consulta rápida de todos los usuarios LDAP disponibles
+
+```bash
+getent passwd | grep /home
+```
+Esto mostrará todos los usuarios con home asignado, incluidos los de LDAP.
+
+#### 7. Prueba de creación automática de home
+
+- Al iniciar sesión por primera vez, debería crearse el directorio `/home/juan` automáticamente gracias a `pam_mkhomedir`.
+- Compruébalo con:
+  ```bash
+  ls -l /home/
+  ```
+
+---
+
 ## ⚙️ Scripts de Gestión y Automatización
 
-Este proyecto incluye una serie de scripts Bash diseñados para facilitar la gestión completa del entorno Dockerizado. Estos scripts permiten arrancar, reiniciar y apagar todos los servicios de forma segura, asegurando la persistencia de los datos y la consistencia del sistema.
+Este proyecto incluye una serie de scripts Bash diseñados para facilitar la gestión completa del entorno dockerizado. Estos scripts permiten arrancar, reiniciar y apagar todos los servicios de forma segura, asegurando la persistencia de los datos y la consistencia del sistema.
 
 ### 📋 Resumen de Scripts
 
@@ -273,6 +371,35 @@ Este proyecto incluye una serie de scripts Bash diseñados para facilitar la ges
   ```bash
   curl -v http://localhost:5000/api/endpoint
   ```
+## Acceso y comprobación de la API
+
+> **IMPORTANTE:**  
+> Cuando accedas a la API desde otros contenedores (por ejemplo, desde los clientes “trabajador1”, “trabajador2”, etc.), **NO utilices `localhost`**.  
+> Debes usar la IP interna del servicio (por ejemplo, `192.168.0.12`) o el nombre de servicio Docker Compose (`api`), ya que Docker crea una red interna donde estos nombres funcionan como DNS.
+
+Ejemplo de acceso correcto desde un cliente:
+```sh
+curl -v http://api:5000/clientes
+```
+o bien
+```sh
+curl -v http://192.168.0.12:5000/clientes
+```
+
+> ⚠️ Usar `localhost` dentro de un contenedor solo conecta con servicios en ese mismo contenedor, **no con otros servicios Docker**.
+
+### ¿No responde la API? Prueba lo siguiente:
+
+1. **Verifica que el contenedor de la API esté "Up":**
+   ```sh
+   docker compose ps
+   ```
+2. **Consulta los logs de la API para ver posibles errores:**
+   ```sh
+   docker compose logs api
+   ```
+3. **Comprueba que la base de datos está funcionando correctamente.**
+4. **Asegúrate de usar la ruta adecuada** (por ejemplo, `/clientes` y no `/api/clientes`, según el blueprint configurado).
 
 - **¿La base de datos responde?**
   ```bash
@@ -302,7 +429,7 @@ Este proyecto incluye una serie de scripts Bash diseñados para facilitar la ges
 | Problema                    | Motivo típico                   | Solución                          |
 |-----------------------------|---------------------------------|-----------------------------------|
 | Puerto ocupado              | Otro servicio usando el puerto  | Cambia el puerto o libera el otro |
-| Permisos en volúmenes       | Usuario de host incorrecto      | Ajusta permisos con `chmod/chown` |
+| Permisos en volúmenes       | Usuario del host incorrecto     | Ajusta permisos con `chmod/chown` |
 | Servicio no arranca         | Falta config o dependencias     | Mira los logs y .env              |
 | Servicios no se ven         | Red Docker mal configurada      | Revisa `docker-compose.yml`       |
 
@@ -310,7 +437,7 @@ Este proyecto incluye una serie de scripts Bash diseñados para facilitar la ges
 
 ## 🙏 Agradecimientos
 
-Gracias a profes, compis, comunidad open source y sobre todo a mi novia!.  
+Gracias a profes, compis, comunidad open source y sobre todo a mi novia.  
 Y a ti por pasarte por aquí 😊
 
 ---

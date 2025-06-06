@@ -2,7 +2,7 @@ FROM debian:bullseye
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Actualizar, instalar todo (sin libnss-ldap ni libpam-ldap) y limpiar caché
+# Actualizar, instalar todo y limpiar caché
 RUN apt-get update && apt-get install -y \
     openssh-server \
     sudo \
@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y \
     libpam-mkhomedir \
     rsyslog \
     wget \
+    netcat-openbsd \
     && rm -rf /var/lib/apt/lists/*
 
 RUN wget http://ftp.de.debian.org/debian/pool/main/n/nss-pam-ldapd/libnss-ldapd_0.9.11-1_amd64.deb && \
