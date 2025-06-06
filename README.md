@@ -1,6 +1,7 @@
-# 🚀 TFG: Servicios Docker y Configuración
+# 🚀 TFG: Arquitectura de Servicios Dockerizados y Centralización de Identidades
 
-¡Bienvenido/a! Este es el repositorio de mi Trabajo de Fin de Grado, donde verás cómo montar una arquitectura de servicios web usando Docker, con scripts para facilitarte la vida y muchas pruebas para que nada falle.  
+¡Bienvenido/a! Este repositorio contiene el Trabajo de Fin de Grado de BitBrandon, donde aprenderás a desplegar y gestionar una arquitectura completa de servicios utilizando Docker, integrando autenticación centralizada mediante LDAP, scripts de automatización y pruebas para un entorno empresarial realista y seguro.
+
 👨‍💻 Autor: BitBrandon
 
 ---
@@ -19,53 +20,49 @@
 8. [Uso y Ejemplos Prácticos](#uso-y-ejemplos-prácticos)
 9. [Pruebas y Validación](#pruebas-y-validación)
 10. [Resolución de Problemas](#resolución-de-problemas)
-11. [Agradecimientos](#agradecimientos)
-12. [Roadmap y Futuras Mejoras](#roadmap-y-futuras-mejoras)
+11. [Conclusión Final](#conclusión-final)
+12. [Agradecimientos](#agradecimientos)
+13. [Roadmap y Futuras Mejoras](#roadmap-y-futuras-mejoras)
+14. [Referencias](#referencias)
 
 ---
 
 ## 👋 Introducción
 
-Este proyecto es un ejemplo de cómo montar una aplicación web moderna usando contenedores Docker y buenas prácticas de automatización.  
-Incluye frontend (PHP), backend (Python/Flask), base de datos (MySQL) y scripts para arrancar, reiniciar y apagar todo fácil y seguro.  
-¡Ideal para aprender y replicar en tus propios proyectos!
+Este proyecto muestra cómo diseñar, desplegar y gestionar una infraestructura moderna basada en contenedores Docker. El objetivo es simular un entorno empresarial donde todos los servicios (bases de datos, frontend, backend, autenticación, etc.) se integran y administran de forma centralizada, eficiente y segura. Es ideal tanto para aprender como para replicar en entornos reales o académicos.
 
 ---
 
 ## 🏗️ Arquitectura del Sistema
 
-Aquí tienes cómo se relacionan los componentes principales del proyecto.
-
 ### 🌐 Diagrama de Contexto
 
 ```
-+------------------+       HTTP/Web       +--------------------------+
-|                  |--------------------->|                          |
-|   👤 Usuario     |                      |  Sistema de Servicios    |
-|                  |<---------------------|  Docker (TFG_Brandon)    |
-+------------------+         Web UI       +--------------------------+
++------------------+       HTTP/Web      +--------------------------+
+|                  |-------------------> |                          |
+|   👤 Usuario     |                     |  Sistema de Servicios    |
+|                  |<------------------- |  Docker (TFG_Brandon)    |
++------------------+      Web UI         +--------------------------+
 ```
 
 ### 📦 Diagrama de Contenedores (C4)
 
 ```
-+------------------+          +---------------------+         +-------------------+
-|                  |  HTTP    |  Frontend           |         |                   |
-|   👤 Usuario     +--------->|  (PHP/HTML/CSS)     |         |                   |
-|  (Navegador)     |          +---------------------+         |                   |
-+------------------+                |                         |                   |
-                                    | REST API (HTTP)         |                   |
-                                    v                         |                   |
-                              +-------------------+           |                   |
-                              | Backend (Flask)   |-----------+                   |
-                              | Python            |   SQL (3306)                 |
-                              +-------------------+           |                   |
-                                    |                         v                   |
-                              +-------------------+   +-------------------+       |
-                              |     MySQL         |<--+   Scripts Bash    |       |
-                              +-------------------+   +-------------------+       |
++------------------+    HTTP   +---------------------+    +-------------------+
+|                  | --------> |  Frontend (PHP/JS)  |    |                   |
+|   👤 Usuario     |           +---------------------+    |                   |
++------------------+                 |                   |                   |
+                                     | REST API (HTTP)   |                   |
+                                     v                   |                   |
+                              +-------------------+      |                   |
+                              | Backend (Flask)   |------+                   |
+                              | Python            |   SQL (3306)            |
+                              +-------------------+      |                   |
+                                     |                   v                   |
+                              +-------------------+  +-------------------+   |
+                              |   MySQL/MariaDB   |  |  Scripts Bash     |   |
+                              +-------------------+  +-------------------+   |
 ```
-> Nota: Los scripts de bash (`arrancar.sh`, `reinicio.sh`, `apagar.sh`) gestionan la vida de los contenedores de manera segura y ayudan a mantener los datos tras reinicios.  
 
 ---
 
@@ -73,17 +70,11 @@ Aquí tienes cómo se relacionan los componentes principales del proyecto.
 
 - **Lenguajes:** PHP, Python (Flask), Shell Script, HTML, CSS
 - **Contenedores:** Docker, Docker Compose
-- **Base de datos:** MySQL 8.0
-- **Imágenes base recomendadas:**  
-  - `php:8.x-apache`  
-  - `python:3.10-slim`  
-  - `mysql:8.0`
-- **Scripts:**  
-  - `arrancar.sh` (Inicia todo)
-  - `reinicio.sh` (Reinicia de forma segura)
-  - `apagar.sh` (Apaga todo)
-- **Otros:**  
-  - Volúmenes Docker para persistencia de datos
+- **Base de datos:** MySQL 8.0/MariaDB
+- **Autenticación centralizada:** OpenLDAP, NSS/PAM LDAP
+- **Frontend:** PHP/HTML/CSS/JS
+- **Backend:** Python (Flask)
+- **Scripts:** Bash para gestión y automatización
 
 ---
 
@@ -100,12 +91,15 @@ TFG_Brandon/
 │   └── main.js
 ├── db/                   # Scripts de base de datos
 │   └── init.sql
-├── scripts/              # Utilidades de gestión
+├── ldap/                 # Configuración y volúmenes de LDAP
+│   ├── config/
+│   └── data/
+├── scripts/              # Scripts de gestión
 │   ├── arrancar.sh
 │   ├── reinicio.sh
 │   └── apagar.sh
 ├── docker-compose.yml
-├── Dockerfile            # (En cada servicio)
+├── Dockerfile
 ├── README.md
 ├── .env
 └── ...
@@ -122,7 +116,7 @@ TFG_Brandon/
 
 ### Pasos rápidos
 
-1. **Clona el repo**
+1. **Clona el repositorio**
    ```bash
    git clone https://github.com/BitBrandon/TFG_Brandon.git
    cd TFG_Brandon
@@ -148,11 +142,11 @@ TFG_Brandon/
 
 ---
 
-## 📡 Acceso a Clientes y Pruebas de Usuarios LDAP
+## 📡 Acceso a Clientes y Pruebas LDAP
 
-### 🖥️ Acceso rápido a clientes desde MobaXterm o SSH
+### 🖥️ Acceso a clientes simulados por SSH
 
-Cada cliente está accesible vía SSH en el puerto correspondiente del host. Puedes usar MobaXterm (Windows) o cualquier terminal SSH (Linux/Mac).
+Cada cliente está accesible vía SSH en el puerto correspondiente al host. Ejemplo:
 
 | Contenedor           | Puerto SSH | Hostname interno               |
 |----------------------|------------|-------------------------------|
@@ -161,266 +155,68 @@ Cada cliente está accesible vía SSH en el puerto correspondiente del host. Pue
 | cliente-jefeit       | 2223       | jefeit.mayorista.local        |
 | cliente-jefe         | 2224       | jefe.mayorista.local          |
 
-**Ejemplo de conexión SSH desde terminal:**
+Conéctate así desde tu host:
 ```bash
 ssh juan@localhost -p 2221
-# O para otro usuario:
-ssh ana@localhost -p 2222
 ```
-*(Sustituye juan/ana por cualquier otro usuario LDAP válido)*
+*(Sustituye juan por cualquier usuario LDAP válido)*
 
-**En MobaXterm:**
-1. Crea una nueva sesión SSH:
-   - **Remote host:** `localhost`
-   - **Port:** `2221` (o `2222`, `2223`, `2224`)
-   - **Username:** `juan`, `ana`, etc.
-2. Guarda la sesión con el nombre del cliente para acceso rápido.
-3. Puedes dejar varias sesiones abiertas a distintos clientes a la vez.
+### 🔍 Pruebas de usuarios y grupos LDAP
 
----
+Desde cualquier cliente:
+- Verifica usuario:
+  ```bash
+  getent passwd juan
+  ```
+- Verifica grupo:
+  ```bash
+  getent group trabajadores
+  ```
+- Comprueba acceso SSH y creación automática de home:
+  ```bash
+  ssh juan@localhost -p 2221
+  ```
 
-### 🔍 Pruebas de usuarios LDAP en los clientes
-
-A continuación se muestran comandos y ejemplos para probar la autenticación y el correcto funcionamiento del LDAP en los clientes.
-
-#### 1. Comprobación de usuario en el sistema (desde cliente)
-
-```bash
-getent passwd juan
-getent passwd ana
-```
-**Esperado:**  
-Se muestra la línea de datos del usuario, lo que indica que el sistema reconoce a ese usuario a través de LDAP.
-
-#### 2. Acceso SSH como usuario LDAP
-
-```bash
-ssh juan@localhost -p 2221
-# Introducir la contraseña LDAP de juan
-# Esperado: acceso correcto y creación de /home/juan si es la primera vez
-```
-Lo mismo para otros usuarios (`ana`, etc.), cambiando el puerto según el cliente.
-
-#### 3. Comprobación de grupos y pertenencia
-
-```bash
-id juan
-id ana
-```
-**Esperado:**  
-Se muestran los grupos a los que pertenece el usuario, incluyendo los definidos en LDAP (por ejemplo, “trabajadores”).
-
-#### 4. Consultar usuarios y grupos desde el cliente
-
-```bash
-getent group trabajadores
-```
-**Esperado:**  
-Verás una línea con el grupo y los miembros según LDAP, por ejemplo:  
-`trabajadores:x:10001:juan,ana,...`
-
-#### 5. Prueba de autenticación interactiva
-
-1. **Accede al cliente mediante SSH o terminal:**
-   ```bash
-   ssh juan@localhost -p 2221
-   ```
-2. **Introduce la contraseña de juan (LDAP).**
-3. **Verifica que accedes y tienes un entorno de usuario funcional.**
-
-#### 6. Consulta rápida de todos los usuarios LDAP disponibles
-
+Para ver todos los usuarios LDAP con home:
 ```bash
 getent passwd | grep /home
 ```
-Esto mostrará todos los usuarios con home asignado, incluidos los de LDAP.
-
-#### 7. Prueba de creación automática de home
-
-- Al iniciar sesión por primera vez, debería crearse el directorio `/home/juan` automáticamente gracias a `pam_mkhomedir`.
-- Compruébalo con:
-  ```bash
-  ls -l /home/
-  ```
 
 ---
 
 ## ⚙️ Scripts de Gestión y Automatización
 
-Este proyecto incluye una serie de scripts Bash diseñados para facilitar la gestión completa del entorno dockerizado. Estos scripts permiten arrancar, reiniciar y apagar todos los servicios de forma segura, asegurando la persistencia de los datos y la consistencia del sistema.
+- `arrancar.sh`: Arranca todos los servicios, limpia estados antiguos y verifica salud.
+- `reinicio.sh`: Reinicia el entorno desde cero, asegurando limpieza y persistencia.
+- `apagar.sh`: Detiene los servicios y realiza backups automáticos.
 
-### 📋 Resumen de Scripts
-
-| Script           | Propósito principal                                                    |
-|------------------|-----------------------------------------------------------------------|
-| `arrancar.sh`    | Arranca todos los servicios, limpia estados antiguos y verifica salud |
-| `reinicio.sh`    | Reinicia el entorno desde cero, asegurando limpieza y persistencia    |
-| `apagar.sh`      | Apaga los servicios y realiza copias de seguridad (backups)           |
-
----
-
-### 🚦 arrancar.sh
-
-- **Función:**  
-  Prepara el entorno eliminando posibles restos de sesiones anteriores (por ejemplo, leases de DHCP), reconstruye las imágenes sin usar caché, levanta los servicios con Docker Compose y realiza comprobaciones automáticas de estado, especialmente para LDAP y los clientes definidos.
-- **Uso:**
-  ```bash
-  ./scripts/arrancar.sh
-  ```
-- **Qué hace por dentro:**  
-  - Limpia archivos temporales y antiguos.
-  - Fuerza la reconstrucción de imágenes Docker.
-  - Espera a que los servicios estén listos y verifica que LDAP responde.
-  - Muestra un resumen del estado de los clientes y sus conexiones LDAP.
-
----
-
-### ♻️ reinicio.sh
-
-- **Función:**  
-  Realiza un reinicio completo del entorno, eliminando contenedores y volúmenes, limpiando directorios de datos locales (especialmente para LDAP), verifica los archivos de configuración, reconstruye imágenes y vuelve a levantar los servicios.
-- **Uso:**
-  ```bash
-  ./scripts/reinicio.sh
-  ```
-- **Qué hace por dentro:**  
-  - Detiene y elimina contenedores/volúmenes.
-  - Borra datos locales de LDAP para arrancar “en limpio”.
-  - Comprueba la existencia y el contenido de archivos LDIF.
-  - Reconstruye imágenes Docker desde cero.
-  - Espera que todo el entorno esté listo y LDAP responda.
-- **Cuándo usarlo:**  
-  Cuando necesites reiniciar todo el entorno desde cero (por ejemplo, para pruebas limpias o tras cambios importantes).
-
----
-
-### 📴 apagar.sh
-
-- **Función:**  
-  Detiene todos los servicios del entorno y realiza backups automáticos de los datos críticos: LDAP, MariaDB, Apache y la API.
-- **Uso:**
-  ```bash
-  ./scripts/apagar.sh
-  ```
-- **Qué hace por dentro:**  
-  - Crea copias de seguridad (tar.gz o SQL) de los datos y configuraciones clave.
-  - Mantiene solo los 5 backups más recientes para ahorrar espacio.
-  - Detiene todos los servicios con Docker Compose.
-- **Cuándo usarlo:**  
-  Antes de apagar el sistema o hacer cambios mayores, para garantizar la seguridad e integridad de los datos.
-
----
-
-> ⚠️ **Sugerencias:**  
-> - Todos los scripts pueden requerir permisos de ejecución (`chmod +x scripts/*.sh`).
-> - Es recomendable ejecutarlos desde la raíz del proyecto.
-> - Revisa siempre los mensajes de color en consola: verde = OK, amarillo = advertencia, rojo = error.
-
----
-
-### Ejemplo de ciclo de vida recomendado
-
-```bash
-# Arrancar el entorno
-./scripts/arrancar.sh
-
-# ...trabaja, haz pruebas, etc...
-
-# Reiniciar (si necesitas resetear todo)
-./scripts/reinicio.sh
-
-# Apagar y respaldar
-./scripts/apagar.sh
-```
+Recomendación: ejecuta siempre los scripts desde la raíz del proyecto y revisa los mensajes de consola.
 
 ---
 
 ## 🧑‍💻 Uso y Ejemplos Prácticos
 
-- **Probar la API**
+- Probar la API:
   ```bash
   curl -v http://localhost:5000/api/endpoint
   ```
-
-- **Comprobar el frontend**
+- Comprobar el frontend:
   ```bash
   nc -zv localhost 8080
   ```
-
-- **Entrar a la base de datos**
+- Entrar a la base de datos:
   ```bash
   docker exec -it <db_container> mysql -u root -p
-  ```
-
-- **Reiniciar todo sin perder datos**
-  ```bash
-  ./scripts/reinicio.sh
   ```
 
 ---
 
 ## ✅ Pruebas y Validación
 
-- **¿Funciona el front?**
-  ```bash
-  curl -v http://localhost:8080
-  nc -zv localhost 8080
-  ```
-
-- **¿Funciona la API?**
-  ```bash
-  curl -v http://localhost:5000/api/endpoint
-  ```
-## Acceso y comprobación de la API
-
-> **IMPORTANTE:**  
-> Cuando accedas a la API desde otros contenedores (por ejemplo, desde los clientes “trabajador1”, “trabajador2”, etc.), **NO utilices `localhost`**.  
-> Debes usar la IP interna del servicio (por ejemplo, `192.168.0.12`) o el nombre de servicio Docker Compose (`api`), ya que Docker crea una red interna donde estos nombres funcionan como DNS.
-
-Ejemplo de acceso correcto desde un cliente:
-```sh
-curl -v http://api:5000/clientes
-```
-o bien
-```sh
-curl -v http://192.168.0.12:5000/clientes
-```
-
-> ⚠️ Usar `localhost` dentro de un contenedor solo conecta con servicios en ese mismo contenedor, **no con otros servicios Docker**.
-
-### ¿No responde la API? Prueba lo siguiente:
-
-1. **Verifica que el contenedor de la API esté "Up":**
-   ```sh
-   docker compose ps
-   ```
-2. **Consulta los logs de la API para ver posibles errores:**
-   ```sh
-   docker compose logs api
-   ```
-3. **Comprueba que la base de datos está funcionando correctamente.**
-4. **Asegúrate de usar la ruta adecuada** (por ejemplo, `/clientes` y no `/api/clientes`, según el blueprint configurado).
-
-- **¿La base de datos responde?**
-  ```bash
-  nc -zv localhost 3306
-  docker exec -it <db_container> mysql -u root -p
-  ```
-
-- **¿Red entre servicios?**
-  ```bash
-  docker exec -it frontend_container ping -c 3 backend_container
-  ```
-
-- **¿Persisten los datos?**
-  1. Crea algo vía API o base de datos.
-  2. Reinicia: `./scripts/reinicio.sh`
-  3. Comprueba que sigue ahí.
-
-- **¿Logs bien?**
-  ```bash
-  docker logs <nombre_contenedor>
-  ```
+- Acceso web, API y base de datos desde host y contenedores
+- Pruebas de autenticación con usuarios LDAP en clientes
+- Verificación de persistencia de datos tras reinicios
+- Logs y comandos de troubleshooting incluidos
 
 ---
 
@@ -432,13 +228,20 @@ curl -v http://192.168.0.12:5000/clientes
 | Permisos en volúmenes       | Usuario del host incorrecto     | Ajusta permisos con `chmod/chown` |
 | Servicio no arranca         | Falta config o dependencias     | Mira los logs y .env              |
 | Servicios no se ven         | Red Docker mal configurada      | Revisa `docker-compose.yml`       |
+| LDAP sin datos              | Falta inicialización del DN     | Añade LDIF o reinicia volúmenes   |
+| SSH rechaza usuarios LDAP   | Shell inválido o sin home       | Ajusta shell y pam_mkhomedir      |
+
+---
+
+## 🏁 Conclusión Final
+
+A lo largo de este proyecto se ha logrado desplegar y validar una infraestructura dockerizada robusta y segura, con centralización de identidades mediante LDAP y automatización de tareas administrativas. El sistema es escalable, reproducible y adaptable tanto a entornos reales como académicos, demostrando las ventajas de la virtualización ligera y la gestión centralizada de servicios y usuarios.
 
 ---
 
 ## 🙏 Agradecimientos
 
-Gracias a profes, compis, comunidad open source y sobre todo a mi novia.  
-Y a ti por pasarte por aquí 😊
+Gracias a profesores/as, compañeros/as, la comunidad open source y a mi entorno personal por el apoyo durante el desarrollo de este proyecto.
 
 ---
 
@@ -446,9 +249,25 @@ Y a ti por pasarte por aquí 😊
 
 - [ ] Añadir tests automáticos
 - [ ] Mejorar los scripts de gestión
-- [ ] Añadir más ejemplos prácticos
+- [ ] Añadir más ejemplos prácticos y documentación avanzada
 - [ ] Automatizar despliegue CI/CD
+- [ ] Integrar monitorización y alertas
 
 ---
 
-*Si tienes dudas o quieres contribuir, ¡abre un issue o contacta!*
+## 📚 Referencias
+
+1. Docker Documentation – https://docs.docker.com/
+2. OpenLDAP Administrator's Guide – https://www.openldap.org/doc/admin24/
+3. MariaDB Knowledge Base – https://mariadb.com/kb/en/
+4. Apache HTTP Server Documentation – https://httpd.apache.org/docs/
+5. Linux PAM – https://linux-pam.org/
+6. nss-pam-ldapd – https://arthurdejong.org/nss-pam-ldapd/
+7. PHP LDAP Manual – https://www.php.net/manual/en/book.ldap.php
+8. Docker Compose Documentation – https://docs.docker.com/compose/
+9. LDAP System Administration, Gerald Carter, O’Reilly Media, 2003.
+10. SSH Security Best Practices – https://www.ssh.com/academy/ssh/security-best-practices
+
+---
+
+*¿Tienes dudas o quieres contribuir? ¡Abre un issue o contacta!*
