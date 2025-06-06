@@ -44,7 +44,6 @@ Aquí tienes cómo se relacionan los componentes principales del proyecto.
 |                  |<---------------------|  Docker (TFG_Brandon)    |
 +------------------+         Web UI       +--------------------------+
 ```
-*(Aquí puedes poner una imagen más chula cuando la tengas)*
 
 ### 📦 Diagrama de Contenedores (C4)
 
@@ -66,7 +65,6 @@ Aquí tienes cómo se relacionan los componentes principales del proyecto.
                               +-------------------+   +-------------------+       |
 ```
 > Nota: Los scripts de bash (`arrancar.sh`, `reinicio.sh`, `apagar.sh`) gestionan la vida de los contenedores de manera segura y ayudan a mantener los datos tras reinicios.  
-*(Cuando tengas el diagrama puedes cambiar esto por una imagen)*
 
 ---
 
