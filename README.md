@@ -1,6 +1,6 @@
 # 🚀 TFG: Arquitectura de Servicios Dockerizados y Centralización de Identidades
 
-¡Bienvenido/a! Este repositorio contiene el Trabajo de Fin de Grado de BitBrandon, donde aprenderás a desplegar y gestionar una arquitectura completa de servicios utilizando Docker, integrando autenticación centralizada mediante LDAP, scripts de automatización y pruebas para un entorno empresarial realista y seguro.
+¡Bienvenido/a! Este repositorio contiene mi Trabajo de Fin de Grado, donde aprenderás a desplegar y gestionar una arquitectura completa de servicios utilizando Docker, integrando autenticación centralizada mediante OpenLDAP y simulando un entorno realista de empresa.
 
 👨‍💻 Autor: BitBrandon
 
@@ -29,7 +29,7 @@
 
 ## 👋 Introducción
 
-Este proyecto muestra cómo diseñar, desplegar y gestionar una infraestructura moderna basada en contenedores Docker. El objetivo es simular un entorno empresarial donde todos los servicios (bases de datos, frontend, backend, autenticación, etc.) se integran y administran de forma centralizada, eficiente y segura. Es ideal tanto para aprender como para replicar en entornos reales o académicos.
+Este proyecto muestra cómo diseñar, desplegar y gestionar una infraestructura moderna basada en contenedores Docker. El objetivo es simular un entorno empresarial donde todos los servicios (bases de datos, LDAP, front/back, clientes, etc.) están aislados y orquestados, centralizando la autenticación y la gestión de usuarios mediante LDAP y NSS/PAM.
 
 ---
 
@@ -144,9 +144,9 @@ TFG_Brandon/
 
 ## 📡 Acceso a Clientes y Pruebas LDAP
 
-### 🖥️ Acceso a clientes simulados por SSH
+### 🖥️ Acceso a clientes simulados por SSH (desde el host)
 
-Cada cliente está accesible vía SSH en el puerto correspondiente al host. Ejemplo:
+Cada cliente está accesible vía SSH desde tu máquina anfitriona (host) usando los siguientes puertos mapeados:
 
 | Contenedor           | Puerto SSH | Hostname interno               |
 |----------------------|------------|-------------------------------|
@@ -159,16 +159,49 @@ Conéctate así desde tu host:
 ```bash
 ssh juan@localhost -p 2221
 ```
-*(Sustituye juan por cualquier usuario LDAP válido)*
+*(Sustituye `juan` por cualquier usuario LDAP válido)*
 
-### 🔍 Pruebas de usuarios y grupos LDAP
+---
 
-Desde cualquier cliente:
-- Verifica usuario:
+### 🔄 Acceso SSH entre clientes (por red Docker interna)
+
+Los contenedores pueden conectarse entre sí usando la red interna de Docker, sin necesidad de puertos mapeados.  
+Esto es ideal para simular un entorno real de empresa, donde los equipos se comunican por nombre o IP interna.
+
+#### **Ejemplo: acceso desde un trabajador a otro**
+
+1. **Entra en el contenedor origen** (por ejemplo, trabajador1):
+   ```bash
+   docker exec -it cliente-trabajador1 bash
+   ```
+2. **Cambia a otro usuario si quieres (opcional):**
+   ```bash
+   su ana
+   ```
+3. **Haz SSH al otro trabajador usando la IP interna:**
+   ```bash
+   ssh juan@192.168.0.51
+   ```
+   *(o usa el nombre del contenedor si tienes bien definida la red en docker-compose: `ssh juan@cliente-trabajador2`)*
+
+4. **Pon la contraseña LDAP. Si la autenticación es correcta, el sistema creará el home automáticamente (si usas pam_mkhomedir).**
+
+> **Nota:**  
+> Puedes ver la IP interna de un contenedor ejecutando:
+> ```bash
+> docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' cliente-trabajador2
+> ```
+> Para que los nombres de contenedor funcionen como DNS, asegúrate de que todos los servicios están en la misma red definida en `docker-compose.yml`.
+
+---
+
+### 🔍 Pruebas y comprobaciones útiles
+
+- Verifica usuario LDAP:
   ```bash
   getent passwd juan
   ```
-- Verifica grupo:
+- Verifica grupo LDAP:
   ```bash
   getent group trabajadores
   ```
@@ -176,11 +209,28 @@ Desde cualquier cliente:
   ```bash
   ssh juan@localhost -p 2221
   ```
+  o (desde otro contenedor):
+  ```bash
+  ssh juan@cliente-trabajador2
+  ```
 
 Para ver todos los usuarios LDAP con home:
 ```bash
 getent passwd | grep /home
 ```
+
+---
+
+### ⚠️ Ten en cuenta
+
+- El mapeo de puertos (ej: 2221:22) **solo es necesario para acceder desde fuera de Docker** (tu PC/host).  
+  Para conexión entre contenedores, usa el puerto 22 y la IP/nombre interno.
+- Si ves errores como `No route to host` al conectar entre contenedores, asegúrate de que todos están en la misma red de Docker (revisa tu `docker-compose.yml`).
+- Si ves errores de “Connection closed” o “Permission denied”, revisa que los usuarios tengan shell válido, home, y que la configuración LDAP/PAM sea correcta.
+
+---
+
+**¡Ya puedes simular un entorno de oficina realista con identidades centralizadas y acceso seguro por SSH entre todos los clientes!**
 
 ---
 
@@ -230,12 +280,13 @@ Recomendación: ejecuta siempre los scripts desde la raíz del proyecto y revisa
 | Servicios no se ven         | Red Docker mal configurada      | Revisa `docker-compose.yml`       |
 | LDAP sin datos              | Falta inicialización del DN     | Añade LDIF o reinicia volúmenes   |
 | SSH rechaza usuarios LDAP   | Shell inválido o sin home       | Ajusta shell y pam_mkhomedir      |
+| No route to host (SSH entre contenedores) | Los contenedores no comparten red Docker interna | Añade todos los servicios a la misma red en `docker-compose.yml` |
 
 ---
 
 ## 🏁 Conclusión Final
 
-A lo largo de este proyecto se ha logrado desplegar y validar una infraestructura dockerizada robusta y segura, con centralización de identidades mediante LDAP y automatización de tareas administrativas. El sistema es escalable, reproducible y adaptable tanto a entornos reales como académicos, demostrando las ventajas de la virtualización ligera y la gestión centralizada de servicios y usuarios.
+A lo largo de este proyecto se ha logrado desplegar y validar una infraestructura dockerizada robusta y segura, con centralización de identidades mediante LDAP y automatización de tareas administrativas. La arquitectura permite simular un entorno empresarial realista, facilitando la gestión y el aprendizaje sobre integración de servicios, seguridad y administración de sistemas.
 
 ---
 
@@ -262,11 +313,10 @@ Gracias a profesores/as, compañeros/as, la comunidad open source y a mi entorno
 3. MariaDB Knowledge Base – https://mariadb.com/kb/en/
 4. Apache HTTP Server Documentation – https://httpd.apache.org/docs/
 5. Linux PAM – https://linux-pam.org/
-6. nss-pam-ldapd – https://arthurdejong.org/nss-pam-ldapd/
-7. PHP LDAP Manual – https://www.php.net/manual/en/book.ldap.php
-8. Docker Compose Documentation – https://docs.docker.com/compose/
-9. LDAP System Administration, Gerald Carter, O’Reilly Media, 2003.
-10. SSH Security Best Practices – https://www.ssh.com/academy/ssh/security-best-practices
+6. PHP LDAP Manual – https://www.php.net/manual/en/book.ldap.php
+7. Docker Compose Documentation – https://docs.docker.com/compose/
+8. LDAP System Administration, Gerald Carter, O’Reilly Media, 2003.
+9. SSH Security Best Practices – https://www.ssh.com/academy/ssh/security-best-practices
 
 ---
 

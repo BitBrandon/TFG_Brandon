@@ -1,2 +1,0 @@
-mysqldump: [Warning] Using a password on the command line interface can be insecure.
-mysqldump: Couldn't execute 'SELECT COLUMN_NAME,                       JSON_EXTRACT(HISTOGRAM, '$."number-of-buckets-specified"')                FROM information_schema.COLUMN_STATISTICS                WHERE SCHEMA_NAME = 'mayorista_db' AND TABLE_NAME = 'categorias';': Unknown table 'COLUMN_STATISTICS' in information_schema (1109)

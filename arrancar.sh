@@ -19,7 +19,7 @@ if [ -d ./dhcp-data ]; then
     fi
 fi
 
-# Reconstruir imágenes sin caché antes de levantar servicios
+# Reconstruir imágenes sin caché antes de levantar servicios (comentado para acelerar el arranque)
 echo -e "${GREEN}Reconstruyendo imágenes docker-compose build --no-cache...${NC}"
 docker-compose build --no-cache
 

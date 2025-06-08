@@ -1,5 +1,5 @@
 # AUTO-GENERATED FILE - DO NOT EDIT!! Use ldapmodify.
-# CRC32 e551968f
+# CRC32 5d30bf29
 dn: cn=config
 objectClass: olcGlobal
 cn: config
@@ -11,6 +11,6 @@ structuralObjectClass: olcGlobal
 entryUUID: 050e0932-d65f-103f-9adb-2b1307d59706
 creatorsName: cn=config
 createTimestamp: 20250605134500Z
-entryCSN: 20250606201134.852968Z#000000#000#000000
+entryCSN: 20250607110628.899455Z#000000#000#000000
 modifiersName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
-modifyTimestamp: 20250606201134Z
+modifyTimestamp: 20250607110628Z

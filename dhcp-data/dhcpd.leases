@@ -4,405 +4,85 @@
 # authoring-byte-order entry is generated, DO NOT DELETE
 authoring-byte-order little-endian;
 
-server-duid "\000\001\000\001/\326\007\362R9UJJ\250";
+server-duid "\000\001\000\001/\326\345\223\242\262r\352\033(";
 
-lease 192.168.0.50 {
-  starts 5 2025/06/06 20:11:35;
-  ends 5 2025/06/06 20:21:35;
-  cltt 5 2025/06/06 20:11:35;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet e6:8e:a1:b4:53:4d;
-  client-hostname "trabajador1.mayorista.local";
-}
 lease 192.168.0.51 {
-  starts 5 2025/06/06 20:11:36;
-  ends 5 2025/06/06 20:21:36;
-  cltt 5 2025/06/06 20:11:36;
+  starts 6 2025/06/07 11:57:10;
+  ends 6 2025/06/07 12:07:10;
+  cltt 6 2025/06/07 11:57:10;
   binding state active;
   next binding state free;
   rewind binding state free;
-  hardware ethernet de:4e:f9:6b:c0:01;
+  hardware ethernet 5e:81:f3:25:45:dc;
   client-hostname "trabajador2.mayorista.local";
 }
 lease 192.168.0.52 {
-  starts 5 2025/06/06 20:11:38;
-  ends 5 2025/06/06 20:21:38;
-  cltt 5 2025/06/06 20:11:38;
+  starts 6 2025/06/07 11:57:10;
+  ends 6 2025/06/07 12:07:10;
+  cltt 6 2025/06/07 11:57:10;
   binding state active;
   next binding state free;
   rewind binding state free;
-  hardware ethernet a6:60:d8:27:31:44;
+  hardware ethernet 3a:9e:66:28:f0:12;
   client-hostname "jefeit.mayorista.local";
 }
 lease 192.168.0.53 {
-  starts 5 2025/06/06 20:11:38;
-  ends 5 2025/06/06 20:21:38;
-  cltt 5 2025/06/06 20:11:38;
+  starts 6 2025/06/07 11:57:11;
+  ends 6 2025/06/07 12:07:11;
+  cltt 6 2025/06/07 11:57:11;
   binding state active;
   next binding state free;
   rewind binding state free;
-  hardware ethernet 26:43:3b:75:04:da;
+  hardware ethernet 2e:a8:d9:48:f1:a6;
   client-hostname "jefe.mayorista.local";
 }
 lease 192.168.0.50 {
-  starts 5 2025/06/06 20:15:45;
-  ends 5 2025/06/06 20:25:45;
-  cltt 5 2025/06/06 20:15:45;
+  starts 6 2025/06/07 11:57:11;
+  ends 6 2025/06/07 12:07:11;
+  cltt 6 2025/06/07 11:57:11;
   binding state active;
   next binding state free;
   rewind binding state free;
-  hardware ethernet e6:8e:a1:b4:53:4d;
+  hardware ethernet aa:74:49:62:7c:59;
   client-hostname "trabajador1.mayorista.local";
-}
-lease 192.168.0.53 {
-  starts 5 2025/06/06 20:15:47;
-  ends 5 2025/06/06 20:25:47;
-  cltt 5 2025/06/06 20:15:47;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet 26:43:3b:75:04:da;
-  client-hostname "jefe.mayorista.local";
-}
-lease 192.168.0.51 {
-  starts 5 2025/06/06 20:16:03;
-  ends 5 2025/06/06 20:26:03;
-  cltt 5 2025/06/06 20:16:03;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet de:4e:f9:6b:c0:01;
-  client-hostname "trabajador2.mayorista.local";
-}
-lease 192.168.0.52 {
-  starts 5 2025/06/06 20:16:13;
-  ends 5 2025/06/06 20:26:13;
-  cltt 5 2025/06/06 20:16:13;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet a6:60:d8:27:31:44;
-  client-hostname "jefeit.mayorista.local";
-}
-lease 192.168.0.53 {
-  starts 5 2025/06/06 20:18:31;
-  ends 5 2025/06/06 20:28:31;
-  cltt 5 2025/06/06 20:18:31;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet 26:43:3b:75:04:da;
-  client-hostname "jefe.mayorista.local";
-}
-lease 192.168.0.52 {
-  starts 5 2025/06/06 20:18:55;
-  ends 5 2025/06/06 20:28:55;
-  cltt 5 2025/06/06 20:18:55;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet a6:60:d8:27:31:44;
-  client-hostname "jefeit.mayorista.local";
 }
 lease 192.168.0.50 {
-  starts 5 2025/06/06 20:19:38;
-  ends 5 2025/06/06 20:29:38;
-  cltt 5 2025/06/06 20:19:38;
+  starts 6 2025/06/07 12:01:30;
+  ends 6 2025/06/07 12:11:30;
+  cltt 6 2025/06/07 12:01:30;
   binding state active;
   next binding state free;
   rewind binding state free;
-  hardware ethernet e6:8e:a1:b4:53:4d;
+  hardware ethernet aa:74:49:62:7c:59;
   client-hostname "trabajador1.mayorista.local";
 }
 lease 192.168.0.51 {
-  starts 5 2025/06/06 20:21:02;
-  ends 5 2025/06/06 20:31:02;
-  cltt 5 2025/06/06 20:21:02;
+  starts 6 2025/06/07 12:01:41;
+  ends 6 2025/06/07 12:11:41;
+  cltt 6 2025/06/07 12:01:41;
   binding state active;
   next binding state free;
   rewind binding state free;
-  hardware ethernet de:4e:f9:6b:c0:01;
-  client-hostname "trabajador2.mayorista.local";
-}
-lease 192.168.0.53 {
-  starts 5 2025/06/06 20:21:19;
-  ends 5 2025/06/06 20:31:19;
-  cltt 5 2025/06/06 20:21:19;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet 26:43:3b:75:04:da;
-  client-hostname "jefe.mayorista.local";
-}
-lease 192.168.0.52 {
-  starts 5 2025/06/06 20:21:29;
-  ends 5 2025/06/06 20:31:29;
-  cltt 5 2025/06/06 20:21:29;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet a6:60:d8:27:31:44;
-  client-hostname "jefeit.mayorista.local";
-}
-lease 192.168.0.50 {
-  starts 5 2025/06/06 20:24:32;
-  ends 5 2025/06/06 20:34:32;
-  cltt 5 2025/06/06 20:24:32;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet e6:8e:a1:b4:53:4d;
-  client-hostname "trabajador1.mayorista.local";
-}
-lease 192.168.0.51 {
-  starts 5 2025/06/06 20:25:01;
-  ends 5 2025/06/06 20:35:01;
-  cltt 5 2025/06/06 20:25:01;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet de:4e:f9:6b:c0:01;
-  client-hostname "trabajador2.mayorista.local";
-}
-lease 192.168.0.53 {
-  starts 5 2025/06/06 20:25:29;
-  ends 5 2025/06/06 20:35:29;
-  cltt 5 2025/06/06 20:25:29;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet 26:43:3b:75:04:da;
-  client-hostname "jefe.mayorista.local";
-}
-lease 192.168.0.52 {
-  starts 5 2025/06/06 20:26:28;
-  ends 5 2025/06/06 20:36:28;
-  cltt 5 2025/06/06 20:26:28;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet a6:60:d8:27:31:44;
-  client-hostname "jefeit.mayorista.local";
-}
-lease 192.168.0.53 {
-  starts 5 2025/06/06 20:28:00;
-  ends 5 2025/06/06 20:38:00;
-  cltt 5 2025/06/06 20:28:00;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet 26:43:3b:75:04:da;
-  client-hostname "jefe.mayorista.local";
-}
-lease 192.168.0.52 {
-  starts 5 2025/06/06 20:29:09;
-  ends 5 2025/06/06 20:39:09;
-  cltt 5 2025/06/06 20:29:09;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet a6:60:d8:27:31:44;
-  client-hostname "jefeit.mayorista.local";
-}
-lease 192.168.0.50 {
-  starts 5 2025/06/06 20:29:13;
-  ends 5 2025/06/06 20:39:13;
-  cltt 5 2025/06/06 20:29:13;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet e6:8e:a1:b4:53:4d;
-  client-hostname "trabajador1.mayorista.local";
-}
-lease 192.168.0.51 {
-  starts 5 2025/06/06 20:29:57;
-  ends 5 2025/06/06 20:39:57;
-  cltt 5 2025/06/06 20:29:57;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet de:4e:f9:6b:c0:01;
-  client-hostname "trabajador2.mayorista.local";
-}
-lease 192.168.0.53 {
-  starts 5 2025/06/06 20:30:50;
-  ends 5 2025/06/06 20:40:50;
-  cltt 5 2025/06/06 20:30:50;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet 26:43:3b:75:04:da;
-  client-hostname "jefe.mayorista.local";
-}
-lease 192.168.0.50 {
-  starts 5 2025/06/06 20:33:47;
-  ends 5 2025/06/06 20:43:47;
-  cltt 5 2025/06/06 20:33:47;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet e6:8e:a1:b4:53:4d;
-  client-hostname "trabajador1.mayorista.local";
-}
-lease 192.168.0.51 {
-  starts 5 2025/06/06 20:34:12;
-  ends 5 2025/06/06 20:44:12;
-  cltt 5 2025/06/06 20:34:12;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet de:4e:f9:6b:c0:01;
+  hardware ethernet 5e:81:f3:25:45:dc;
   client-hostname "trabajador2.mayorista.local";
 }
 lease 192.168.0.52 {
-  starts 5 2025/06/06 20:35:11;
-  ends 5 2025/06/06 20:45:11;
-  cltt 5 2025/06/06 20:35:11;
+  starts 6 2025/06/07 12:01:52;
+  ends 6 2025/06/07 12:11:52;
+  cltt 6 2025/06/07 12:01:52;
   binding state active;
   next binding state free;
   rewind binding state free;
-  hardware ethernet a6:60:d8:27:31:44;
+  hardware ethernet 3a:9e:66:28:f0:12;
   client-hostname "jefeit.mayorista.local";
 }
 lease 192.168.0.53 {
-  starts 5 2025/06/06 20:35:28;
-  ends 5 2025/06/06 20:45:28;
-  cltt 5 2025/06/06 20:35:28;
+  starts 6 2025/06/07 12:01:55;
+  ends 6 2025/06/07 12:11:55;
+  cltt 6 2025/06/07 12:01:55;
   binding state active;
   next binding state free;
   rewind binding state free;
-  hardware ethernet 26:43:3b:75:04:da;
-  client-hostname "jefe.mayorista.local";
-}
-lease 192.168.0.52 {
-  starts 5 2025/06/06 20:37:49;
-  ends 5 2025/06/06 20:47:49;
-  cltt 5 2025/06/06 20:37:49;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet a6:60:d8:27:31:44;
-  client-hostname "jefeit.mayorista.local";
-}
-lease 192.168.0.50 {
-  starts 5 2025/06/06 20:38:07;
-  ends 5 2025/06/06 20:48:07;
-  cltt 5 2025/06/06 20:38:07;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet e6:8e:a1:b4:53:4d;
-  client-hostname "trabajador1.mayorista.local";
-}
-lease 192.168.0.53 {
-  starts 5 2025/06/06 20:38:13;
-  ends 5 2025/06/06 20:48:13;
-  cltt 5 2025/06/06 20:38:13;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet 26:43:3b:75:04:da;
-  client-hostname "jefe.mayorista.local";
-}
-lease 192.168.0.51 {
-  starts 5 2025/06/06 20:38:36;
-  ends 5 2025/06/06 20:48:36;
-  cltt 5 2025/06/06 20:38:36;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet de:4e:f9:6b:c0:01;
-  client-hostname "trabajador2.mayorista.local";
-}
-lease 192.168.0.53 {
-  starts 5 2025/06/06 20:40:51;
-  ends 5 2025/06/06 20:50:51;
-  cltt 5 2025/06/06 20:40:51;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet 26:43:3b:75:04:da;
-  client-hostname "jefe.mayorista.local";
-}
-lease 192.168.0.50 {
-  starts 5 2025/06/06 20:42:46;
-  ends 5 2025/06/06 20:52:46;
-  cltt 5 2025/06/06 20:42:46;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet e6:8e:a1:b4:53:4d;
-  client-hostname "trabajador1.mayorista.local";
-}
-lease 192.168.0.51 {
-  starts 5 2025/06/06 20:43:03;
-  ends 5 2025/06/06 20:53:03;
-  cltt 5 2025/06/06 20:43:03;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet de:4e:f9:6b:c0:01;
-  client-hostname "trabajador2.mayorista.local";
-}
-lease 192.168.0.52 {
-  starts 5 2025/06/06 20:43:08;
-  ends 5 2025/06/06 20:53:08;
-  cltt 5 2025/06/06 20:43:08;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet a6:60:d8:27:31:44;
-  client-hostname "jefeit.mayorista.local";
-}
-lease 192.168.0.53 {
-  starts 5 2025/06/06 20:45:00;
-  ends 5 2025/06/06 20:55:00;
-  cltt 5 2025/06/06 20:45:00;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet 26:43:3b:75:04:da;
-  client-hostname "jefe.mayorista.local";
-}
-lease 192.168.0.52 {
-  starts 5 2025/06/06 20:45:47;
-  ends 5 2025/06/06 20:55:47;
-  cltt 5 2025/06/06 20:45:47;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet a6:60:d8:27:31:44;
-  client-hostname "jefeit.mayorista.local";
-}
-lease 192.168.0.51 {
-  starts 5 2025/06/06 20:47:21;
-  ends 5 2025/06/06 20:57:21;
-  cltt 5 2025/06/06 20:47:21;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet de:4e:f9:6b:c0:01;
-  client-hostname "trabajador2.mayorista.local";
-}
-lease 192.168.0.50 {
-  starts 5 2025/06/06 20:47:23;
-  ends 5 2025/06/06 20:57:23;
-  cltt 5 2025/06/06 20:47:23;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet e6:8e:a1:b4:53:4d;
-  client-hostname "trabajador1.mayorista.local";
-}
-lease 192.168.0.53 {
-  starts 5 2025/06/06 20:47:40;
-  ends 5 2025/06/06 20:57:40;
-  cltt 5 2025/06/06 20:47:40;
-  binding state active;
-  next binding state free;
-  rewind binding state free;
-  hardware ethernet 26:43:3b:75:04:da;
+  hardware ethernet 2e:a8:d9:48:f1:a6;
   client-hostname "jefe.mayorista.local";
 }
